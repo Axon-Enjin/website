@@ -17,10 +17,9 @@ This host **does not sell**. Product GTM is not mirrored here.
 ## For website copy and IA
 
 1. [`grounding/WEBSITE-CONTRACT.md`](grounding/WEBSITE-CONTRACT.md)
-2. [`grounding/COMPANY.md`](grounding/COMPANY.md)
-3. [`grounding/ARTICLES.md`](grounding/ARTICLES.md)
-4. [`grounding/SITEMAP.md`](grounding/SITEMAP.md)
-5. [`grounding/BRAND-VOICE.md`](grounding/BRAND-VOICE.md)
+2. [`grounding/COMMERCIAL-MODEL-V2.md`](grounding/COMMERCIAL-MODEL-V2.md)
+3. [`grounding/SITEMAP.md`](grounding/SITEMAP.md)
+4. [`grounding/BRAND-VOICE.md`](grounding/BRAND-VOICE.md)
 
 ## Sync
 

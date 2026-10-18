@@ -5,7 +5,7 @@ status: active
 authority: level-2
 owner: Jerico
 created: 2026-08-11
-updated: 2026-08-16
+updated: 2026-08-15
 review_cycle: 90-days
 source_of_truth: 11_MARKETING/website-grounding/WEBSITE-CONTRACT.md
 supersedes:
@@ -14,65 +14,70 @@ superseded_by:
 
 # Website Contract
 
-> Company copy spine: `COMPANY.md`. Articles: `ARTICLES.md`. Product GTM lives in OS `COMMERCIAL-MODEL-V2.md` — **not** on `axonenjin.com`.
-> Regulatory roots: Company Document §2.4 / §8 (private OS — not mirrored in full).
+> Full GTM doctrine: `COMMERCIAL-MODEL-V2.md` in this pack.
+> Compliance rules: `COMMERCIAL-MODEL-V2.md` §8 in this pack. Copy plain sentences only. Do not invent prices.
 
-## Two public properties
+## Product name
 
-| Host | Role |
-| ----- | ----- |
-| `https://axonenjin.com` | **Company** — tell who we are. **Do not sell.** |
-| `https://axlefield.axonenjin.com` | **Product** — sell Axlefield (own repo later). |
-| `delatorre.axonenjin.com` | **Founder** — footer on the company site only. Never primary nav. |
+**Company tagline (H1 — D-2026-008):** *The one who connects.*
 
-## Company tagline and product name
+**Axlefield** (D-2026-009) — *An Axon Enjin product.* Operating ecosystem: Core + modules + integrations + people. *One system for every branch. Add the tools you need.* (product; not the H1)
 
-**H1 (D-2026-008):** *The one who connects.*
+**Homepage hero:**
 
-**Axlefield** (D-2026-009) — *An Axon Enjin product.* On the company site this is **one Core Project** with Visit Site — not a hero sales stack, not a catalog.
+```text
+The one who connects.
+Axlefield.
+Add the tools you need.
+We work like your in-house developers.
+```
 
-Do **not** call the product Axon Enjin. Do **not** use “Franchise Operating Layer,” “FOL,” “ERP,” “business OS,” or **Operating Layer** as a public title. Do **not** print “Agentic AI Systems” as H1. No Greek script or neuron art in the hero.
+**Success breath (platform / below hero):** *One system for every branch. Add tools. Or we build custom AI. We work like your in-house developers.* Custom AI is Offer 3 — not the H1. Do **not** print “Agentic AI Systems” as the company tagline.
 
-Relationship line (may appear): *We work like your in-house developers.*
+**Plain paragraph (platform / about):** Growing multi-branch businesses get people, stock, customers, numbers, and workflows in one place. That habitat is **Axlefield**. Start empty. Buy the modules you need. When the catalog is not enough, we set it up around how you already operate — or we build the missing piece. Franchise networks are a strong fit; franchise is a use case, not the homepage title.
 
-## Company (`axonenjin.com`)
+**About (etymology — teach once):** Axon = axis / cable that carries signal. Enjin = engine / the one who connects. We connect people through systems. Axlefield is the product (axle + field). Do not put Ancient Greek or neuron art in the hero.
 
-**Nav:** About · Articles · Collaborate
-**Footer:** Team · Articles · Legal · optional Jerico
-**CTA:** Let's collaborate / talk to us
+Relationship line: *We work like your in-house developers.*
 
-**Proof:** a short strip on the home page (max five checkable lines) plus `/articles`. Hackathons never lead the hero (F-12). Case-shaped posts are an article type. Named paying clients only with consent.
+Do **not** use “Franchise Operating Layer,” “FOL,” “ERP,” or “business OS” as the homepage title. Franchise is a use case.
 
-**Forbidden on this host**
+Do **not** lead with “operating system for businesses” (Odoo / Zoho can say that). H1 is the company tagline. Product name is **Axlefield**. Do **not** call the product Axon Enjin.
 
-- See the modules / offer picker / how buying works / module catalog
-- Homepage CTA for Ventures equal to Collaborate
-- Join Our Team, Investments, or a Highlights **trophy wall** (a five-line Proof strip is allowed)
-- Named unvalidated ventures; named clients without consent (ChaChing, BlueBiz, Full Cup)
-- TEDx / student-chapter awards in the company Proof strip (founder site)
-- Any peso or other currency amounts (F-34 / D-2026-001)
-- BIR / BSP accreditation we do not hold; “fully compliant”; payment acceptance as an Axon Enjin capability
-- Pure-equity / “we build for free equity”
-- Naming competitors (Odoo, Zoho, NetSuite, ERPNext, local vendors)
-- Old front door: Readiness Audit, Automation Sprint, archetype hub, published plan tiers
+## Three offers only
 
-## Product (`axlefield.axonenjin.com`)
+1. Modular Axlefield (modules add to cart)
+2. Axlefield + customization — *tell us how you operate; we set it up around you*
+3. Custom AI / custom software (a build, with optional ongoing care; the client owns the app; the provider keeps reusable libraries)
 
-Nav: Modules · About · Contact. Footer: Legal · Axon Enjin.
-CTA: see modules / talk to us. No ventures. No Collaboration topic. No `/pricing`. No currency amounts.
-Offers and catalog are **not** copied onto the company HTML.
+## Allowed claims
 
-## Allowed claims (company)
+- Multi-branch operators (including franchise networks) as primary buyers
+- Module catalog: Core, HR, Inventory, CRM, Reporting, Accounting (safe scope), Scheduling
+- Ventures exist but are **secondary** (About + footer only)
+- Plain language suitable for a 5th–7th grader
 
-- We are an operating company; ventures are secondary
-- Four named people in Metro Manila
-- Axlefield exists as an Axon Enjin product (outbound)
-- Checkable competition results **as supporting detail**, with a write-up or public post
-- Cash floor for venture collaboration; equity optional and rare
-- Plain language (5th–7th grade)
+## Forbidden claims
 
-## When editing the company website
+- BIR / BSP accreditation we do not hold
+- “Buying our software makes you fully compliant”
+- Payment acceptance as an Axon Enjin capability
+- Accounting module as a marketed CAS replacement or “we replace BIR invoicing”
+- Any currency amount on the public site (F-34 / D-2026-001)
+- Pure-equity / “we build for free equity” as a public CTA
+- Homepage CTA for Ventures equal to Modules / Contact
+- Calling the product Axon Enjin; “ERP” or “business OS” as the title
+- “Agentic AI Systems” as H1; Greek script or neuron illustrations in the hero
+- Old front door: Readiness Audit, Automation Sprint ladder, archetype hub as Phase-1 IA, Starter/Growth/Enterprise published plans
+- Naming competitors (Odoo, Zoho, NetSuite, ERPNext, local vendors) on the **public site**. Name the job instead.
 
-1. Read this contract + `COMPANY.md` + `ARTICLES.md` + `SITEMAP.md` v3.2.
-2. If copy would invent pricing, legal conclusions, clients, press, or extra projects → stop.
+## CTAs
+
+Primary: talk to us / book a call / see modules.  
+Google Calendar booking URL: **TBD** (Commercial Model V2 §10). The founders must share the public appointment link before the contact button can use it.
+
+## When editing the website
+
+1. Read this contract + `COMMERCIAL-MODEL-V2.md` + `SITEMAP.md`.
+2. If copy would invent pricing, legal conclusions, or unvalidated claims → stop.
 3. If doctrine conflict suspected → flag; do not silently choose.

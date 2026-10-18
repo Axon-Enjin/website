@@ -5,7 +5,7 @@ status: active
 authority: level-2
 owner: Jerico
 created: 2026-08-11
-updated: 2026-08-16
+updated: 2026-08-15
 review_cycle: 90-days
 source_of_truth: 11_MARKETING/website-grounding/BRAND-VOICE.md
 supersedes:
@@ -14,7 +14,7 @@ superseded_by:
 
 # Brand Voice — Website
 
-> Canonical voice: Company Document §2.4 (private OS). Company host: `COMPANY.md`. Product explainer belongs on Axlefield, not on `axonenjin.com`.
+> Derived summary for website authors. Hard GTM and compliance rules: `COMMERCIAL-MODEL-V2.md` §8 in this pack.
 
 ## Plain language
 
@@ -22,36 +22,34 @@ superseded_by:
 - Short words. Short sentences.
 - Teach hard words only once, if at all.
 
-## Two hosts
+## Lead lines
 
-Company H1 (*The one who connects.*) lives on `axonenjin.com`. Product name (**Axlefield**) lives mainly on `axlefield.axonenjin.com`. On the company site, Axlefield is a **project name**, not the homepage title.
-
-## Company-host lines
-
-- *The one who connects.*
-- We work like your in-house developers.
-- Axlefield — an Axon Enjin product. (Projects card only)
-
-Do **not** put the product explainer stack (*Add the tools you need* / three offers / See the modules) on the company homepage.
+- Company H1: *The one who connects.* (D-2026-008)
+- Product: **Axlefield** (D-2026-009) — *An Axon Enjin product.*
+- Product explainer: *Add the tools you need.* / *One system for every branch. Add the tools you need.*
+- *We work like your in-house developers.*
+- Hero stack: *The one who connects.* / **Axlefield.** / *Add the tools you need.* / *We work like your in-house developers.*
+- Platform success breath (not H1): *One system for every branch. Add tools. Or we build custom AI. We work like your in-house developers.*
 
 ## Tone
 
 - Confident, clear, operational — not hype theatre.
-- Quiet competence. Specific. Restrained.
 - In-house partner, not distant agency.
 
 ## Hard regulatory voice (non-negotiable)
 
 - Never claim BIR/BSP accreditation we do not hold.
-- Never say software makes the client “fully compliant.”
+- Never say the software makes the client “fully compliant.”
 - Never represent payment acceptance as an Axon Enjin capability.
+- Accounting = management books + sync/export to the client’s own registered CAS — not a CAS replacement pitch.
 
 ## Pricing voice
 
 - No currency amounts on the public site (F-34).
-- Company site does not quote or “how buying works.”
+- Use “talk to us” / quotation language.
 
-## Competitor voice
+## Competitor voice (public site)
 
-- Do **not** name Odoo, Zoho, NetSuite, ERPNext, or local vendors.
-- Product name: **Axlefield**. Do not call the product Axon Enjin.
+- Do **not** name Odoo, Zoho, NetSuite, ERPNext, or local vendors on the website.
+- Describe the job: one system for every branch; add tools; build what’s missing.
+- Product name: **Axlefield**. Do **not** use “Agentic AI Systems” as the company tagline. Do **not** call the product Axon Enjin.
