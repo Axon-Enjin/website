@@ -9,7 +9,7 @@ alwaysApply: true
 
 - Company doctrine lives in private `Axon-Enjin/company-docs`.
 - This repo is **company-only** (`axonenjin.com`). It does **not** sell.
-- For customer-facing copy and IA, read `docs/grounding/COMPANY.md`, `WEBSITE-CONTRACT.md`, `ARTICLES.md`, and `SITEMAP.md`.
+- For customer-facing copy and IA, read `docs/grounding/COMMERCIAL-MODEL-V2.md`, `WEBSITE-CONTRACT.md`, and `SITEMAP.md`.
 - IA is two-property: company here; product at `axlefield.axonenjin.com` (other repo).
 - Never invent prices, clients, press, investments, or extra projects.
 - No peso/currency amounts on the public site (F-34).

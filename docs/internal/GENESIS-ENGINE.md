@@ -1,6 +1,6 @@
 # Genesis engine — craft notes
 
-Internal. Not website doctrine. Copy and IA live in `docs/grounding/` (`COMPANY.md`, `WEBSITE-CONTRACT.md`, `SITEMAP.md`) and root `NARRATIVE.md`.
+Internal. Not website doctrine. Copy and IA live in `docs/grounding/` (`COMMERCIAL-MODEL-V2.md`, `WEBSITE-CONTRACT.md`, `SITEMAP.md`) and root `NARRATIVE.md`.
 
 Recreate the **Axon Enjin** company homepage genesis with high visual fidelity as Tailwind CSS and vanilla JavaScript: **one node sparks, multiplies, connects, orbits, and resolves into a living network.** The network *is* the hero asset — there is no hero video.
 

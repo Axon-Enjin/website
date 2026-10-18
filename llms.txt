@@ -12,9 +12,8 @@ Public writing: https://axonenjin.com/articles/ — constraint, artifact, lesson
 
 ## Canonical docs (company)
 
-- /docs/grounding/COMPANY.md
+- /docs/grounding/COMMERCIAL-MODEL-V2.md
 - /docs/grounding/WEBSITE-CONTRACT.md
-- /docs/grounding/ARTICLES.md
 - /docs/grounding/SITEMAP.md
 
 Company OS (private): https://github.com/Axon-Enjin/company-docs
