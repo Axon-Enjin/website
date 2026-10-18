@@ -1,46 +1,29 @@
 # Website Grounding Manifest
-# Company consumer: Axon-Enjin/website → docs/grounding/
-# Product files stay in this folder for the Axlefield repo later — they are not mirrored to the company site.
+# Mirrored to Axon-Enjin/website → docs/grounding/
 
-pack_version: "1.2.1"
-exported: "2026-08-16"
+pack_version: "1.0.0"
+exported: "2026-10-18"
 authority: level-2
 source_repo: Axon-Enjin/company-docs
 consumer_repo: Axon-Enjin/website
 consumer_path: docs/grounding/
 
-company_mirror:
-  - WEBSITE-CONTRACT.md
-  - SITEMAP.md
-  - COMPANY.md
-  - ARTICLES.md
-  - BRAND-VOICE.md
-  - GROUNDING-MANIFEST.yml
-  - README.md
-
-product_only:
-  - COMMERCIAL-MODEL-V2.md
-  - MODULE-CATALOG.md
-
 files:
   - WEBSITE-CONTRACT.md
+  - COMMERCIAL-MODEL-V2.md
   - SITEMAP.md
-  - COMPANY.md
-  - ARTICLES.md
   - BRAND-VOICE.md
+  - MODULE-CATALOG.md
   - GROUNDING-MANIFEST.yml
   - README.md
 
 authority_sources:
-  commercial_model: 01_STRATEGY/COMMERCIAL-MODEL-V2.md
-  sitemap: 11_MARKETING/SITEMAP.md
-  canonical_voice: 01_STRATEGY/AXON-ENJIN-CANONICAL.md#§2.4
-  flags: 00_GOVERNANCE/FLAGS.md
+  commercial_model: COMMERCIAL-MODEL-V2.md
+  sitemap: SITEMAP.md
+  voice: BRAND-VOICE.md
+  contract: WEBSITE-CONTRACT.md
 
 rules:
-  - No peso or currency prices in any mirrored file intended for public copy.
+  - No currency amounts in any mirrored file intended for public copy.
   - Do not add client-confidential files to this pack.
   - Changes to this pack open a PR on Axon-Enjin/website; no silent overwrite.
-  - Public product name is Axlefield; company H1 is The one who connects.
-  - Two public properties: axonenjin.com (company — tell, do not sell) and axlefield.axonenjin.com (product).
-  - Do not mirror COMMERCIAL-MODEL-V2.md or MODULE-CATALOG.md onto the company website repo.
