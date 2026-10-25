@@ -13,7 +13,6 @@ export default function Company() {
             </span>{" "}
             The people behind the signal
           </span>
-          <span className="breadcrumb">AXON / 07</span>
         </div>
         <div className="company-layout">
           <div>

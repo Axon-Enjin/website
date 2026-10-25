@@ -37,7 +37,6 @@ export default function Assembly() {
                 <span className="ice">One shared view.</span>
               </h2>
             </div>
-            <span className="breadcrumb">AXON / 02</span>
           </div>
           <div className="assembly-scene wrap">
             <div className="app-window assembly-browser" id="branch-app">

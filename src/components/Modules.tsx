@@ -16,7 +16,6 @@ export default function Modules() {
             </span>{" "}
             The modules
           </span>
-          <span className="breadcrumb">AXON / 04</span>
         </div>
         <div className="module-layout">
           <svg

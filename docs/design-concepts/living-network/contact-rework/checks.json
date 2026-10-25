@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Contact fibres and pulses animate",
+    "pass": true
+  },
+  {
+    "name": "Animation reuses its cached canvas artwork",
+    "pass": true
+  },
+  {
+    "name": "Reference artwork has loaded",
+    "pass": true
+  },
+  {
+    "name": "Canopy spans the page content without overflow",
+    "pass": true
+  },
+  {
+    "name": "Canopy crosses into the previous section",
+    "pass": true
+  },
+  {
+    "name": "Company content has breathing room above the canopy",
+    "pass": true
+  },
+  {
+    "name": "Overlap artwork cannot block form controls",
+    "pass": true
+  },
+  {
+    "name": "Previous section content stays above the nerves",
+    "pass": true
+  },
+  {
+    "name": "No numbered brand marker remains",
+    "pass": true
+  },
+  {
+    "name": "Motion off freezes the nerve artwork",
+    "pass": true
+  },
+  {
+    "name": "Desktop form and headline share the same row",
+    "pass": true
+  },
+  {
+    "name": "Empty contact form is invalid",
+    "pass": true
+  },
+  {
+    "name": "Local inquiry never claims it was sent",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 320px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 390px",
+    "pass": true
+  },
+  {
+    "name": "Mobile keeps clear space above the nerves",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 768px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 1366px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 2560px",
+    "pass": true
+  },
+  {
+    "name": "Offscreen contact canvas sleeps",
+    "pass": true
+  },
+  {
+    "name": "Reduced motion keeps a static canopy",
+    "pass": true
+  }
+]

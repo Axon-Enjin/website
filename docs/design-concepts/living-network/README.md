@@ -23,7 +23,7 @@ This direction follows the user's clarified brand concept: **Axon carries the si
 - The images contain the earlier condensed wordmark. The user subsequently selected [the geometric identity](../identity-v2/01-geometric-exploration.png), which supersedes that lettering in the actual website. Keep that selected bold wordmark and angular cobalt symbol; do not restore the old condensed logo when matching the section images. Blue pill controls remain.
 - Evolve the display typography toward Forma's calmer, fluid DM Sans treatment, with Instrument Serif italic used deliberately at the opening and closing. Keep Garet for interface/body text. This is a proposed typography change, not an edit to `PROMPT.md`.
 - Use a single continuous signal motif: organic fibres in the opening, precise interface lines in the product, a quiet line in the team introduction, and a converging endpoint at contact. Avoid adding a large sculpture to every section.
-- Technical breadcrumbs become `AXON / 01` through `AXON / 08`, with small star markers and fine blue-gray rules. Forma's logo, copper palette and unrelated showcase projects are not reused.
+- Section-number breadcrumbs are removed from the website at the user's request. Small star markers remain where used.
 
 ## Proposed interaction contract for a later build
 

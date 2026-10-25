@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Five authored lines remain live text",
+    "pass": true
+  },
+  {
+    "name": "Artwork loads and contains no baked-in copy",
+    "pass": true
+  },
+  {
+    "name": "Opening stage shows only Technology",
+    "pass": true
+  },
+  {
+    "name": "Nerve artwork uses the scroll reveal mask",
+    "pass": true
+  },
+  {
+    "name": "Scene stays pinned during the reveal",
+    "pass": true
+  },
+  {
+    "name": "Scroll advances word reveal",
+    "pass": true
+  },
+  {
+    "name": "Nerve trace advances with the text",
+    "pass": true
+  },
+  {
+    "name": "Scroll draws the together underline",
+    "pass": true
+  },
+  {
+    "name": "All words appear before the scene releases",
+    "pass": true
+  },
+  {
+    "name": "Page continues after the staged sequence",
+    "pass": true
+  },
+  {
+    "name": "Scrolling backward reverses nerves and words",
+    "pass": true
+  },
+  {
+    "name": "Trace holds still without scroll input",
+    "pass": true
+  },
+  {
+    "name": "Motion off reveals every word and stops parallax",
+    "pass": true
+  },
+  {
+    "name": "Motion off shows the full nerve trace",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 320px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 390px",
+    "pass": true
+  },
+  {
+    "name": "Mobile starts with only Technology",
+    "pass": true
+  },
+  {
+    "name": "Mobile scene pins while words appear",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 768px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 1366px",
+    "pass": true
+  },
+  {
+    "name": "No horizontal overflow at 2560px",
+    "pass": true
+  },
+  {
+    "name": "Reduced motion renders the readable final state",
+    "pass": true
+  },
+  {
+    "name": "Reduced motion removes the sticky scroll runway",
+    "pass": true
+  }
+]

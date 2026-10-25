@@ -5,6 +5,8 @@ import "../assets/site.css";
 import "../assets/fidelity.css";
 import "../assets/hero.css";
 import "../assets/assembly.css";
+import "../assets/manifesto.css";
+import "../assets/contact.css";
 
 const root = document.getElementById("root")!;
 const app = (
