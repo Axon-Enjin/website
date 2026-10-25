@@ -69,11 +69,4 @@ for(let i=2;i>=0;i--) {
 handoff+=`<path class="signal-path" d="M210 85V135C210 163 244 160 264 178S294 215 333 204L397 178"/><circle class="delivery-check-ring" cx="210" cy="59" r="21"/><path class="delivery-check" d="m200 59 7 7 14-16"/>`+node(397,178,3)+node(210,135,2.7);
 const art=[understand,build,handoff].map(svg);
 for(let i=0;i<art.length;i++)await writeFile(new URL(`assets/delivery-${['understand','build','handoff'][i]}.svg`,root),art[i]);
-const page=new URL('index.html',root);
-let html=await readFile(page,'utf8');
-let count=0;
-html=html.replace(/<div class="technical-figure"[^>]*>[\s\S]*?<\/div>/g,()=>`<div class="technical-figure" data-delivery-revision="3" aria-hidden="true">${art[count++]}</div>`);
-if(count!==3)throw new Error(`Expected 3 figures, found ${count}`);
-html=html.replace(/assets\/(site\.css|fidelity\.css|site\.js)(?:\?[^" ]*)?/g,'assets/$1?v=20261025-03');
-await writeFile(page,html);
-console.log('Built and embedded all three detailed delivery illustrations.');
+console.log('Built all three SVG assets used by the React delivery section.');

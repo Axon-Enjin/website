@@ -69,7 +69,7 @@ try {
  check('Desktop timeline runs for the authored duration', await evaluate('window.__introEnded-window.__introStarted>=2600&&window.__introEnded-window.__introStarted<4000'));
  check('Intro leaves no persistent inline styles',await evaluate('![...document.documentElement.style].some(k=>k.startsWith("--intro-"))'));
  await screenshot('desktop.png');
- check('Selected identity preserved',await evaluate('getComputedStyle(document.querySelector(".brand span")).fontWeight==="800"&&document.querySelector(".brand img").getAttribute("src")==="assets/axon-mark.svg"'));
+ check('Selected identity preserved',await evaluate('getComputedStyle(document.querySelector(".brand span")).fontWeight==="800"&&new URL(document.querySelector(".brand img").src).pathname==="/assets/axon-mark.svg"'));
  await call('Page.navigate',{url:origin}); await sleep(500);
  check('Same-session reload skips intro',await evaluate(complete+' && !document.querySelector("#home").dataset.introState'));
  await fresh(); await evaluate('document.querySelector(".intro-skip").click()'); check('Skip completes immediately',await evaluate(complete));
@@ -97,7 +97,8 @@ try {
  await evaluate('document.querySelector(".intro-skip")?.click()');
  check('Skip during image loading fails open',await evaluate(complete));
  await call('Fetch.disable');await slowNavigation;await call('Network.setCacheDisabled',{cacheDisabled:false});
- await call('Network.enable');await call('Network.setBlockedURLs',{urls:['*hero-intro.js*']});
+ const appScript=await evaluate('document.querySelector("script[type=module][src]").src');
+ await call('Network.enable');await call('Network.setBlockedURLs',{urls:[appScript]});
  await call('Page.navigate',{url:origin+'?intro=1'});await sleep(1900);check('Failed intro script fails open',await evaluate(complete+' && getComputedStyle(document.querySelector(".hero-title-line")).opacity==="1"'));
  await call('Network.setBlockedURLs',{urls:[]});
  await call('Network.setBlockedURLs',{urls:['*hero-network.png*']});await call('Network.clearBrowserCache');
