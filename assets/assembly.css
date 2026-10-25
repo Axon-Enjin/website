@@ -1,0 +1,104 @@
+/* Living network 02: one vertical section, full-bleed nerves, in-place assembly. */
+.assembly { height:auto; min-height:0; padding:0; border:0; background:none; scroll-margin-top:-100px; }
+.assembly #product { top:100px; }
+.assembly-sticky {
+  position:relative;
+  height:max(800px,100svh);
+  min-height:0;
+  max-height:none;
+  padding:76px 0 48px;
+  overflow:visible;
+  isolation:isolate;
+}
+.assembly-atmosphere { position:absolute; inset:-65px 0 -65px; z-index:-3; pointer-events:none; mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent); }
+.assembly-art { width:100%; height:100%; max-width:none; object-fit:fill; }
+#assembly-particles { position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+.assembly-heading { width:89%; max-width:none; margin-inline:auto; }
+.assembly-heading .chapter-label { margin-bottom:18px; letter-spacing:.27em; }
+.assembly-heading h2 { font-size:clamp(44px,4.7vw,84px); line-height:.99; font-weight:450; letter-spacing:-.03em; text-wrap:nowrap; transform:scaleX(1.125); transform-origin:left; }
+.assembly-heading h2 .ice { color:#bde9ff; }
+.assembly-heading>.breadcrumb { padding-top:0; }
+.assembly-scene { position:absolute; inset:0; width:100%; max-width:none; margin:0; padding:0; min-height:0; display:block; perspective:1400px; overflow:visible; pointer-events:none; }
+.assembly-browser {
+  position:absolute;
+  top:30%;
+  left:26.3%;
+  width:63.2%;
+  min-width:0;
+  pointer-events:auto;
+  transform:rotateY(-7deg) rotateZ(-1deg) scale(var(--assembly-scale,1));
+  transform-origin:center;
+  clip-path:inset(var(--assembly-inset,0%) 0 round var(--assembly-radius,12px));
+  border:1px solid #78baff;
+  background:rgba(7,18,32,var(--assembly-surface,.96));
+  box-shadow:0 16px 36px #00000080;
+  will-change:auto;
+}
+.assembly-browser::after { content:''; position:absolute; inset:8px; border:1px solid #305a7b88; border-radius:8px; pointer-events:none; }
+.assembly-browser .window-toolbar,.assembly-browser .app-body { opacity:var(--assembly-content,1); }
+.assembly-browser .window-toolbar { min-height:64px; padding:15px 22px; }
+.assembly-browser .window-product { font-size:15px; }
+.assembly-browser .window-dots { display:flex; gap:6px; }
+.assembly-browser .window-dots i { width:8px; height:8px; }
+.assembly-browser .app-body { min-height:400px; }
+.assembly-browser .app-rail { width:19%; padding:29px 10px; gap:5px; }
+.assembly-browser .app-rail button,.assembly-browser .rail-overview { font-size:14px; min-height:49px; gap:14px; padding:12px 14px; }
+.assembly-browser .rail-overview { margin-bottom:8px; }
+.assembly-browser .app-rail button[aria-selected=true]:before { width:1px; left:-10px; background:#2083ff; }
+.assembly-browser .app-main { padding:30px 30px 20px; }
+.assembly-browser .app-main h3 { font-size:clamp(25px,1.9vw,34px); font-weight:500; }
+.assembly-browser .app-subtitle { font-size:15px; margin:8px 0 18px; }
+.assembly-browser table { border-collapse:separate; border-spacing:0; border:1px solid #284761; border-radius:8px; overflow:hidden; }
+.assembly-browser th,.assembly-browser td { padding:17px 25px; font-size:16px; border-right:1px solid #22324766; }
+.assembly-browser th:last-child,.assembly-browser td:last-child { border-right:0; }
+.assembly-browser thead th { font-size:14px; padding-block:14px; }
+.assembly-browser td,.assembly-browser thead th:not(:first-child) { text-align:center; }
+.assembly-browser .sample-caption { font-size:12px; margin-top:20px; letter-spacing:.04em; }
+@media(min-width:761px) and (max-width:1150px) {
+  .assembly-sticky { height:max(760px,100svh); }
+  .assembly-browser { left:23%; width:70%; top:31%; }
+  .assembly-browser .app-rail { width:19%; padding-inline:6px; }
+  .assembly-browser .app-rail button,.assembly-browser .rail-overview { gap:9px; padding-inline:8px; font-size:12px; }
+  .assembly-browser .app-main { padding:26px 20px 18px; }
+  .assembly-browser th,.assembly-browser td { padding:15px 14px; font-size:14px; }
+  .assembly-browser thead th { font-size:12px; }
+  .assembly-browser .window-product { font-size:12px; }
+}
+@media(max-width:760px) {
+  .assembly { scroll-margin-top:-85px; }
+  .assembly #product { top:85px; }
+  .assembly-sticky { height:auto; padding:84px 0 45px; display:block; }
+  .assembly-heading { width:calc(100% - 48px); }
+  .assembly-heading .chapter-label { font-size:11px; letter-spacing:.16em; margin-bottom:20px; }
+  .assembly-heading h2 { font-size:clamp(31px,8.5vw,44px); line-height:1.08; transform:none; }
+  .assembly-scene { position:relative; inset:auto; width:calc(100% - 48px); margin:35px auto 30px; perspective:none; }
+  .assembly-browser { position:relative; top:auto; left:auto; width:100%; transform:none!important; }
+  .assembly-browser .window-toolbar { min-height:54px; padding:12px; gap:10px; }
+  .assembly-browser .window-dots { display:none; }
+  .assembly-browser .branch-picker { width:116px; max-width:none; flex-shrink:0; margin-left:auto; }
+  .assembly-browser .branch-picker select { width:100%; padding-right:15px; font-size:11px; }
+  .assembly-browser .app-body { min-height:0; }
+  .assembly-browser .app-rail { width:38px; padding:24px 4px; gap:10px; }
+  .assembly-browser .app-rail button,.assembly-browser .rail-overview { min-height:44px; padding:9px 6px; }
+  .assembly-browser .app-rail button[aria-selected=true]:before { left:-4px; width:1px; }
+  .assembly-browser .app-main { padding:24px 12px 18px; }
+  .assembly-browser .app-main h3 { font-size:23px; }
+  .assembly-browser .app-subtitle { font-size:12px; margin:8px 0 18px; }
+  .assembly-browser .table-scroll { overflow:visible; }
+  .assembly-browser table { width:100%; table-layout:fixed; white-space:normal; }
+  .assembly-browser th,.assembly-browser td { padding:12px 5px; font-size:12px; }
+  .assembly-browser thead th { font-size:11px; }
+  .assembly-browser th:first-child { width:32%; }
+  .assembly-browser .sample-caption { font-size:11px; letter-spacing:0; margin-top:18px; }
+  .assembly-atmosphere { inset:-45px 0 -35px; }
+  .assembly-art { object-fit:cover; object-position:24% center; opacity:.75; }
+}
+@media(max-width:380px) {
+  .assembly-heading,.assembly-scene { width:calc(100% - 40px); }
+  .assembly-browser .app-main { padding-inline:9px; }
+  .assembly-browser th,.assembly-browser td { padding-inline:3px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .assembly-browser { clip-path:none; }
+  .assembly-browser .window-toolbar,.assembly-browser .app-body { opacity:1; }
+}

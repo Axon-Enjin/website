@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Axon Enjin — Intro storyboard</title>
+  <link rel="stylesheet" href="storyboard.css">
+  <script src="storyboard.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="board-header">
+      <a class="identity" href="../../../../index.html"><img src="../../../../assets/axon-mark.svg" width="36" height="25" alt=""><span>AXON ENJIN</span></a>
+      <a href="README.md">Read the motion brief <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="intro-copy"><h1>Follow the signal.</h1><p>One line becomes the network. The network becomes the page.</p><span class="status">Intro storyboard · Proposal</span></div>
+    <section aria-label="Replayable intro study">
+      <div class="stage" id="stage" role="group" aria-label="Animation study: a blue signal traces the trunk, splits into three branches and reveals the existing Axon hero.">
+        <svg class="network" viewBox="0 0 1672 941" aria-hidden="true">
+          <defs>
+            <filter id="feather" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="26"/></filter>
+            <filter id="tip-glow" x="-400%" y="-400%" width="900%" height="900%"><feGaussianBlur stdDeviation="6"/></filter>
+            <mask id="network-reveal"><rect width="1672" height="941" fill="black"/><g filter="url(#feather)" fill="none" stroke="white" stroke-linecap="round">
+              <path class="mask-trunk" d="M12 790 C200 900 470 700 690 655 S930 550 1060 530" stroke-width="230"/>
+              <path class="mask-upper" d="M1060 530 C1190 470 1110 190 1380 180 C1540 110 1560 270 1390 335" stroke-width="320"/>
+              <path class="mask-middle" d="M1060 530 C1240 475 1420 605 1570 470" stroke-width="260"/>
+              <path class="mask-lower" d="M1060 530 C1200 590 1220 820 1430 780" stroke-width="340"/>
+            </g><rect class="mask-finish" width="1672" height="941" fill="white" opacity="0"/></mask>
+          </defs>
+          <image href="../../../../assets/hero-network.png" width="1672" height="941" mask="url(#network-reveal)"/>
+          <g class="trace-lines" fill="none" stroke="#59c7ff" stroke-width="2" stroke-linecap="round">
+            <path class="trace-trunk" d="M12 790 C200 900 470 700 690 655 S930 550 1060 530"/>
+            <path class="trace-upper" d="M1060 530 C1190 470 1110 190 1380 180"/>
+            <path class="trace-middle" d="M1060 530 C1240 475 1420 605 1570 470"/>
+            <path class="trace-lower" d="M1060 530 C1200 590 1220 820 1430 780"/>
+          </g>
+          <g class="signal-tip"><circle r="11" fill="#52baff" filter="url(#tip-glow)"/><circle r="3.5" fill="#e9faff"/></g>
+        </svg>
+        <div class="scene-header"><span class="identity"><img src="../../../../assets/axon-mark.svg" alt=""><span>AXON ENJIN</span></span><div class="scene-nav"><span>Product</span><span>Modules</span><span>Company</span><span class="pill">Talk to us ↗</span></div></div>
+        <div class="scene-copy"><div class="scene-label">✳ &nbsp; TECHNOLOGY THAT CONNECTS</div><div class="scene-title"><span class="people">People,</span><em>connected.</em></div><p class="scene-subcopy">One system for every branch.<br>Add the tools you need.</p><div class="scene-actions"><span class="pill">See modules ↗</span><span class="contact-link">Talk to us</span></div></div>
+        <div class="scene-footer"><span>AXON / 01 ─────</span><span>Scroll to follow the signal ↓</span><span>Ⅱ &nbsp; Motion on</span></div>
+        <button id="skip" class="skip" type="button" hidden>Skip intro</button>
+      </div>
+      <div class="transport">
+        <button id="replay" type="button">Replay intro</button>
+        <button id="pause" type="button" disabled>Pause</button>
+        <label class="scrub-label" for="scrub">Timeline<input id="scrub" type="range" min="0" max="2800" step="10" value="2800"></label>
+        <output id="time" for="scrub">2.80 / 2.80s</output>
+        <label class="pace-label"><input id="mobile-pace" type="checkbox">Mobile pace · 2s</label>
+      </div>
+      <p class="beat-description" id="beat-description" aria-live="polite">06 — Continue. The completed hero holds; ambient motion takes over.</p>
+    </section>
+    <ol class="frames" aria-label="Select a storyboard frame">
+      <li><button type="button" data-time="100"><span class="frame-number">01 <span>0.00–0.20s</span></span><svg viewBox="0 0 300 169" aria-hidden="true"><circle cx="7" cy="142" r="3" fill="#bceeff"/></svg><strong>Spark</strong><p>A point wakes on the incoming trunk.</p></button></li>
+      <li><button type="button" data-time="650"><span class="frame-number">02 <span>0.20–0.90s</span></span><svg viewBox="0 0 300 169" aria-hidden="true"><path d="M-5 142C40 162 85 128 123 118S155 104 180 99" fill="none" stroke="#52c8ff"/><circle cx="180" cy="99" r="2.5" fill="#d9f6ff"/></svg><strong>Trace</strong><p>The light follows the existing curve.</p></button></li>
+      <li><button type="button" data-time="1250"><span class="frame-number">03 <span>0.75–1.55s</span></span><svg viewBox="0 0 300 169" aria-hidden="true"><path d="M-5 142C40 162 85 128 123 118S166 99 190 95M190 95C214 84 199 34 248 32M190 95C222 85 255 109 282 84M190 95C215 106 219 147 257 140" fill="none" stroke="#52c8ff"/></svg><strong>Branch</strong><p>One signal splits into three directions.</p></button></li>
+      <li><button type="button" data-time="1800"><span class="frame-number">04 <span>1.30–2.05s</span></span><div class="frame-art"><img src="../../../../assets/hero-network.png" alt=""><span class="frame-title">People,<br><em>connected.</em></span></div><strong>Connect</strong><p>Fibres resolve as the headline arrives.</p></button></li>
+      <li><button type="button" data-time="2250"><span class="frame-number">05 <span>1.85–2.40s</span></span><div class="frame-art"><img src="../../../../assets/hero-network.png" alt=""><span class="frame-title">People,<br><em>connected.</em><small>One system for every branch.</small><i>See modules ↗</i></span></div><strong>Arrive</strong><p>Copy and controls settle into position.</p></button></li>
+      <li><button type="button" data-time="2800" aria-current="step"><span class="frame-number">06 <span>2.40–2.80s</span></span><div class="frame-art"><img src="../../../../assets/hero-network.png" alt=""><span class="frame-title">People,<br><em>connected.</em><small>One system for every branch.</small><i>See modules ↗</i></span></div><strong>Continue</strong><p>The intro ends inside the real hero.</p></button></li>
+    </ol>
+    <div class="notes"><p><strong>The handoff</strong> The camera stays fixed. A thin trace reveals the existing fibre artwork along the same path, then dissolves into it. The logo and final composition stay intact.</p><p><strong>On the website</strong> Play once per session. Skip on scroll or Escape. Motion off and reduced motion show the completed hero. Mobile uses a shorter sequence below the copy.</p><p><strong>Reference</strong> <a href="https://getcko.vercel.app/?intro">GetcKo’s intro ↗</a> assembles its mark and carries it into the header. Axon carries its signal into the network. This preview studies timing; production masks need precise branch alignment.</p></div>
+  </main>
+</body>
+</html>

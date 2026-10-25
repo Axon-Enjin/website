@@ -1,0 +1,68 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T18:12:48.329Z",
+        "reason": "User confirmed the Living network mocks and Forma brief: Instrument Serif italic connected is deliberate in the opening and closing."
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T18:12:48.441Z",
+        "reason": "User confirmed the Forma-derived mockup including small-star technical label and chapter markers."
+      },
+      {
+        "rule": "kicker-above-heading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T18:12:48.549Z",
+        "reason": "User confirmed the eight Living network mocks with technical section labels and breadcrumbs."
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument serif",
+        "createdAt": "2026-10-24T18:12:48.653Z",
+        "reason": "User requested Instrument Serif in the Forma reference and approved its use in the Living network mockups."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T18:24:52.596Z",
+        "reason": "Agent verified computed layout in the real browser: Modules and Company each have 101.587px top padding and 102.45px child inset; the detector misses the shared section padding."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "assets/hero.css"
+        ],
+        "createdAt": "2026-10-24T19:10:53.976Z",
+        "reason": "User explicitly requested matching docs/design-concepts/living-network/01-hero.png; its connected lettering has a white-to-blue treatment. Scope limited to hero reference styles."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T19:10:54.053Z",
+        "reason": "User explicitly requested matching 01-hero.png; the hero connected lettering uses the reference white-to-blue treatment through assets/hero.css."
+      }
+    ]
+  }
+}

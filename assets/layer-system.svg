@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" fill="none">
+ <defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#4897d8" opacity=".7"/></pattern><linearGradient id="plane" x2="1" y2="1"><stop stop-color="#102c4a" stop-opacity=".8"/><stop offset="1" stop-color="#06101f" stop-opacity=".6"/></linearGradient></defs>
+ <path d="m200 124 166 53-166 53L34 177Z" fill="url(#plane)" stroke="#2d6093"/><path d="m200 131 143 46-143 46-143-46Z" fill="url(#dots)"/>
+ <path d="m200 69 166 53-166 53L34 122Z" fill="url(#plane)" stroke="#2d6093"/><path d="m112 117 52-16 39 12-52 16Zm64 20 52-16 42 13-52 16Z" fill="#103858" stroke="#316295"/><path d="m224 100 50 16m-44-4 21 7m-135 31 44 14" stroke="#438ed0"/>
+ <path d="m200 14 166 53-166 53L34 67Z" fill="url(#plane)" stroke="#2d6093"/><ellipse cx="188" cy="56" rx="40" ry="13" stroke="#2e6fff" stroke-width="5"/><ellipse cx="188" cy="56" rx="28" ry="8" stroke="#24519b"/><path d="m248 56 44 14m-44-2 24 8m-35-1 36 12M112 59l16 5m-29 2 16 5m-26 4 16 5" stroke="#3b8ed1" stroke-width="2"/>
+ <path d="M200 79v111" stroke="#56c8ff"/><circle cx="200" cy="99" r="3" fill="#56c8ff"/><circle cx="200" cy="153" r="3" fill="#56c8ff"/><circle cx="200" cy="207" r="3" fill="#56c8ff"/>
+</svg>

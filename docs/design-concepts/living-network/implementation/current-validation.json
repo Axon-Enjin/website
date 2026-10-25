@@ -1,0 +1,321 @@
+{
+  "hero_intro": {
+    "checks": [
+      {
+        "name": "First visit starts intro",
+        "pass": true
+      },
+      {
+        "name": "Intro completes and removes temporary DOM",
+        "pass": true
+      },
+      {
+        "name": "Desktop timeline runs for the authored duration",
+        "pass": true
+      },
+      {
+        "name": "Intro leaves no persistent inline styles",
+        "pass": true
+      },
+      {
+        "name": "Selected identity preserved",
+        "pass": true
+      },
+      {
+        "name": "Same-session reload skips intro",
+        "pass": true
+      },
+      {
+        "name": "Skip completes immediately",
+        "pass": true
+      },
+      {
+        "name": "Wheel completes without a scroll lock",
+        "pass": true
+      },
+      {
+        "name": "Keyboard navigation completes intro",
+        "pass": true
+      },
+      {
+        "name": "Motion off completes intro",
+        "pass": true
+      },
+      {
+        "name": "Saved Motion off bypasses forced replay",
+        "pass": true
+      },
+      {
+        "name": "Reduced motion bypasses forced replay",
+        "pass": true
+      },
+      {
+        "name": "Mobile intro uses the image crop",
+        "pass": true
+      },
+      {
+        "name": "Mobile completes without horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Scroll preserves destination",
+        "pass": true
+      },
+      {
+        "name": "Deep links skip intro",
+        "pass": true
+      },
+      {
+        "name": "Slow artwork has immediate skip",
+        "pass": true
+      },
+      {
+        "name": "Skip during image loading fails open",
+        "pass": true
+      },
+      {
+        "name": "Failed intro script fails open",
+        "pass": true
+      },
+      {
+        "name": "Failed artwork fails open",
+        "pass": true
+      },
+      {
+        "name": "No uncaught application errors",
+        "pass": true
+      }
+    ],
+    "runtimeErrors": []
+  },
+  "assembly": {
+    "checks": [
+      {
+        "name": "Automatic morph completes on section entry",
+        "pass": true
+      },
+      {
+        "name": "Actual shape morph runs without scrolling the page",
+        "pass": true
+      },
+      {
+        "name": "Normal vertical section replaces sticky scroll",
+        "pass": true
+      },
+      {
+        "name": "Canvas floats outside product and content containers",
+        "pass": true
+      },
+      {
+        "name": "Nerve background spans viewport edges",
+        "pass": true
+      },
+      {
+        "name": "Signal label and chapter controls are removed",
+        "pass": true
+      },
+      {
+        "name": "Section composition fits viewport",
+        "pass": true
+      },
+      {
+        "name": "Live tabs and branch filter work",
+        "pass": true
+      },
+      {
+        "name": "Mobile table fits without horizontal scroll",
+        "pass": true
+      },
+      {
+        "name": "Small mobile has no horizontal overflow",
+        "pass": true
+      },
+      {
+        "name": "Motion off resolves morph into readable interface",
+        "pass": true
+      },
+      {
+        "name": "Reduced motion directly shows final assembly",
+        "pass": true
+      },
+      {
+        "name": "No uncaught errors",
+        "pass": true
+      }
+    ],
+    "runtimeErrors": []
+  },
+  "page_regression": {
+    "origin": "http://127.0.0.1:4173/",
+    "checks": [
+      {
+        "name": "Desktop page, local fonts and selected identity load",
+        "pass": true
+      },
+      {
+        "name": "Desktop hero artwork and animation canvas load",
+        "pass": true
+      },
+      {
+        "name": "Animation scheduler runs when visible",
+        "pass": true
+      },
+      {
+        "name": "Motion toggle stops the animation scheduler",
+        "pass": true
+      },
+      {
+        "name": "All in-page links point to real targets",
+        "pass": true
+      },
+      {
+        "name": "Assembly uses native vertical flow with no chapter timeline",
+        "pass": true
+      },
+      {
+        "name": "Manifesto preserves all five authored lines",
+        "pass": true
+      },
+      {
+        "name": "Manifesto chapter remains clear of fixed navigation",
+        "pass": true
+      },
+      {
+        "name": "Assembly has readable labelled navigation",
+        "pass": true
+      },
+      {
+        "name": "All four signal scenes use sized canvases",
+        "pass": true
+      },
+      {
+        "name": "Team remains discreet",
+        "pass": true
+      },
+      {
+        "name": "People workflow and branch filter update the real table",
+        "pass": true
+      },
+      {
+        "name": "Workflow keyboard navigation switches to reports",
+        "pass": true
+      },
+      {
+        "name": "All seven modules switch with exactly one active tab",
+        "pass": true
+      },
+      {
+        "name": "Accounting safe scope is visible",
+        "pass": true
+      },
+      {
+        "name": "Module keyboard navigation wraps to Core",
+        "pass": true
+      },
+      {
+        "name": "Inventory example survives switching away and back",
+        "pass": true
+      },
+      {
+        "name": "Transfer review rejects the same origin and destination",
+        "pass": true
+      },
+      {
+        "name": "Module window shortcuts switch real module details",
+        "pass": true
+      },
+      {
+        "name": "Canvas scheduler sleeps outside the visual sections",
+        "pass": true
+      },
+      {
+        "name": "All three offer titles share a column",
+        "pass": true
+      },
+      {
+        "name": "Command menu opens with Ctrl+K",
+        "pass": true
+      },
+      {
+        "name": "Native Escape closes the command menu",
+        "pass": true
+      },
+      {
+        "name": "Contact requires valid fields",
+        "pass": true
+      },
+      {
+        "name": "Prepared inquiry is literal text and never claims delivery",
+        "pass": true
+      },
+      {
+        "name": "Desktop closing headline retains its three-line composition",
+        "pass": true
+      },
+      {
+        "name": "No horizontal overflow at 320px",
+        "pass": true
+      },
+      {
+        "name": "No horizontal overflow at 390px",
+        "pass": true
+      },
+      {
+        "name": "No horizontal overflow at 768px",
+        "pass": true
+      },
+      {
+        "name": "No horizontal overflow at 1366px",
+        "pass": true
+      },
+      {
+        "name": "Reduced motion starts with static, readable content",
+        "pass": true
+      },
+      {
+        "name": "Mobile navigation opens and closes after selection",
+        "pass": true
+      },
+      {
+        "name": "No broken local images",
+        "pass": true
+      },
+      {
+        "name": "No uncaught application errors",
+        "pass": true
+      }
+    ],
+    "widths": [
+      {
+        "width": 320,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "overflow": false
+      },
+      {
+        "width": 1366,
+        "overflow": false
+      }
+    ],
+    "runtimeErrors": [],
+    "screenshots": [
+      "desktop-hero.png",
+      "desktop-assembly.png",
+      "desktop-manifesto.png",
+      "desktop-modules.png",
+      "desktop-offers.png",
+      "desktop-delivery.png",
+      "desktop-company.png",
+      "desktop-contact.png",
+      "mobile-hero.png",
+      "mobile-modules.png",
+      "mobile-contact.png"
+    ]
+  }
+}

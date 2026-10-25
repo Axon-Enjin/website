@@ -1,0 +1,4 @@
+# Local design review captures, downloaded references and tool state.
+.impeccable/review/
+.impeccable/build/
+.impeccable/hook.cache.json
