@@ -114,7 +114,11 @@ export const createAxonIntro = ({
       finish();
       return;
     }
-    if (!artwork.complete || !artwork.naturalWidth) return;
+    if (!artwork.complete) return;
+    if (!artwork.naturalWidth) {
+      finish();
+      return;
+    }
     // Sample the actual image's cover crop so the mobile mask resolves in place.
     let viewBox = "0 0 1672 941";
     if (mobile) {

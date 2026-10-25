@@ -1,0 +1,105 @@
+{
+  "checks": [
+    {
+      "name": "First visit starts intro",
+      "pass": true
+    },
+    {
+      "name": "Intro completes and removes temporary DOM",
+      "pass": true
+    },
+    {
+      "name": "Desktop timeline runs for the authored duration",
+      "pass": true
+    },
+    {
+      "name": "Intro leaves no persistent inline styles",
+      "pass": true
+    },
+    {
+      "name": "Selected identity preserved",
+      "pass": true
+    },
+    {
+      "name": "Same-session reload skips intro",
+      "pass": true
+    },
+    {
+      "name": "Skip completes immediately",
+      "pass": true
+    },
+    {
+      "name": "Wheel completes without a scroll lock",
+      "pass": true
+    },
+    {
+      "name": "Keyboard navigation completes intro",
+      "pass": true
+    },
+    {
+      "name": "Motion off completes intro",
+      "pass": true
+    },
+    {
+      "name": "Saved Motion off bypasses forced replay",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion bypasses forced replay",
+      "pass": true
+    },
+    {
+      "name": "Mobile intro uses the image crop",
+      "pass": true
+    },
+    {
+      "name": "Mobile completes without horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "Scroll preserves destination",
+      "pass": true
+    },
+    {
+      "name": "Deep links skip intro",
+      "pass": true
+    },
+    {
+      "name": "First visit plays intro after delayed production JavaScript",
+      "pass": true
+    },
+    {
+      "name": "Delayed production JavaScript finishes cleanly",
+      "pass": true
+    },
+    {
+      "name": "First visit plays intro after delayed hero artwork",
+      "pass": true
+    },
+    {
+      "name": "Delayed hero artwork finishes cleanly",
+      "pass": true
+    },
+    {
+      "name": "Slow artwork has immediate skip",
+      "pass": true
+    },
+    {
+      "name": "Skip during image loading fails open",
+      "pass": true
+    },
+    {
+      "name": "Failed intro script fails open",
+      "pass": true
+    },
+    {
+      "name": "Failed artwork fails open",
+      "pass": true
+    },
+    {
+      "name": "No uncaught application errors",
+      "pass": true
+    }
+  ],
+  "runtimeErrors": []
+}
