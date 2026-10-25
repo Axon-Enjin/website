@@ -2,6 +2,12 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 
 const root = new URL("../dist/", import.meta.url);
+const pages = JSON.parse(
+  readFileSync(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
+);
+assert.equal(pages.name, "axon");
+assert.equal(pages.pages_build_output_dir, "./dist");
+assert.match(pages.compatibility_date, /^\d{4}-\d{2}-\d{2}$/);
 const html = readFileSync(new URL("index.html", root), "utf8");
 assert.match(html, /<main id="main">/);
 assert.equal(
