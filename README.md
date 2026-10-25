@@ -20,6 +20,8 @@ For Cloudflare Pages, use build command **`npm run build`**, output directory **
 ## Interactions
 
 - A first-visit intro traces the hero's nerve artwork, then reveals the live heading and controls. It plays once per session; `?intro=1` replays it while respecting Motion off and reduced motion. Skip, scroll and keyboard input finish it immediately.
+- After the intro, the hero's three nerve clusters sway independently using a small GPU deformation pass driven by the existing scheduler. Text and controls stay fixed. Motion off, reduced motion and unavailable WebGL retain the original static artwork; offscreen rendering sleeps.
+- The quieter sections use the selected Coordinate edges treatment: faint construction lines and sparse dots confined to the outer gutters, with soft blue lighting behind the content. It adds no animation or filters.
 - The next section morphs the signal into the product window in place, within normal vertical page flow. Its nerve artwork spans the viewport outside the app's clipping area. The bottom label and chapter timeline have been removed.
 - One shared animation scheduler sleeps when the artwork is offscreen or the document is hidden.
 - Inventory, People and Reports switch within the shared app frame. The branch filter changes the illustrative table.

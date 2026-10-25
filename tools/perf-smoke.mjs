@@ -54,7 +54,7 @@ const sandbox = {
   setTimeout: fn => { fn(); return 0; }, clearTimeout: noop, scrollTo: noop, scrollY: 0
 };
 sandbox.window = sandbox;
-const engine = source.replace(/^import .+$/m, '').replace('export function initializeSite()', 'function initializeSite()') + '\nwindow.__cleanup = initializeSite();';
+const engine = source.replace(/^import .+$/gm, '').replace('export function initializeSite()', 'function initializeSite()') + '\nwindow.__cleanup = initializeSite();';
 vm.runInNewContext(engine, sandbox, { timeout: 4000 });
 function pump(time) {
   assert.ok(queue.size <= 1, 'More than one animation frame is pending');

@@ -1,0 +1,27 @@
+/* Selected mock 1: coordinate lines and signal dots confined to the gutters. */
+main,.site-footer {
+  background-image: url('./surface-network.svg'), url('./surface-network-right.svg');
+  background-size: 64px 1000px;
+  background-position: left top, right top;
+  background-repeat: repeat-y;
+}
+.modules {
+  background-image: radial-gradient(ellipse 44% 64% at 32% 45%, #12376b38, transparent 70%);
+}
+.offers {
+  background-image:
+    radial-gradient(ellipse 34% 62% at 76% 48%, #0e396138, transparent 68%),
+    radial-gradient(ellipse 35% 42% at 26% 34%, #16264a26, transparent 68%);
+}
+.delivery {
+  background-image: radial-gradient(ellipse 60% 60% at 50% 44%, #10345b42, transparent 75%);
+}
+.company {
+  background-image: radial-gradient(ellipse 48% 60% at 66% 40%, #152b543b, transparent 68%);
+}
+@media(max-width:760px) {
+  main,.site-footer { background-size: 32px 1000px; }
+  .modules { background-image: radial-gradient(ellipse 64% 60% at 50% 48%, #12376b2e, transparent 75%); }
+  .offers { background-image: radial-gradient(ellipse 64% 62% at 50% 40%, #0e396130, transparent 75%); }
+  .delivery { background-image: radial-gradient(ellipse 64% 60% at 50% 42%, #10345b32, transparent 75%); }
+}

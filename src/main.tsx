@@ -7,6 +7,7 @@ import "../assets/hero.css";
 import "../assets/assembly.css";
 import "../assets/manifesto.css";
 import "../assets/contact.css";
+import "../assets/surfaces.css";
 
 const root = document.getElementById("root")!;
 const app = (

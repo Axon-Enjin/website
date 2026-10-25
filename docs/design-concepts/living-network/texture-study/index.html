@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Axon Enjin — Surface comparison</title>
+<style>
+@font-face{font-family:'DM Sans';src:url('/assets/fonts/dm-sans.ttf') format('truetype')}
+*{box-sizing:border-box}body{margin:0;background:#04060d;color:#cfe3ff;font:16px/1.5 'DM Sans',sans-serif}main{max-width:1488px;margin:auto;padding:36px 24px}h1{font-size:28px;color:#fff;margin:0 0 8px}p{margin:0 0 24px;color:#9bafca}a{color:#89cfff}nav,.modes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}button{font:inherit;color:#bfd4ed;background:#0b1727;border:1px solid #30475f;border-radius:6px;padding:9px 16px;cursor:pointer}button[aria-pressed=true]{color:white;background:#194fa8;border-color:#6899d8}button:focus-visible{outline:2px solid #56c8ff;outline-offset:3px}img{width:100%;display:block;border:1px solid #223247}#caption{margin-top:10px;font-size:14px}header{display:flex;justify-content:space-between;align-items:start;gap:24px}.modes{margin-left:auto}@media(max-width:600px){header{display:block}main{padding:24px 16px}.modes{margin-left:0}}
+p { background-color: #04060d; color: #b6cbe3; }
+a { background-color: #04060d; color: #91d3ff; }
+</style>
+<main>
+  <header><div><h1>Surface texture comparison</h1><p>Selected option 1: faint coordinate lines and sparse dots at the outer edges. <a href="/">Open the live page</a>.</p></div></header>
+  <nav aria-label="Choose a section">
+    <button type="button" data-section="modules" aria-pressed="false">Modules</button>
+    <button type="button" data-section="offers" aria-pressed="false">Offers</button>
+    <button type="button" data-section="how-we-work" aria-pressed="true">Delivery</button>
+    <button type="button" data-section="company" aria-pressed="false">Company</button>
+    <button type="button" data-section="mobile-company" aria-pressed="false">Mobile</button>
+  </nav>
+  <div class="modes" role="group" aria-label="Compare versions">
+    <button type="button" data-version="before" aria-pressed="false">Before</button>
+    <button type="button" data-version="after" aria-pressed="true">With texture</button>
+  </div>
+  <img id="comparison" src="after/how-we-work.png" alt="Delivery section with the texture treatment">
+  <p id="caption" aria-live="polite">Delivery · With texture</p>
+</main>
+<script>
+let section='how-we-work',version='after';
+function render(){document.querySelectorAll('[data-section]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.section===section)));document.querySelectorAll('[data-version]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.version===version)));const label=document.querySelector('[data-section][aria-pressed=true]').textContent;const image=document.querySelector('#comparison');image.src=version+'/'+section+'.png';image.alt=label+' section '+(version==='after'?'with texture':'before texture');document.querySelector('#caption').textContent=label+' · '+(version==='after'?'With texture':'Before');image.style.maxWidth=section==='mobile-company'?'390px':'none'}
+document.querySelectorAll('[data-section]').forEach(b=>b.addEventListener('click',()=>{section=b.dataset.section;render()}));document.querySelectorAll('[data-version]').forEach(b=>b.addEventListener('click',()=>{version=b.dataset.version;render()}));
+</script>
+</html>
