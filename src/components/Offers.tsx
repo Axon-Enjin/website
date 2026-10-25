@@ -14,7 +14,6 @@ export default function Offers() {
               </span>{" "}
               Ways to work with us
             </span>
-            <span className="breadcrumb">AXON / 05</span>
           </div>
           <div className="section-heading">
             <h2 id="offers-title">Software that fits.</h2>

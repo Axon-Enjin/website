@@ -19,7 +19,6 @@ export default function Delivery() {
             </span>{" "}
             How we work
           </span>
-          <span className="breadcrumb">AXON / 06</span>
         </div>
         <div className="section-heading">
           <h2 id="delivery-title">

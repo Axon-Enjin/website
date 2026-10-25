@@ -24,7 +24,9 @@ For Cloudflare Pages, use build command **`npm run build`**, output directory **
 - One shared animation scheduler sleeps when the artwork is offscreen or the document is hidden.
 - Inventory, People and Reports switch within the shared app frame. The branch filter changes the illustrative table.
 - All seven modules have details. The stock-transfer example validates branches and quantities and only previews the move. Accounting explains its limited scope.
-- The manifesto reveals word by word. Technical illustration layers spread subtly with scrolling. The global Motion on/off control persists its preference, and reduced motion is respected by default.
+- The manifesto pins in the viewport, starting with only Technology visible. Scrolling reveals the remaining words and traces the nerves, then releases the scene. Scrolling backward reverses it. Motion off and reduced motion show the complete composition in normal flow.
+- The contact canopy overlaps the preceding section with room around its content. Cached artwork bends with flowing ripples and light pulses, with a reduced work budget on mobile. The contact form and footer have additional spacing, and the footer uses a real full-width border without horizontal overflow.
+- Technical illustration layers spread subtly with scrolling. The global Motion on/off control persists its preference, and reduced motion is respected by default. Numbered brand breadcrumbs have been removed throughout the homepage.
 - Product and module tabs support arrow keys, Home and End. Cmd/Ctrl+K opens quick navigation. Escape closes dialogs and mobile navigation.
 - Buying information and secondary venture collaboration have accessible dialogs.
 

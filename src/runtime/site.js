@@ -62,8 +62,11 @@ export function initializeSite() {
     assemblyStarted = false,
     assemblyPlaying = false,
     assemblyStartClock = 0;
+  let manifestoProgress = 1;
   const hero = $("#home");
   const heroArtwork = $(".hero-art");
+  const contactArtwork = $(".contact-art");
+  listen(contactArtwork, "load", () => invalidate());
   listen(heroArtwork, "load", () => invalidate());
   const assembly = $(".assembly");
   const assemblyArt = $(".assembly-art");
@@ -72,6 +75,8 @@ export function initializeSite() {
   const header = $("#site-header");
   const motionButton = $("#motion-toggle");
   const manifesto = $(".manifesto-copy");
+  const manifestoSection = $("#purpose");
+  manifestoSection.classList.add("is-scroll-staged");
   const technicalFigures = $$(".technical-figure");
   const progressBar = $(".page-progress");
   if (!paused && !reducedPreference.matches) setAssemblyProgress(0);
@@ -244,13 +249,23 @@ export function initializeSite() {
               Math.sin(u * 12 + fibre.phase) * 0.018 * Math.sin(Math.PI * u),
           };
         if (scene.type === "contact") {
-          const convergence = 1 - smooth(clamp(u / 0.63));
+          const t = clamp(u / 0.63);
+          const convergence = (1 - t) ** 0.85;
           return {
             x: u,
             y:
-              0.56 +
-              (fibre.spread * 1.1 + Math.sin(u * 12 + fibre.phase) * 0.06) *
+              cubic(0.08, 0.05, 0.6, 0.56, t) +
+              (fibre.spread * 1.35 + Math.sin(u * 15 + fibre.phase) * 0.12) *
                 convergence,
+          };
+        }
+        if (scene.type === "manifesto") {
+          return {
+            x: u,
+            y:
+              cubic(0.69, 0.85, 0.94, 0.55, u) +
+              fibre.spread * (0.07 + Math.max(0, u - 0.54) * 0.6) +
+              Math.sin(u * 12 + fibre.phase) * 0.018,
           };
         }
         const peripheral = fibre.bright
@@ -466,18 +481,166 @@ export function initializeSite() {
     const { ctx, width: w, height: h } = scene;
     if (!ctx || !w || !h) return;
     ctx.clearRect(0, 0, w, h);
+    if (
+      scene.type === "contact" &&
+      contactArtwork?.complete &&
+      contactArtwork.naturalWidth > 0
+    ) {
+      // Cache the artwork at display resolution once; flex a few strips per frame.
+      if (
+        !scene.texture ||
+        scene.texture.width !== Math.ceil(w) ||
+        scene.texture.height !== Math.ceil(h)
+      ) {
+        const texture = document.createElement("canvas");
+        texture.width = Math.ceil(w);
+        texture.height = Math.ceil(h);
+        texture
+          .getContext("2d")
+          .drawImage(
+            contactArtwork,
+            0,
+            0,
+            contactArtwork.naturalWidth,
+            contactArtwork.naturalHeight * 0.25,
+            0,
+            0,
+            texture.width,
+            texture.height,
+          );
+        scene.texture = texture;
+      }
+      ctx.globalCompositeOperation = "source-over";
+      ctx.globalAlpha = 1;
+      const compactContact = lowPower || innerWidth <= 760;
+      const strips = compactContact ? 24 : 48;
+      const flexAt = (u) =>
+        paused
+          ? 0
+          : (Math.sin(clock * 0.78 - u * 11) +
+              Math.sin(clock * 0.39 + u * 17) * 0.32) *
+            h *
+            0.024 *
+            (1 - Math.min(1, u / 0.62)) ** 1.2;
+      for (let i = 0; i < strips; i++) {
+        const u = i / strips;
+        const width = Math.min(w - u * w, w / strips + 1);
+        const flex = flexAt(u);
+        const shear = (flexAt(u + width / w) - flex) / width;
+        // Interpolate between strip edges so the fibres have no stepped seams.
+        ctx.save();
+        ctx.transform(1, shear, 0, 1, 0, flex - shear * u * w);
+        ctx.drawImage(scene.texture, u * w, 0, width, h, u * w, 0, width, h);
+        ctx.restore();
+      }
+      ctx.globalCompositeOperation = "screen";
+      for (let i = 0; i < (compactContact ? 6 : 12); i++) {
+        // Signals follow cached fibre coordinates, with staggered speeds and tails.
+        const u = (clock * (0.038 + (i % 3) * 0.008) + i * 0.047) % 0.62;
+        const points = scene.renderPoints[i * 7];
+        const head = Math.floor(u * 90);
+        const point = points[head];
+        const strength =
+          smooth(clamp(u / 0.07)) * smooth(clamp((0.64 - u) / 0.04));
+        ctx.beginPath();
+        for (let j = Math.max(0, head - 5); j <= head; j++) {
+          const p = points[j];
+          if (j === Math.max(0, head - 5)) ctx.moveTo(p.x * w, p.y * h);
+          else ctx.lineTo(p.x * w, p.y * h);
+        }
+        ctx.strokeStyle = "#258bff";
+        ctx.lineWidth = compactContact ? 2 : 3;
+        ctx.globalAlpha = strength * 0.18;
+        ctx.stroke();
+        ctx.strokeStyle = "#b6eaff";
+        ctx.lineWidth = 0.75;
+        ctx.globalAlpha = strength * 0.65;
+        ctx.stroke();
+        drawNode(
+          ctx,
+          point.x * w,
+          point.y * h,
+          i % 3 === 0 ? 1.8 : 1.2,
+          strength * 0.85,
+        );
+      }
+      const breath = paused ? 0 : (Math.sin(clock * 1.65) + 1) * 0.5;
+      drawNode(
+        ctx,
+        w * 0.62,
+        h * 0.56,
+        3 + breath * 0.65,
+        0.85 + breath * 0.15,
+      );
+      if (!paused) {
+        // The converged impulse continues down the single outgoing axon.
+        const outbound = (clock * 0.19) % 1;
+        const x = (0.62 + outbound * 0.34) * w;
+        const strength = Math.sin(outbound * Math.PI) * 0.75;
+        ctx.strokeStyle = "#b9ecff";
+        ctx.lineWidth = 1.2;
+        ctx.globalAlpha = strength;
+        ctx.beginPath();
+        ctx.moveTo(Math.max(w * 0.62, x - w * 0.022), h * 0.56);
+        ctx.lineTo(x, h * 0.56);
+        ctx.stroke();
+        drawNode(ctx, x, h * 0.56, 1.6, strength);
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
+      return;
+    }
+    if (scene.type === "manifesto") {
+      // This signal is scrubbed by scroll only: no clock-driven particles.
+      const p = manifestoProgress;
+      if (p <= 0 || p >= 1 || paused) return;
+      ctx.globalCompositeOperation = "screen";
+      const y = cubic(0.69, 0.85, 0.94, 0.55, p) * h;
+      ctx.strokeStyle = "#a9edff";
+      ctx.lineWidth = 1.4;
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      for (let step = 0; step <= 28; step++) {
+        const u = Math.max(0, p - 0.065) + (step / 28) * Math.min(p, 0.065);
+        const px = u * w,
+          py = cubic(0.69, 0.85, 0.94, 0.55, u) * h;
+        if (step === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      drawNode(ctx, p * w, y, 5, 1);
+      [0.173, 0.538, 0.837].forEach((u) => {
+        if (p >= u)
+          drawNode(ctx, u * w, cubic(0.69, 0.85, 0.94, 0.55, u) * h, 3, 1);
+      });
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
+      return;
+    }
     ctx.globalCompositeOperation = "screen";
     const contact = scene.type === "contact";
     scene.paths.forEach((path, i) => {
+      if (contact && (lowPower || innerWidth <= 760) && i >= 90) return;
+      if (contact) {
+        // Deform cached curves around their fixed convergence point.
+        const flex = paused
+          ? 1
+          : 1 + Math.sin(clock * 0.62 + fibres[i].phase) * 0.085;
+        ctx.save();
+        ctx.translate(0, h * 0.56);
+        ctx.scale(1, flex);
+        ctx.translate(0, -h * 0.56);
+      }
       ctx.strokeStyle = fibres[i].bright ? "#8fdcff" : "#2e82e4";
       ctx.lineWidth = fibres[i].bright ? 0.9 : 0.55;
       ctx.globalAlpha = fibres[i].opacity * (contact ? 0.7 : 0.8);
-      ctx.stroke(path);
-      if (i % 19 === 0) {
+      if (scene.type !== "manifesto") ctx.stroke(path);
+      if (i % (contact ? 9 : 19) === 0) {
         const at = (clock * 0.035 + 0.18 + i * 0.017) % (contact ? 0.63 : 1);
         const point = scene.renderPoints[i][Math.floor(at * 90)];
         drawNode(ctx, point.x * w, point.y * h, 1.4, 0.75);
       }
+      if (contact) ctx.restore();
     });
     if (contact) {
       ctx.globalAlpha = 0.75;
@@ -558,13 +721,45 @@ export function initializeSite() {
     const rect = assembly.getBoundingClientRect();
     if (rect.top < vh * 0.45 && rect.bottom > vh * 0.15) startAssembly();
     if (assemblyPlaying && (rect.bottom < 0 || rect.top > vh)) finishAssembly();
-    const m = manifesto.getBoundingClientRect();
-    const reveal = paused
+    const m = manifestoSection.getBoundingClientRect();
+    const stageTop = innerWidth <= 760 ? 68 : 72;
+    const stageHeight = vh - stageTop;
+    const sceneProgress = paused
       ? 1
-      : clamp((vh * 0.72 - m.top) / (m.height + vh * 0.55));
-    wordElements.forEach((word, i) =>
-      word.classList.toggle("is-lit", i / words.length <= reveal),
+      : clamp((stageTop - m.top) / Math.max(1, (m.height - stageHeight) * 0.9));
+    const reveal = (1 + sceneProgress * (words.length - 1)) / words.length;
+    manifestoProgress = sceneProgress;
+    manifestoSection.style.setProperty(
+      "--trace-stop",
+      `${sceneProgress * 100}%`,
     );
+    manifestoSection.style.setProperty(
+      "--trace-feather",
+      `${Math.min(100, sceneProgress * 100 + (sceneProgress === 0 ? 0 : 2.5))}%`,
+    );
+    manifestoSection.style.setProperty(
+      "--trace-progress",
+      sceneProgress.toFixed(4),
+    );
+    manifestoSection.style.setProperty(
+      "--manifesto-travel",
+      `${paused ? 0 : (clamp((vh - m.top) / (vh + m.height)) - 0.5) * -24}px`,
+    );
+    manifestoSection.style.setProperty(
+      "--underline-progress",
+      paused ? 1 : smooth(clamp((reveal - 0.17) / 0.16)),
+    );
+    wordElements.forEach((word, i) => {
+      word.classList.toggle("is-lit", i / words.length < reveal);
+      word.style.setProperty(
+        "--word-reveal",
+        `${smooth(clamp(reveal * words.length - i)) * 100}%`,
+      );
+      word.style.setProperty(
+        "--word-visibility",
+        smooth(clamp(reveal * words.length - i)).toFixed(4),
+      );
+    });
     technicalFigures.forEach((figure) => {
       const r = figure.getBoundingClientRect();
       const progress = clamp((vh - r.top) / (vh + r.height));
@@ -585,7 +780,9 @@ export function initializeSite() {
       !paused &&
       (heroIntro?.active ||
         assemblyPlaying ||
-        scenes.some((scene) => scene.visible && scene.ctx));
+        scenes.some(
+          (scene) => scene.visible && scene.ctx && scene.type !== "manifesto",
+        ));
     if (!dirty && now - lastPaint < (lowPower ? 34 : 24)) {
       if (moving) schedule();
       return;
@@ -1070,6 +1267,7 @@ export function initializeSite() {
       if (element) element.innerHTML = html;
     });
     document.body.classList.remove("motion-paused");
+    manifestoSection.classList.remove("is-scroll-staged");
     document
       .querySelectorAll("dialog[open]")
       .forEach((dialog) => dialog.close());

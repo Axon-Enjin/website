@@ -47,9 +47,6 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero-footer wrap">
-          <span className="breadcrumb">
-            AXON / 01 <i></i>
-          </span>
           <a href="#product">
             Scroll to follow the signal <span aria-hidden="true">↓</span>
           </a>

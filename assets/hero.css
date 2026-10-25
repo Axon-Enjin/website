@@ -1,22 +1,26 @@
 /* Hero composition from docs/design-concepts/living-network/01-hero.png.
    Keep the selected geometric identity; the artwork contains no page UI. */
 .site-header {
-  top: 20px;
-  height: 70px;
-  padding-inline: 4.5%;
-  border-top: 1px solid #27425b;
-  border-bottom-color: #22324788;
+  top: 0;
+  height: 80px;
+  padding-inline: 0;
+  background: var(--void);
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
 }
 .site-header::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 4.5%;
-  width: 6.7%;
-  height: 1px;
-  background: #89cde5;
+  content: none;
 }
-.site-header.scrolled { top: 0; }
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: inherit;
+  width: 90.2%;
+  max-width: 105rem;
+  height: 100%;
+  margin-inline: auto;
+}
+.site-header.scrolled { top: 0; background: var(--void); }
 .desktop-nav { gap: 44px; font-size: 14px; }
 .header-cta {
   min-height: 45px;
@@ -131,8 +135,8 @@
   .hero-footer .breadcrumb i { width: 50px; }
 }
 @media (max-width: 760px) {
-  .site-header { top: 12px; height: 68px; padding-inline: 24px; gap: 14px; }
-  .site-header::before { left: 24px; width: 58px; }
+  .site-header { top: 0; height: 68px; padding-inline: 24px; gap: 14px; }
+  .header-container { width: 100%; }
   .header-cta { min-height: 36px; padding: 9px 14px; font-size: 12px; }
   .hero { height: max(820px, 100svh); min-height: 820px; }
   .hero-content { top: 145px; left: 24px; width: calc(100% - 48px); }

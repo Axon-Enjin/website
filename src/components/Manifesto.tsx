@@ -4,38 +4,35 @@ export default function Manifesto() {
   return (
     <>
       <section
-        className="manifesto section wrap"
+        className="manifesto section"
         id="purpose"
         aria-labelledby="manifesto-title"
       >
-        <div className="section-meta">
-          <span className="chapter-label">
-            <span className="small-star" aria-hidden="true">
-              ✳
-            </span>{" "}
-            Why we build
-          </span>
-          <span className="breadcrumb">AXON / 03</span>
+        <div className="manifesto-stage">
+          <div className="manifesto-frame wrap">
+            <div className="manifesto-layout">
+              <RuntimeRegion
+                as="h2"
+                id="manifesto-title"
+                className="manifesto-copy"
+                html={
+                  "Technology should bring people together. Across teams. Across branches. So everyone can work from the same page."
+                }
+              />
+            </div>
+          </div>
+          <div className="manifesto-signal" aria-hidden="true">
+            <img
+              src="/assets/manifesto-network.png"
+              width="1672"
+              height="941"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <canvas id="manifesto-signal"></canvas>
+          </div>
         </div>
-        <div className="manifesto-layout">
-          <span className="vertical-note" aria-hidden="true">
-            The connection is human
-          </span>
-          <RuntimeRegion
-            as="h2"
-            id="manifesto-title"
-            className="manifesto-copy"
-            html={
-              "Technology should bring people together. Across teams. Across branches. So everyone can work from the same page."
-            }
-          />
-        </div>
-        <div className="manifesto-signal" aria-hidden="true">
-          <canvas id="manifesto-signal"></canvas>
-        </div>
-        <p className="manifesto-caption">
-          Axon carries the signal. Enjin is where we connect.
-        </p>
       </section>
     </>
   );
