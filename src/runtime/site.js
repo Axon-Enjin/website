@@ -1,4 +1,5 @@
 import { createAxonIntro } from "./hero-intro.js";
+import { createHeroMotion } from "./hero-motion.js";
 
 export function initializeSite() {
   let disposed = false;
@@ -65,6 +66,13 @@ export function initializeSite() {
   let manifestoProgress = 1;
   const hero = $("#home");
   const heroArtwork = $(".hero-art");
+  const heroMotion =
+    typeof createHeroMotion === "function"
+      ? createHeroMotion({
+          artwork: heroArtwork,
+          lowPower: (navigator.hardwareConcurrency || 4) <= 4,
+        })
+      : null;
   const contactArtwork = $(".contact-art");
   listen(contactArtwork, "load", () => invalidate());
   listen(heroArtwork, "load", () => invalidate());
@@ -231,6 +239,7 @@ export function initializeSite() {
     scene.element.height = Math.round(rect.height * dpr);
     if (!scene.ctx || !rect.width || !rect.height) return;
     scene.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (scene.type === "hero") heroMotion?.resize(rect);
     scene.renderPoints = fibres.map((fibre) => {
       if (scene.type === "hero") return fibre.points.map(mobilePoint);
       return fibre.points.map((point, i) => {
@@ -336,10 +345,10 @@ export function initializeSite() {
       ctx.clearRect(0, 0, w, h);
       return;
     }
-    // The approved artwork supplies the detailed fibres. Only light travels;
-    // the composition remains fixed, including when animation is disabled.
+    // Flex the selected artwork's branches while keeping copy and controls live.
     if (heroArtwork?.complete && heroArtwork.naturalWidth > 0) {
       ctx.clearRect(0, 0, w, h);
+      heroMotion?.draw(ctx, clock, paused);
       if (innerWidth > 760) {
         const spine = [
           [-0.03, 0.84],
@@ -1262,6 +1271,7 @@ export function initializeSite() {
     cancelAnimationFrame(frameId);
     frameId = 0;
     heroIntro?.finish();
+    heroMotion?.dispose();
     objectURLs.forEach((url) => URL.revokeObjectURL(url));
     snapshots.forEach((html, element) => {
       if (element) element.innerHTML = html;

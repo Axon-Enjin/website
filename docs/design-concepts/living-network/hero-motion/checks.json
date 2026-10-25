@@ -1,0 +1,42 @@
+[
+  {
+    "name": "GPU deformation renders the hero artwork",
+    "pass": true
+  },
+  {
+    "name": "Animated surface covers the image, not just light dots",
+    "pass": true
+  },
+  {
+    "name": "Branch pixels move independently of the light overlay",
+    "pass": true
+  },
+  {
+    "name": "Hero text stays fixed while branches move",
+    "pass": true
+  },
+  {
+    "name": "Motion off freezes the hero and stops GPU work",
+    "pass": true
+  },
+  {
+    "name": "Offscreen hero stops GPU work",
+    "pass": true
+  },
+  {
+    "name": "Mobile artwork animates with the correct crop",
+    "pass": true
+  },
+  {
+    "name": "Reduced motion uses the original static artwork",
+    "pass": true
+  },
+  {
+    "name": "Unavailable GPU keeps the static image visible",
+    "pass": true
+  },
+  {
+    "name": "No uncaught runtime errors",
+    "pass": true
+  }
+]
