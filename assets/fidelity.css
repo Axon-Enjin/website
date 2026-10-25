@@ -1,0 +1,228 @@
+/* Iteration 02: match the approved Living network compositions. */
+.wrap { width:min(1552px,calc(100% - var(--page-gutter)*2)); }
+h1,h2,h3 { letter-spacing:-.025em; }
+h2 { font-weight:500; }
+.hero h1 { font-weight:450; letter-spacing:-.03em; }
+.hero h1 em { letter-spacing:-.015em; }
+.hero-content>p { font-weight:400; }
+.section-heading>p { font-size:19px; }
+.section-meta { margin-bottom:34px; }
+
+/* The Connect frame is offset right, leaving the signal visible at its left. */
+.assembly-heading h2 { font-size:clamp(40px,4.6vw,76px); line-height:1.08; }
+.assembly-scene { align-items:flex-start; padding-top:10px; margin-top:-18px; }
+.assembly-browser { width:74%; border-color:#497dac; box-shadow:0 18px 45px #01040b80; }
+.assembly-browser .window-toolbar { min-height:60px; }
+.assembly-browser .app-body { min-height:355px; }
+.assembly-browser .app-rail { width:clamp(145px,11vw,188px); gap:2px; padding:25px 10px; align-items:stretch; }
+.app-rail button,.rail-overview { display:flex; align-items:center; gap:14px; min-height:49px; padding:12px 13px; color:#adc4df; font-size:14px; text-align:left; border:0; border-radius:5px; }
+.app-rail button[aria-selected=true] { color:#fff; background:#153252a8; position:relative; }
+.app-rail button[aria-selected=true]:before { content:''; position:absolute; left:-10px; top:10px; bottom:10px; width:2px; background:var(--blue); }
+.app-rail button[aria-selected=true] .icon { color:var(--cyan); }
+.app-rail button:hover { color:#fff; }
+.rail-overview { margin-bottom:10px; color:#8fa7c4; }
+.assembly-browser .app-main { padding:28px 30px 18px; }
+.assembly-browser .app-main h3 { font-size:31px; font-weight:500; }
+.assembly-browser .app-subtitle { font-size:14px; margin:8px 0 22px; }
+.assembly-browser th,.assembly-browser td { padding:15px 16px; font-size:14px; }
+.assembly-browser thead th { font-size:12px; }
+.assembly-browser .sample-caption { font-size:12px; margin-top:21px; }
+
+/* Preserve authored manifesto line breaks; the strand is an actual canvas. */
+.manifesto { padding-block:70px 60px; scroll-margin-top:-46px; }
+.manifesto .section-meta { border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:0; }
+.manifesto-layout { grid-template-columns:8vw minmax(0,1fr); gap:36px; margin-top:46px; }
+.manifesto-copy { max-width:none; font-size:clamp(40px,6vw,98px); line-height:1.12; font-weight:400; letter-spacing:-.025em; }
+.manifesto-line { display:block; white-space:nowrap; }
+.manifesto-copy .word.is-lit { color:#fff; }
+.manifesto-copy .word:nth-child(5).is-lit { color:inherit; }
+.manifesto-copy .together { text-decoration:underline; text-decoration-color:var(--cyan); text-decoration-thickness:2px; text-underline-offset:.14em; }
+.manifesto-line:nth-child(3) .word.is-lit { color:var(--ice); }
+.manifesto-signal { position:relative; margin-top:-8px; margin-left:calc(-1*var(--page-gutter)); width:calc(100% + var(--page-gutter)*2); height:205px; pointer-events:none; }
+.manifesto-signal canvas { width:100%; height:100%; display:block; }
+.manifesto-caption { margin-top:8px; font-size:12px; }
+
+/* Match the Inventory illustration rather than a generic detail card. */
+.module-layout { position:relative; grid-template-columns:minmax(0,64%) minmax(0,1fr); gap:4%; }
+.module-window { position:relative; }
+.module-window .window-product { margin-left:18px; margin-right:auto; }
+.module-window .module-app-label { margin-left:0; }
+.module-signal { position:absolute; left:calc(-1*var(--page-gutter)); top:0; z-index:3; width:280px; height:140px; fill:none; stroke:var(--cyan); stroke-width:1.2; pointer-events:none; }
+.module-signal circle { fill:var(--cyan); }
+.module-workflows { display:flex; align-items:center; gap:48px; padding-inline:40px; border-bottom:1px solid var(--line); }
+.module-workflows button { position:relative; min-height:55px; padding:13px 0; color:#adc3de; border:0; font-size:14px; }
+.module-workflows button[aria-pressed=true] { color:#fff; }
+.module-workflows button[aria-pressed=true]:after { content:''; position:absolute; bottom:-1px; height:2px; left:0; right:0; background:var(--cyan); }
+.module-panel-content { padding:34px 40px; min-height:470px; }
+.module-panel-content h3 { font-size:clamp(28px,2.7vw,44px); line-height:1.15; font-weight:550; letter-spacing:-.02em; }
+.module-panel-content>p { font-size:20px; margin:12px 0 30px; }
+.module-window input,.module-window select { font-size:16px; }
+.module-window label { font-size:12px; }
+.module-window>.sample-caption { padding:0 40px 24px; }
+.transfer-bottom { padding:18px 18px; border:1px solid var(--line); border-radius:9px; margin-top:7px; }
+#transfer-summary { font-size:14px; }
+.transfer-bottom .button { font-size:13px; }
+.module-copy h2 { font-size:clamp(34px,3.2vw,54px); line-height:1.17; font-weight:500; }
+.module-copy>p { font-size:18px; line-height:1.55; margin:18px 0 28px; }
+.module-list button { min-height:49px; padding-block:12px; font-size:17px; }
+.module-list button>span,.module-list button small { font-size:12px; }
+.module-copy>.text-link { font-size:15px; }
+
+/* In the mock all three offer titles use the same column. */
+.offers { padding-top:92px; padding-bottom:72px; scroll-margin-top:-68px; }
+.offers .section-heading { margin-bottom:42px; }
+.offers .section-heading h2 { font-size:clamp(52px,6.25vw,104px); font-weight:550; }
+.offer-rows { position:relative; }
+.offer-rows:before { content:''; position:absolute; z-index:1; left:calc(var(--page-gutter) + 44px); top:72px; bottom:0; width:1px; background:#348db6; pointer-events:none; }
+.featured .offer-inner { grid-template-columns:12% 25% minmax(0,1fr) auto; gap:30px; min-height:275px; padding-block:32px; }
+.offer-inner { grid-template-columns:calc(37% + 30px) minmax(0,1fr) auto; gap:30px; padding-block:30px; }
+.offer-index { position:relative; align-self:start; margin-top:14px; font-size:17px; }
+.offer-index>span { font-size:11px; }
+.offer-index:after { content:''; position:absolute; top:41px; left:40px; width:9px; height:9px; border-radius:50%; background:var(--cyan); }
+.offer-art { height:230px; }
+.offer-art>img { width:100%; height:100%; object-fit:contain; }
+.offer-copy h3 { font-size:clamp(29px,2.7vw,45px); font-weight:500; }
+.featured .offer-copy h3 { font-size:clamp(32px,3.2vw,54px); }
+.offer-copy p,.featured .offer-copy p { font-size:18px; line-height:1.65; }
+.offer-copy .fine-print { font-size:13px; }
+.offer-inner>.text-link { font-size:14px; }
+.buying-note>p { font-size:13px; }
+
+/* Detailed, projected vector surfaces follow the approved delivery mock. */
+.delivery { padding-block:92px 85px; scroll-margin-top:-68px; }
+.delivery .section-heading { align-items:center; margin-bottom:48px; }
+.delivery .section-heading h2 { font-size:clamp(43px,4.6vw,76px); }
+.delivery-grid { gap:35px; }
+.delivery-grid>article { padding-left:22px; }
+.technical-figure { height:285px; margin-block:16px 18px; }
+.technical-figure>svg { stroke:#3e87b7; }
+.technical-figure .data-surface { fill:url(#figure-dots); }
+.technical-figure .blueprint-surface { fill:#0b20326b; }
+.technical-figure .grid-surface { fill:url(#figure-grid); }
+.technical-figure[data-delivery-revision="3"] { height:310px; }
+.technical-figure .nerve-surface { fill:#0b1c2980; stroke:#4b9bc4; stroke-width:.8; }
+.technical-figure .interface-surface { fill:#0a1826e6; stroke:#4b98bd; stroke-width:.9; }
+.technical-figure .surface-dot-field { fill:none; stroke:#72c8ed; stroke-width:1.15; stroke-linecap:round; opacity:.68; }
+.technical-figure .surface-contour { fill:none; stroke:#367395; stroke-width:.45; opacity:.6; }
+.technical-figure .construction-line { fill:none; stroke:#4389ab; stroke-width:.6; opacity:.55; }
+.technical-figure .interface-detail { fill:#18394c42; stroke:#589bb9; stroke-width:.65; }
+.technical-figure .interface-highlight { fill:#348caa28; stroke:#9cdef0; stroke-width:.8; }
+.technical-figure .signal-path { fill:none; stroke:#69d4ff; stroke-width:1.25; }
+.technical-figure .anchor-halo { fill:#52cfff; stroke:none; opacity:.14; }
+.technical-figure .anchor-core { fill:#d5f5ff; stroke:none; }
+.technical-figure .delivery-check-ring { fill:#07121b; stroke:#60c6ed; stroke-width:1; }
+.technical-figure .delivery-check { fill:none; stroke:#e5f8ff; stroke-width:1.6; }
+.delivery-grid h3 { font-size:clamp(25px,2vw,33px); }
+.stage-list { font-size:15px; margin-top:18px; }
+.stage-list li { padding-block:7px; }
+.stage-list span { font-size:13px; }
+.aftercare { font-size:13px; }
+.company h2 { font-size:clamp(44px,5.2vw,83px); font-weight:500; }
+.working-photo img { mask-image:linear-gradient(90deg,#000 92%,transparent); }
+
+/* The closing composition is intentionally oversized, just like the mock. */
+.contact { padding-top:210px; padding-bottom:64px; }
+.contact-signal { top:20px; height:210px; }
+.contact-signal canvas { display:block; width:100%; height:100%; }
+.contact .section-meta { margin-bottom:30px; }
+.contact h2 { font-size:clamp(65px,7.25vw,120px); font-weight:500; line-height:1.02; }
+.contact h2 em { font-size:1.08em; line-height:1; padding-top:0; }
+.contact-layout { gap:5%; }
+.contact-layout>div>p { font-size:21px; line-height:1.6; margin:25px 0 30px; }
+.contact-offers { flex-direction:row; gap:18px; flex-wrap:wrap; font-size:12px; }
+.contact-offers>span:after { width:20px; margin-left:12px; }
+.contact-offers>span:last-child:after { display:none; }
+#contact-form { padding-top:5px; gap:25px; }
+#contact-form label { font-size:14px; }
+#contact-form input,#contact-form textarea { font-size:16px; min-height:51px; }
+#contact-form textarea { min-height:170px; }
+.site-footer { padding-bottom:90px; }
+
+@media(min-width:1700px) { .site-header { padding-inline:max(var(--page-gutter),calc((100% - 1552px)/2)); } }
+@media(max-width:1200px) and (min-width:761px) {
+  .assembly-browser { width:80%; }
+  .assembly-browser .app-rail { width:135px; }
+  .app-rail button,.rail-overview { gap:9px; font-size:12px; padding-inline:8px; }
+  .assembly-browser .app-main { padding:25px 20px 18px; }
+  .module-layout { grid-template-columns:minmax(0,60%) minmax(0,1fr); }
+  .module-workflows { gap:30px; padding-inline:28px; }
+  .module-panel-content { padding-inline:28px; }
+  .module-copy h2 { font-size:34px; }
+  #transfer-summary { font-size:12px; }
+  .transfer-bottom { flex-wrap:wrap; }
+  .featured .offer-inner { grid-template-columns:10% 22% minmax(0,1fr) auto; gap:24px; }
+  .offer-inner { grid-template-columns:calc(32% + 24px) minmax(0,1fr) auto; gap:24px; }
+  .offer-copy p,.featured .offer-copy p { font-size:16px; }
+  .offer-art { height:180px; }
+  .technical-figure { height:235px; }
+  .technical-figure[data-delivery-revision="3"] { height:255px; }
+  .contact h2 { font-size:72px; }
+  .contact-layout>div>p { font-size:18px; }
+}
+@media(max-width:760px) {
+  .section-heading>p { font-size:16px; }
+  .assembly-heading h2 { font-size:38px; }
+  .assembly-scene { margin-top:0; padding:32px 0; }
+  .assembly-browser { width:100%; }
+  .assembly-browser .app-body { min-height:0; }
+  .assembly-browser .app-rail { width:38px; padding:20px 4px; gap:10px; }
+  .app-rail button,.rail-overview { padding:9px 6px; min-height:44px; justify-content:center; }
+  .app-rail button[aria-selected=true]:before { left:-4px; width:1px; }
+  .app-rail button>span,.rail-overview>span { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap; }
+  .assembly-browser .app-main { padding:24px 12px 14px; }
+  .assembly-browser .app-main h3 { font-size:22px; }
+  .assembly-browser .app-subtitle { font-size:12px; margin:9px 0 18px; }
+  .assembly-browser th,.assembly-browser td { padding:11px 8px; font-size:12px; }
+  .assembly-browser thead th { font-size:12px; }
+  .assembly-browser .sample-caption { font-size:12px; }
+  .manifesto { padding-block:65px 55px; scroll-margin-top:-40px; }
+  .manifesto-layout { grid-template-columns:1fr; margin-top:30px; }
+  .manifesto-copy { font-size:clamp(29px,6.6vw,46px); line-height:1.25; letter-spacing:-.025em; }
+  .manifesto-line { white-space:normal; }
+  .manifesto-signal { margin-top:12px; height:130px; }
+  .manifesto-caption { font-size:12px; margin-top:2px; }
+  .module-layout { display:flex; gap:32px; }
+  .module-signal { display:none; }
+  .module-copy h2 { font-size:37px; }
+  .module-copy>p { font-size:17px; }
+  .module-list button { font-size:14px; min-height:49px; }
+  .module-list button>span,.module-list button small { font-size:12px; }
+  .module-workflows { padding-inline:20px; gap:30px; }
+  .module-workflows button { min-height:50px; font-size:13px; }
+  .module-panel-content { padding:26px 22px; min-height:465px; }
+  .module-panel-content h3 { font-size:30px; }
+  .module-panel-content>p { font-size:17px; }
+  .module-window input,.module-window select { font-size:16px; }
+  .module-window>.sample-caption { padding-inline:22px; }
+  .transfer-bottom { padding:16px 0; border-width:1px 0 0; border-radius:0; gap:16px; }
+  #transfer-summary { font-size:12px; }
+  .transfer-bottom .button { font-size:12px; }
+  .offers { padding-block:75px; scroll-margin-top:-50px; }
+  .offers .section-heading h2 { font-size:44px; }
+  .offer-rows:before { left:calc(var(--page-gutter) + 4px); top:55px; bottom:35px; opacity:.6; }
+  .featured .offer-inner,.offer-inner { display:grid;grid-template-columns:1fr;gap:18px; padding:28px 0 28px 25px; min-height:0; }
+  .offer-index { margin:0; font-size:15px; }
+  .offer-index:after { left:-25px; top:9px; }
+  .offer-art { display:none; }
+  .offer-copy h3,.featured .offer-copy h3 { font-size:29px; }
+  .offer-copy p,.featured .offer-copy p { font-size:16px; }
+  .featured .offer-inner>.button { grid-column:auto; }
+  .offer-inner>.text-link { font-size:13px; }
+  .delivery { padding-block:75px; scroll-margin-top:-50px; }
+  .delivery .section-heading h2 { font-size:38px; }
+  .technical-figure { height:235px; }
+  .delivery-grid h3 { font-size:26px; }
+  .company h2 { font-size:41px; }
+  .working-photo img { mask-image:none; }
+  .contact { padding-top:125px; padding-bottom:65px; }
+  .contact-signal { height:110px; top:0; }
+  .contact h2 { font-size:clamp(55px,12.5vw,78px); }
+  .contact h2 em { font-size:1.08em; }
+  .contact h2 em br { display:none; }
+  .contact-layout { gap:38px; }
+  .contact-layout>div>p { font-size:18px; }
+  .contact-offers { font-size:12px; gap:8px 14px; }
+  #contact-form label { font-size:13px; }
+  #contact-form textarea { min-height:160px; }
+}
+@media(prefers-reduced-motion:reduce) { .assembly-browser { box-shadow:none; } }

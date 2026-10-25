@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Motion preview verification</title><body style="margin:0"><pre id="results">Running</pre><iframe title="Preview under test" src="./index.html" style="width:1440px;height:900px;border:0"></iframe><script>
+const frame = document.querySelector('iframe');
+const results = document.querySelector('#results');
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+frame.addEventListener('load', async () => {
+  const checks = [];
+  const check = (name, passed) => { checks.push({ name, passed }); };
+  try {
+    const doc = frame.contentDocument;
+    const win = frame.contentWindow;
+    const click = selector => doc.querySelector(selector).click();
+    // Headless virtual time advances timers independently of compositor frames.
+    win.requestAnimationFrame = callback => win.setTimeout(() => callback(win.performance.now()), 16);
+    win.cancelAnimationFrame = id => win.clearTimeout(id);
+    await wait(150);
+    if (doc.querySelector('#play').disabled) click('#motion-toggle');
+    check('Desktop has no horizontal overflow', doc.documentElement.scrollWidth <= win.innerWidth);
+    click('#play');
+    await wait(650);
+    const middle = Number(doc.querySelector('.hero').style.getPropertyValue('--p'));
+    check('Replay advances the actual morph', middle > .05 && middle < 1);
+    await wait(2300);
+    check('Replay holds its final state', Number(doc.querySelector('.hero').style.getPropertyValue('--p')) > .98);
+    click('#tab-people');
+    check('People tab updates content and state', doc.querySelector('#workflow-content').textContent.includes('Alex Reyes') && doc.querySelector('#tab-people').getAttribute('aria-selected') === 'true');
+    doc.querySelector('#tab-people').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    check('Keyboard advances workflow tab', doc.querySelector('#tab-reports').getAttribute('aria-selected') === 'true');
+    click('#module-accounting');
+    check('Accounting includes correct scope', doc.querySelector('#module-content').textContent.includes('Not a BIR invoicing or CAS replacement'));
+    click('#module-scheduling'); click('#module-core'); click('#module-inventory');
+    check('Repeated module changes remain usable', doc.querySelector('#module-content h3').textContent === 'Inventory');
+    click('#motion-toggle');
+    check('Reduced motion shows final state', doc.body.classList.contains('reduced-motion') && doc.querySelector('#play').disabled && Number(doc.querySelector('.hero').style.getPropertyValue('--p')) === 1);
+    const form = doc.querySelector('form');
+    form.elements.name.value = '<b>Sample person</b>';
+    form.elements.email.value = 'sample@example.com';
+    form.elements.message.value = 'Inventory for three branches';
+    form.requestSubmit();
+    check('Form previews locally without HTML injection', doc.querySelector('output').textContent.includes('not sent') && !doc.querySelector('output b'));
+    frame.style.width = '390px';
+    await wait(150);
+    check('Mobile has no horizontal overflow', doc.documentElement.scrollWidth <= win.innerWidth);
+    click('#motion-toggle');
+    click('#tab-inventory');
+    check('Mobile controls remain usable', doc.querySelector('#tab-inventory').getAttribute('aria-selected') === 'true');
+    const passed = checks.every(check => check.passed);
+    results.textContent = JSON.stringify({ passed, middle, width: win.innerWidth, scrollWidth: doc.documentElement.scrollWidth, checks }, null, 2);
+    document.title = `${passed ? 'PASS' : 'FAIL'}: motion preview`;
+  } catch (error) {
+    results.textContent = JSON.stringify({ passed: false, error: error.message, checks }, null, 2);
+    document.title = 'FAIL: motion preview';
+  }
+});
+</script></body></html>

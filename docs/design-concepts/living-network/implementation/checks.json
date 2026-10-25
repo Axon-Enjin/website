@@ -1,0 +1,145 @@
+{
+  "origin": "http://127.0.0.1:4173/",
+  "checks": [
+    {
+      "name": "Desktop page, local fonts and selected identity load",
+      "pass": true
+    },
+    {
+      "name": "Desktop hero has visible canvas artwork",
+      "pass": true
+    },
+    {
+      "name": "Animation scheduler runs when visible",
+      "pass": true
+    },
+    {
+      "name": "Motion toggle stops the animation scheduler",
+      "pass": true
+    },
+    {
+      "name": "All in-page links point to real targets",
+      "pass": true
+    },
+    {
+      "name": "Sticky assembly follows scroll into Connect chapter",
+      "pass": true
+    },
+    {
+      "name": "Team remains discreet",
+      "pass": true
+    },
+    {
+      "name": "People workflow and branch filter update the real table",
+      "pass": true
+    },
+    {
+      "name": "Workflow keyboard navigation switches to reports",
+      "pass": true
+    },
+    {
+      "name": "All seven modules switch with exactly one active tab",
+      "pass": true
+    },
+    {
+      "name": "Accounting safe scope is visible",
+      "pass": true
+    },
+    {
+      "name": "Module keyboard navigation wraps to Core",
+      "pass": true
+    },
+    {
+      "name": "Inventory example survives switching away and back",
+      "pass": true
+    },
+    {
+      "name": "Transfer review rejects the same origin and destination",
+      "pass": true
+    },
+    {
+      "name": "Canvas scheduler sleeps outside the visual sections",
+      "pass": true
+    },
+    {
+      "name": "Command menu opens with Ctrl+K",
+      "pass": true
+    },
+    {
+      "name": "Native Escape closes the command menu",
+      "pass": true
+    },
+    {
+      "name": "Contact requires valid fields",
+      "pass": true
+    },
+    {
+      "name": "Prepared inquiry is literal text and never claims delivery",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 320px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 390px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 768px",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow at 1366px",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion starts with static, readable content",
+      "pass": true
+    },
+    {
+      "name": "Mobile navigation opens and closes after selection",
+      "pass": true
+    },
+    {
+      "name": "No broken local images",
+      "pass": true
+    },
+    {
+      "name": "No uncaught application errors",
+      "pass": true
+    }
+  ],
+  "widths": [
+    {
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "width": 1366,
+      "overflow": false
+    }
+  ],
+  "runtimeErrors": [],
+  "screenshots": [
+    "desktop-hero.png",
+    "desktop-assembly.png",
+    "desktop-manifesto.png",
+    "desktop-modules.png",
+    "desktop-offers.png",
+    "desktop-delivery.png",
+    "desktop-company.png",
+    "desktop-contact.png",
+    "mobile-hero.png",
+    "mobile-modules.png",
+    "mobile-contact.png"
+  ]
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Axon Enjin — Motion preview</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/garet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+  <script src="./motion.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#product">Skip to the product</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#home" aria-label="Axon Enjin home"><span class="signal"></span>AXON ENJIN</a>
+    <nav aria-label="Main navigation"><a href="#product">Product</a><a href="#modules">Modules</a><a href="#company">Company</a></nav>
+    <a class="button small" href="#contact">Talk to us <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
+  </header>
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-stage wrap">
+        <div class="hero-copy">
+          <h1 id="hero-title">One system.<br>Every branch.</h1>
+          <p>Bring your people, stock, and reports into one place. Add the tools you need.</p>
+          <div class="actions"><a class="button" href="#modules">See modules <iconify-icon icon="solar:widget-2-linear"></iconify-icon></a><a class="text-link" href="#contact">Talk to us <span aria-hidden="true">↗</span></a></div>
+          <div class="motion-controls"><button id="play" class="control" type="button"><iconify-icon icon="solar:play-circle-linear"></iconify-icon> Play the transition</button><button id="motion-toggle" class="control" type="button" aria-pressed="false">Reduce motion</button></div>
+        </div>
+        <div class="visual" aria-label="Head office and three branches come together in one Operating Layer">
+          <svg class="connections" viewBox="0 0 640 540" aria-hidden="true"><path id="network-path" d="M320 100 L320 165 Q320 185 300 185 L110 185 Q90 185 90 205 L90 260 M320 185 L320 260 M320 185 L530 185 Q550 185 550 205 L550 260"/><circle id="node-a" cx="90" cy="260" r="5"/><circle id="node-b" cx="320" cy="260" r="5"/><circle id="node-c" cx="550" cy="260" r="5"/></svg>
+          <div class="office network-label"><iconify-icon icon="solar:buildings-3-linear"></iconify-icon><strong>Head office</strong><span>One clear picture</span></div>
+          <div class="branches"><div class="branch network-label"><iconify-icon icon="solar:shop-2-linear"></iconify-icon><strong>Branch A</strong><span>People · Stock</span></div><div class="branch network-label"><iconify-icon icon="solar:shop-2-linear"></iconify-icon><strong>Branch B</strong><span>People · Stock</span></div><div class="branch network-label"><iconify-icon icon="solar:shop-2-linear"></iconify-icon><strong>Branch C</strong><span>People · Stock</span></div></div>
+          <div class="hero-dashboard">
+            <div class="window-top"><span class="mini-brand"><span class="signal"></span>AXON ENJIN</span><span class="window-label">Operating Layer</span><span class="branch-select">All branches <span aria-hidden="true">⌄</span></span></div>
+            <div class="dashboard-inner"><aside aria-hidden="true"><iconify-icon icon="solar:widget-2-linear"></iconify-icon><iconify-icon class="selected" icon="solar:box-linear"></iconify-icon><iconify-icon icon="solar:users-group-rounded-linear"></iconify-icon><iconify-icon icon="solar:chart-square-linear"></iconify-icon></aside><div class="dashboard-content"><div class="dashboard-heading"><strong>Stock by branch</strong><span>Inventory</span></div><table><thead><tr><th>Item</th><th>Branch A</th><th>Branch B</th><th>Branch C</th></tr></thead><tbody><tr><td>Coffee beans</td><td>120</td><td>85</td><td>64</td></tr><tr><td>Cups</td><td>430</td><td>220</td><td>310</td></tr><tr><td>Milk</td><td>180</td><td>120</td><td>95</td></tr></tbody></table><div class="dashboard-bottom"><span><span class="signal"></span> Three branches. A shared view.</span><span>Core + Inventory</span></div></div></div>
+          </div>
+          <span class="concept-caption">Illustrative product view</span>
+          <div class="transition-track" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section wrap product-section" id="product">
+      <div class="section-intro"><h2>See every branch<br>in one place.</h2><p>Check stock, people, and reports without switching systems.</p></div>
+      <div class="product-layout">
+        <div><div class="workflow-tabs" role="tablist" aria-label="Product workflows"><button type="button" role="tab" aria-selected="true" aria-controls="workflow-panel" id="tab-inventory" data-workflow="inventory"><iconify-icon icon="solar:box-linear"></iconify-icon>Inventory</button><button type="button" role="tab" aria-selected="false" aria-controls="workflow-panel" id="tab-people" tabindex="-1" data-workflow="people"><iconify-icon icon="solar:users-group-rounded-linear"></iconify-icon>People</button><button type="button" role="tab" aria-selected="false" aria-controls="workflow-panel" id="tab-reports" tabindex="-1" data-workflow="reports"><iconify-icon icon="solar:chart-square-linear"></iconify-icon>Reports</button><span class="tab-marker" aria-hidden="true"></span></div><p class="workflow-description" id="workflow-description">See stock levels and plan moves between branches.</p></div>
+        <div class="product-window" id="workflow-panel" role="tabpanel" aria-labelledby="tab-inventory" tabindex="0"><div class="window-top"><span class="mini-brand"><span class="signal"></span>AXON ENJIN</span><span class="branch-select">All branches</span></div><div class="workflow-content" id="workflow-content"><h3>Stock by branch</h3><div class="table-scroll"><table><thead><tr><th>Item</th><th>Branch A</th><th>Branch B</th><th>Branch C</th></tr></thead><tbody><tr><td>Coffee beans</td><td>120</td><td>85</td><td>64</td></tr><tr><td>Cups</td><td>430</td><td>220</td><td>310</td></tr><tr><td>Milk</td><td>180</td><td>120</td><td>95</td></tr></tbody></table></div></div><p class="window-note">Illustrative product view · Sample data</p></div>
+      </div>
+    </section>
+    <section class="section wrap" id="modules">
+      <div class="section-intro"><h2>Add the tools<br>you need.</h2><p>Start with Core. Choose the modules that fit your branches.</p></div>
+      <div class="module-layout"><div class="module-list" role="tablist" aria-orientation="vertical" aria-label="Available modules">
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-core" data-module="core" tabindex="-1"><iconify-icon icon="solar:widget-2-linear"></iconify-icon><span>Core <small>Required</small></span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-hr" data-module="hr" tabindex="-1"><iconify-icon icon="solar:users-group-rounded-linear"></iconify-icon><span>HR</span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="true" aria-controls="module-panel" id="module-inventory" data-module="inventory"><iconify-icon icon="solar:box-linear"></iconify-icon><span>Inventory</span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-crm" data-module="crm" tabindex="-1"><iconify-icon icon="solar:user-speak-linear"></iconify-icon><span>CRM</span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-reporting" data-module="reporting" tabindex="-1"><iconify-icon icon="solar:chart-square-linear"></iconify-icon><span>Reporting</span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-accounting" data-module="accounting" tabindex="-1"><iconify-icon icon="solar:calculator-linear"></iconify-icon><span>Accounting</span><span aria-hidden="true">↗</span></button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="module-panel" id="module-scheduling" data-module="scheduling" tabindex="-1"><iconify-icon icon="solar:calendar-linear"></iconify-icon><span>Scheduling</span><span aria-hidden="true">↗</span></button>
+      </div><div class="module-detail" id="module-panel" role="tabpanel" aria-labelledby="module-inventory" tabindex="0"><div id="module-content"><iconify-icon class="detail-icon" icon="solar:box-linear"></iconify-icon><h3>Inventory</h3><p>Stock levels, moves between branches, and simple counts.</p><div class="branch-transfer" aria-label="Stock moves between Branch A and Branch B"><div><iconify-icon icon="solar:shop-2-linear"></iconify-icon><span>Branch A</span></div><div class="transfer-line"><span></span></div><div><iconify-icon icon="solar:shop-2-linear"></iconify-icon><span>Branch B</span></div></div></div><a class="button" id="module-cta" href="#contact">Ask about Inventory <span aria-hidden="true">↗</span></a></div></div><p class="section-note">Each module adds a tab to the same system.</p>
+    </section>
+    <section class="section wrap" id="offers"><div class="section-intro"><h2>Software that fits<br>your business.</h2><p>Choose our modules, tailor the system, or build something new.</p></div><div class="offer-list"><a href="#modules"><iconify-icon icon="solar:widget-2-linear"></iconify-icon><div><h3>Operating Layer</h3><p>Core plus the modules you choose.</p></div><span>Explore modules ↗</span></a><a href="#contact"><iconify-icon icon="solar:tuning-2-linear"></iconify-icon><div><h3>Customization</h3><p>The same system, adapted to your fields and workflows.</p></div><span>Talk about your setup ↗</span></a><a href="#contact"><iconify-icon icon="solar:code-linear"></iconify-icon><div><h3>Custom AI software</h3><p>A custom app for your business. Build plus 12 months of maintenance by default.</p><small>You own the custom app; Axon keeps reusable libraries.</small></div><span>Discuss a build ↗</span></a></div></section>
+    <section class="section wrap team-layout" id="company"><div><h2>Work with the people<br>building it.</h2><p>A lean team in Metro Manila. We work like your in-house developers.</p><a class="button" href="#contact">Talk to the team <span aria-hidden="true">↗</span></a></div><div class="team-roster"><div><span class="signal"></span><strong>Jerico<small>CEO</small></strong><span>Business, finance, legal</span></div><div><span class="signal"></span><strong>Aidan<small>CTO</small></strong><span>Technology</span></div><div><span class="signal"></span><strong>Gerald<small>Deputy Engineer</small></strong><span>Engineering</span></div><div><span class="signal"></span><strong>Rhandie<small>Deputy Engineer</small></strong><span>Engineering</span></div></div></section>
+    <section class="section wrap" id="contact"><div class="contact-surface"><div><h2>Tell us what<br>you need.</h2><p>Tell us about your branches, your current tools, and what you want to work better.</p><ul><li>Operating Layer</li><li>Customization</li><li>Custom AI software</li></ul></div><form id="contact-form"><div class="field-pair"><label>Name<input name="name" autocomplete="name" required placeholder="Your name"></label><label>Work email<input name="email" type="email" autocomplete="email" required placeholder="you@company.com"></label></div><div class="field-pair"><label>Company<input name="company" autocomplete="organization" placeholder="Your company"></label><label>Branches (optional)<input name="branches" type="number" min="1" placeholder="e.g. 3"></label></div><label>What do you need help with?<textarea name="message" rows="4" required placeholder="Tell us about your current setup."></textarea></label><button class="button" type="submit">Preview your inquiry <span aria-hidden="true">↗</span></button><p class="form-note">Motion concept only. This form previews your inquiry; it does not send it.</p><output id="form-result" aria-live="polite"></output></form></div></section>
+  </main>
+  <footer class="wrap"><span>© 2026 Axon Enjin · Metro Manila, Philippines</span><div><a href="#modules">Modules</a><a href="#company">Company</a><button class="footer-link" id="ventures-toggle" type="button" aria-expanded="false" aria-controls="ventures-note">Ventures</button><a href="#contact">Contact</a></div><p id="ventures-note" hidden>We sometimes co-build startups. Collaboration is paid, with optional equity in selected cases. Ask about collaboration in your inquiry.</p></footer>
+  <div class="preview-badge"><span>Motion preview</span><a href="../docs/design-concepts/repo-system/README.md">Concept notes ↗</a></div>
+</body>
+</html>
