@@ -1,0 +1,30 @@
+{
+  "name": "axon-enjin-website",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build && vite build --ssr src/render.tsx --outDir .vite-ssr && node tools/prerender.mjs && node tools/static-check.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4174",
+    "test:perf": "node tools/perf-smoke.mjs",
+    "format": "prettier --write src vite.config.ts tsconfig.json package.json tools/prerender.mjs tools/static-check.mjs",
+    "format:check": "prettier --check src vite.config.ts tsconfig.json package.json tools/prerender.mjs tools/static-check.mjs"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "prettier": "3.9.10",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}

@@ -1,7 +1,7 @@
 # Axon Enjin
 
 ## Platform and stack
-Web. Existing static HTML site, vanilla JavaScript, canvas, Tailwind CDN. Local development in this checkout; no hosting migration is requested.
+Web. React and TypeScript section components built with Vite, with the existing DOM/canvas controllers behind an effect lifecycle. Production builds pre-render the homepage and retain static article/reference routes. Local CSS, fonts and artwork; no Tailwind runtime CDN. Static hosting uses `npm run build` and `dist/`.
 
 ## Product truth
 The Operating Layer brings branches, people, inventory and reports into one system. Buyers start with Core and choose modules: HR, Inventory, CRM, Reporting, Accounting and Scheduling. Accounting covers management books and export/sync to the customer's registered CAS, not BIR invoicing replacement.

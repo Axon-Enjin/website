@@ -18,8 +18,12 @@ await new Promise((resolve, reject) => { socket.addEventListener('open', resolve
 let serial = 0;
 const pending = new Map();
 const runtimeErrors = [];
+let delayRequests = false;
 socket.addEventListener('message', event => {
   const message = JSON.parse(event.data);
+  if (message.method === 'Fetch.requestPaused' && delayRequests) {
+    setTimeout(() => call('Fetch.continueRequest', { requestId: message.params.requestId }).catch(() => {}), 2000);
+  }
   if (message.method === 'Runtime.exceptionThrown') runtimeErrors.push(message.params.exceptionDetails.text + ': ' + (message.params.exceptionDetails.exception?.description || ''));
   if (!pending.has(message.id)) return;
   const { resolve, reject, timeout } = pending.get(message.id);
@@ -42,8 +46,8 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const checks = [];
 function check(name, result) { checks.push({ name, pass: Boolean(result) }); console.log(`${result ? 'PASS' : 'FAIL'} ${name}`); }
 async function viewport(width, height, mobile = false) { await call('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile }); }
-async function load() {
-  await call('Page.navigate', { url: origin + '?intro=1' });
+async function load(force = true) {
+  await call('Page.navigate', { url: origin + (force ? '?intro=1' : '') });
   for (let i = 0; i < 70; i++) {
     if (await evaluate('Boolean(document.querySelector(".word"))')) break;
     await sleep(100);
@@ -56,11 +60,11 @@ async function screenshot(name, selector) {
   await writeFile(new URL(name, out), Buffer.from(capture.data, 'base64'));
 }
 const complete = `!document.documentElement.classList.contains('intro-pending') && !document.querySelector('.hero-intro-art') && !document.querySelector('.intro-skip')`;
-async function fresh() { await evaluate('localStorage.removeItem("axon-motion");sessionStorage.removeItem("axon-intro-seen")'); await load(); }
+async function fresh(force = true) { await evaluate('localStorage.removeItem("axon-motion");sessionStorage.removeItem("axon-intro-seen")'); await load(force); }
 try {
  await call('Page.enable'); await call('Runtime.enable');
  await call('Page.addScriptToEvaluateOnNewDocument', {source:`window.__introFrames=0;const original=requestAnimationFrame;window.requestAnimationFrame=fn=>original(t=>{window.__introFrames++;fn(t)});window.__introStarted=0;window.__introEnded=0;new MutationObserver(()=>{const r=document.documentElement;if(r?.classList.contains('intro-active')&&!window.__introStarted)window.__introStarted=performance.now();if(window.__introStarted&&!r.classList.contains('intro-pending')&&!window.__introEnded)window.__introEnded=performance.now()}).observe(document,{subtree:true,attributes:true,attributeFilter:['class']});`});
- await viewport(1672,941); await load(); await fresh();
+ await viewport(1672,941); await load(); await fresh(false);
  check('First visit starts intro', await evaluate('document.querySelector("#home").dataset.introState==="playing"&&document.documentElement.classList.contains("intro-active")'));
  await screenshot('desktop-trace.png'); await sleep(600);
  await screenshot('desktop-branch.png'); await sleep(650);
@@ -69,7 +73,7 @@ try {
  check('Desktop timeline runs for the authored duration', await evaluate('window.__introEnded-window.__introStarted>=2600&&window.__introEnded-window.__introStarted<4000'));
  check('Intro leaves no persistent inline styles',await evaluate('![...document.documentElement.style].some(k=>k.startsWith("--intro-"))'));
  await screenshot('desktop.png');
- check('Selected identity preserved',await evaluate('getComputedStyle(document.querySelector(".brand span")).fontWeight==="800"&&document.querySelector(".brand img").getAttribute("src")==="assets/axon-mark.svg"'));
+ check('Selected identity preserved',await evaluate('getComputedStyle(document.querySelector(".brand span")).fontWeight==="800"&&new URL(document.querySelector(".brand img").src).pathname==="/assets/axon-mark.svg"'));
  await call('Page.navigate',{url:origin}); await sleep(500);
  check('Same-session reload skips intro',await evaluate(complete+' && !document.querySelector("#home").dataset.introState'));
  await fresh(); await evaluate('document.querySelector(".intro-skip").click()'); check('Skip completes immediately',await evaluate(complete));
@@ -88,6 +92,18 @@ try {
  await viewport(1440,900);await fresh();await evaluate('scrollTo(0,innerHeight)');await sleep(100);check('Scroll preserves destination',await evaluate(complete+' && scrollY>0'));
  await call('Page.navigate',{url:origin+'#modules'});await sleep(500);check('Deep links skip intro',await evaluate(complete));
  await call('Network.enable');await call('Network.setCacheDisabled',{cacheDisabled:true});
+ const appScript=await evaluate('document.querySelector("script[type=module][src]").src');
+ for (const [name, urlPattern] of [['production JavaScript', appScript], ['hero artwork', '*hero-network.png*']]) {
+   delayRequests = true;
+   await call('Fetch.enable', { patterns: [{ urlPattern, requestStage: 'Request' }] });
+   await fresh(false);
+   for (let i = 0; i < 60 && !(await evaluate('window.__introStarted > 0')); i++) await sleep(100);
+   check(`First visit plays intro after delayed ${name}`, await evaluate('window.__introStarted > 1800 && document.querySelector("#home").dataset.introState === "playing"'));
+   await sleep(3000);
+   check(`Delayed ${name} finishes cleanly`, await evaluate(complete));
+   await call('Fetch.disable');
+   delayRequests = false;
+ }
  await call('Fetch.enable',{patterns:[{urlPattern:'*hero-network.png*',requestStage:'Request'}]});
  const oldOrigin=await evaluate('performance.timeOrigin');
  const slowNavigation=call('Page.navigate',{url:origin+'?intro=1'});
@@ -97,8 +113,8 @@ try {
  await evaluate('document.querySelector(".intro-skip")?.click()');
  check('Skip during image loading fails open',await evaluate(complete));
  await call('Fetch.disable');await slowNavigation;await call('Network.setCacheDisabled',{cacheDisabled:false});
- await call('Network.enable');await call('Network.setBlockedURLs',{urls:['*hero-intro.js*']});
- await call('Page.navigate',{url:origin+'?intro=1'});await sleep(1900);check('Failed intro script fails open',await evaluate(complete+' && getComputedStyle(document.querySelector(".hero-title-line")).opacity==="1"'));
+ await call('Network.enable');await call('Network.setBlockedURLs',{urls:[appScript]});
+ await call('Page.navigate',{url:origin+'?intro=1'});await sleep(8500);check('Failed intro script fails open',await evaluate(complete+' && getComputedStyle(document.querySelector(".hero-title-line")).opacity==="1"'));
  await call('Network.setBlockedURLs',{urls:[]});
  await call('Network.setBlockedURLs',{urls:['*hero-network.png*']});await call('Network.clearBrowserCache');
  await load();await sleep(1700);check('Failed artwork fails open',await evaluate(complete));

@@ -1,0 +1,48 @@
+<div class="module-panel-content">
+  <h3>Move stock between branches.</h3>
+  <p>Keep one shared record.</p>
+  <form id="transfer-form" method="dialog">
+    <div class="field-pair">
+      <label
+        >From<select id="transfer-from" name="from">
+          <option>Branch A</option>
+          <option>Branch B</option>
+          <option>Branch C</option>
+        </select></label
+      ><label
+        >To<select id="transfer-to" name="to">
+          <option>Branch B</option>
+          <option>Branch A</option>
+          <option>Branch C</option>
+        </select></label
+      >
+    </div>
+    <div class="field-pair">
+      <label
+        >Item<select name="item" id="transfer-item">
+          <option>Coffee beans</option>
+          <option>Cups</option>
+          <option>Milk</option>
+        </select></label
+      ><label
+        >Quantity<input
+          name="quantity"
+          id="transfer-quantity"
+          type="number"
+          min="1"
+          max="10000"
+          value="20"
+          required
+      /></label>
+    </div>
+    <div class="transfer-bottom">
+      <span id="transfer-summary"
+        ><svg class="icon"><use href="#swap"></use></svg>Branch A → Branch B ·
+        20 units</span
+      ><button class="button" type="submit">
+        Review transfer <svg class="icon"><use href="#diagonal"></use></svg>
+      </button>
+    </div>
+    <p id="transfer-result" role="status"></p>
+  </form>
+</div>

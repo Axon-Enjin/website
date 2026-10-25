@@ -7,10 +7,15 @@ The static homepage implements the selected black/blue Living network direction,
 From the repository root:
 
 ```powershell
-python -m http.server 4173 --bind 127.0.0.1
+npm ci
+npm run dev
 ```
 
-Open **http://127.0.0.1:4173/**. No installation or build is needed. Tailwind loads from its requested CDN with preflight disabled; the site's own CSS and JavaScript, fonts, logo and imagery are local and do not rely on that CDN to render.
+Open **http://127.0.0.1:5173/**. The site uses React, TypeScript and Vite with local CSS, fonts and artwork. Tailwind's runtime CDN is no longer needed.
+
+`npm run build` typechecks, bundles and pre-renders the full homepage into `dist/`. `npm run preview` serves that production output at **http://127.0.0.1:4174/**. The pre-rendered page remains readable without JavaScript. Existing article, preview and design-reference URLs are copied into the static output.
+
+For Cloudflare Pages, use build command **`npm run build`**, output directory **`dist`**, and Node **22.12+** (Node 24 is used locally). Update the existing project's build settings when merging the migration; the previous static-root settings will not build the React source.
 
 ## Interactions
 
@@ -31,12 +36,15 @@ Product interfaces and data are illustrative. The working-session image was gene
 
 ## Files and verification
 
-- `index.html`, `assets/site.css`, `assets/fidelity.css`, `assets/hero.css`, `assets/assembly.css`, `assets/site.js`, `assets/hero-intro.js`: homepage, styling, intro and shared animation behavior.
+- `src/components/`: React sections, header, footer, icons and dialogs. Authored DOM-controller regions have explicit boundaries so animation/tab updates do not conflict with React-owned children.
+- `src/runtime/site.js`, `src/runtime/hero-intro.js`: shared motion and interaction controllers, initialized through a layout effect with cleanup for listeners, observers, timers and animation frames. React Strict Mode is enabled in development.
+- `assets/site.css`, `assets/fidelity.css`, `assets/hero.css`, `assets/assembly.css`: preserved visual styling, bundled by Vite.
+- `tools/prerender.mjs`: emits the static homepage after the Vite client and server-render builds.
 - `assets/axon-mark.svg`: geometric reconstruction of the selected identity concept. DM Sans 800 approximates the selected bold wordmark; it is not a claim of an exact custom font master.
 - `assets/fonts/`: self-hosted DM Sans variable and Instrument Serif italic, with their OFL licenses.
 - `docs/design-concepts/living-network/implementation/`: desktop/mobile captures and browser-check report.
 - `docs/design-concepts/living-network/iteration-02/`: latest section-by-section fidelity audit, mock/before/current comparison viewer, reference-size captures, and the expanded 34-check browser report. The earlier captures are retained for comparison.
-- `tools/website-check.mjs`: dependency-free CDP integration checks. Serve locally and start an isolated Chromium with `--headless=new --remote-debugging-port=9449 --user-data-dir=<temporary-profile>`, then run `node tools/website-check.mjs`. It closes that isolated browser when done. Do not point it at your personal browsing profile.
+- `tools/website-check.mjs`: dependency-free CDP integration checks. Start `npm run preview` and an isolated Chromium with `--headless=new --remote-debugging-port=9449 --user-data-dir=<temporary-profile>`, set `AXON_QA_URL=http://127.0.0.1:4174/`, then run `node tools/website-check.mjs`. It closes that isolated browser when done. Do not point it at your personal browsing profile.
 - `tools/perf-smoke.mjs`: dependency-free checks of the shared scheduler, cached canvas paths, pause state, visibility and offscreen behavior.
 - `tools/intro-check.mjs` and `tools/assembly-check.mjs`: focused browser checks using the same isolated Chromium setup. Latest results: 21 intro checks, 13 assembly checks and 34 page checks passed. `implementation/current-validation.json` under the Living network design directory records the reports.
 

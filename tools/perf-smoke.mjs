@@ -4,9 +4,7 @@ import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 
-const source = readFileSync(new URL('../assets/site.js', import.meta.url), 'utf8');
-const boundary = source.indexOf('  // The product examples');
-assert.ok(boundary > 0, 'Could not locate the canvas engine boundary');
+const source = readFileSync(new URL('../src/runtime/site.js', import.meta.url), 'utf8');
 const queue = new Map(), events = new Map(), elements = new Map(), observers = [];
 let nextFrame = 0, pathCount = 0, strokeCount = 0;
 const noop = () => {};
@@ -35,25 +33,28 @@ function element(name) {
 }
 const body = element('body');
 const document = {
-  body, hidden: false, documentElement: { scrollHeight: 9000 },
+  body, hidden: false, documentElement: Object.assign(element('html'), { scrollHeight: 9000 }),
+  fonts: { ready: Promise.resolve() },
+  getElementById: id => element('#' + id),
   querySelector: element, querySelectorAll: () => [],
   createElement: tag => element(`${tag}-${elements.size}`), createTextNode: text => ({ textContent: text }),
   addEventListener: (event, fn) => events.set(`document:${event}`, fn)
 };
 const sandbox = {
-  console, document, Math, Map, Set, Number, String, Array, Object,
+  console, document, Math, Map, Set, Number, String, Array, Object, AbortController,
+  createAxonIntro: () => null,
   innerWidth: 1440, innerHeight: 900, devicePixelRatio: 2,
   navigator: { hardwareConcurrency: 8 }, localStorage: { getItem: () => null, setItem: noop },
   matchMedia: () => ({ matches: false, addEventListener: noop }),
   Path2D: class { constructor() { pathCount++; } moveTo() {} lineTo() {} quadraticCurveTo() {} },
-  IntersectionObserver: class { constructor(fn) { this.fn = fn; this.targets = []; observers.push(this); } observe(target) { this.targets.push(target); } unobserve() {} },
+  IntersectionObserver: class { constructor(fn) { this.fn = fn; this.targets = []; observers.push(this); } observe(target) { this.targets.push(target); } unobserve() {} disconnect() { this.disconnected = true; } },
   requestAnimationFrame: fn => { const id = ++nextFrame; queue.set(id, fn); return id; },
   cancelAnimationFrame: id => queue.delete(id),
   addEventListener: (event, fn) => events.set(event, fn),
   setTimeout: fn => { fn(); return 0; }, clearTimeout: noop, scrollTo: noop, scrollY: 0
 };
 sandbox.window = sandbox;
-const engine = source.slice(0, boundary) + '\n scenes.forEach(resizeScene);setPaused(paused,false);})();';
+const engine = source.replace(/^import .+$/m, '').replace('export function initializeSite()', 'function initializeSite()') + '\nwindow.__cleanup = initializeSite();';
 vm.runInNewContext(engine, sandbox, { timeout: 4000 });
 function pump(time) {
   assert.ok(queue.size <= 1, 'More than one animation frame is pending');
@@ -89,4 +90,10 @@ assert.equal(queue.size, 1, 'Returning to artwork did not restart');
 for (let i = 0; i < 20; i++) events.get('scroll')();
 assert.equal(queue.size, 1, 'Scroll events scheduled duplicate frame loops');
 assert.equal(pathCount, initialPaths, 'Scroll rebuilt canvas paths');
-console.log('PASS: 400 frames, cached geometry, one scheduler, pause/resume, visibility, offscreen sleep and scroll coalescing.');
+sandbox.__cleanup();
+assert.equal(queue.size, 0, 'React cleanup left an animation frame pending');
+assert.ok(observers.every(observer => observer.disconnected), 'React cleanup left an observer attached');
+events.get('scroll')();
+await Promise.resolve();
+assert.equal(queue.size, 0, 'A delayed callback restarted a disposed runtime');
+console.log('PASS: 400 frames, cached geometry, one scheduler, pause/resume, visibility, offscreen sleep, scroll coalescing and React cleanup.');

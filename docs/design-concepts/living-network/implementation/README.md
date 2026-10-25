@@ -1,5 +1,15 @@
 # Homepage implementation verification
 
+## React + Vite migration
+
+The homepage is now split into React/TypeScript section components under `src/components/`. The existing interaction and canvas engine lives in `src/runtime/`, initialized through an effect with cleanup for listeners, observers, timers, object URLs and animation frames. Narrow `RuntimeRegion` boundaries keep controller-owned markup separate from React-owned descendants. React Strict Mode is enabled in development.
+
+`npm run build` typechecks, bundles and pre-renders the full homepage into `dist/`; the build also copies existing article, preview and design-reference routes. The production page remains readable without JavaScript. CSS, fonts and artwork are preserved locally; the Tailwind runtime CDN was removed.
+
+Migration validation: 21/21 intro checks, 13/13 assembly checks and 34/34 production page checks passed. Development also passed 34/34 page checks with Strict Mode. The scheduler smoke test now verifies effect cleanup and prevents delayed callbacks from restarting a disposed runtime. `current-validation.json` records the browser reports. Desktop/mobile screenshot comparisons against the pre-migration page show zero or near-zero pixel differences in the checked sections.
+
+Cloudflare Pages must use build command `npm run build`, output directory `dist`, and Node 22.12+ (Node 24 is pinned in `.nvmrc`). The migration PR requires this project-settings change before deployment; `wrangler.jsonc` records the intended output directory.
+
 The actual homepage is [the repository root](../../../../index.html), served at http://127.0.0.1:4173/ during local development. These are browser captures of that implementation, not additional image-generated mockups.
 
 `checks.json` records the browser integration pass: 27 checks for the selected identity, real canvas artwork, active and paused scheduling, offscreen sleep, scroll chapters, all seven modules, branch filters, keyboard tabs, Accounting scope, transfer validation, dialogs, discreet team copy, literal inquiry preparation, reduced motion and overflow at 320/390/768/1366px. No uncaught application errors were observed.

@@ -1,0 +1,10 @@
+src/** text eol=lf
+tools/*.mjs text eol=lf
+assets/*.svg text eol=lf
+.github/workflows/* text eol=lf
+vite.config.ts text eol=lf
+tsconfig.json text eol=lf
+package.json text eol=lf
+package-lock.json text eol=lf
+.gitattributes text eol=lf
+.nvmrc text eol=lf
