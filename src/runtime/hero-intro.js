@@ -217,7 +217,10 @@ export const createAxonIntro = ({
   });
   listen(artwork, "load", start);
   listen(artwork, "error", finish);
-  deadline = setTimeout(finish, 1400);
+  // React now owns startup. Give the artwork its own loading window instead of
+  // letting the pre-bundle watchdog cancel an otherwise healthy first visit.
+  clearTimeout(window.axonIntroDeadline);
+  deadline = setTimeout(finish, 8000);
   if (artwork.complete) Promise.resolve().then(start).catch(finish);
   return {
     get active() {

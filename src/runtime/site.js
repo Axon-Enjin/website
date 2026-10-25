@@ -1082,7 +1082,7 @@ export function initializeSite() {
           document.documentElement.classList.remove("intro-pending");
           originalSkip.remove();
         }
-      }, 1500);
+      }, 8000);
     }
   };
 }

@@ -10,7 +10,7 @@
   <link rel="preload" href="assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
   <script>
-    // Decide before paint; fail open if the intro cannot initialize promptly.
+    // Allow a cold production bundle to load before falling back to the static hero.
     try {
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches &&
           localStorage.getItem('axon-motion') !== 'paused' &&
@@ -22,7 +22,7 @@
             document.documentElement.classList.remove('intro-pending');
             document.getElementById('intro-skip')?.remove();
           }
-        }, 1500);
+        }, 8000);
       }
     } catch (error) { /* The normal hero is the storage-free fallback. */ }
   </script>
