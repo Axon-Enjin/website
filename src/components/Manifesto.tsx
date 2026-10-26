@@ -16,7 +16,7 @@ export default function Manifesto() {
                 id="manifesto-title"
                 className="manifesto-copy"
                 html={
-                  "Technology should bring people together. Across teams. Across branches. So everyone can work from the same page."
+                  "Technology should bring people together. We build the connections between people, tools, and the work they do."
                 }
               />
             </div>

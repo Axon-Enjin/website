@@ -8,6 +8,7 @@ import "../assets/assembly.css";
 import "../assets/manifesto.css";
 import "../assets/contact.css";
 import "../assets/surfaces.css";
+import "../assets/company-presence.css";
 
 const root = document.getElementById("root")!;
 const app = (

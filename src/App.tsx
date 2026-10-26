@@ -2,11 +2,13 @@ import PageProgress from "./components/PageProgress";
 import IconDefinitions from "./components/IconDefinitions";
 import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/Hero";
-import Assembly from "./components/Assembly";
 import Manifesto from "./components/Manifesto";
-import Modules from "./components/Modules";
-import Offers from "./components/Offers";
-import Delivery from "./components/Delivery";
+import {
+  BusinessModel,
+  Ventures,
+  Proof,
+  Articles,
+} from "./components/CompanySections";
 import Company from "./components/Company";
 import Contact from "./components/Contact";
 import SiteFooter from "./components/SiteFooter";
@@ -38,11 +40,11 @@ export default function App() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <Assembly />
         <Manifesto />
-        <Modules />
-        <Offers />
-        <Delivery />
+        <BusinessModel />
+        <Ventures />
+        <Proof />
+        <Articles />
         <Company />
         <Contact />
       </main>

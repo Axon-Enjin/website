@@ -215,13 +215,15 @@ export function initializeSite() {
     { element: $("#assembly-particles"), visible: false, type: "assembly" },
     { element: $("#manifesto-signal"), visible: false, type: "manifesto" },
     { element: $("#contact-particles"), visible: false, type: "contact" },
-  ].map((scene) => ({
-    ...scene,
-    ctx: scene.element.getContext("2d", { alpha: true }),
-    width: 0,
-    height: 0,
-    paths: [],
-  }));
+  ]
+    .filter((scene) => scene.element)
+    .map((scene) => ({
+      ...scene,
+      ctx: scene.element.getContext("2d", { alpha: true }),
+      width: 0,
+      height: 0,
+      paths: [],
+    }));
   function mobilePoint(point) {
     return innerWidth <= 760
       ? { x: (point.x - 0.18) * 1.25, y: 0.6 + point.y * 0.38 }
@@ -671,9 +673,9 @@ export function initializeSite() {
   const manifestoLines = [
     "Technology should bring",
     "people together.",
-    "Across teams. Across branches.",
-    "So everyone can work",
-    "from the same page.",
+    "We build the connections",
+    "between people, tools,",
+    "and the work they do.",
   ];
   const words = manifestoLines.join(" ").split(/\s+/);
   manifesto.textContent = "";
@@ -695,6 +697,7 @@ export function initializeSite() {
   });
   const wordElements = $$(".word", manifesto);
   function setAssemblyProgress(value) {
+    if (!assembly || !branchApp) return;
     assemblyProgress = clamp(value);
     const shell = smooth(clamp((assemblyProgress - 0.08) / 0.6));
     const content = smooth(clamp((assemblyProgress - 0.36) / 0.32));
@@ -727,9 +730,11 @@ export function initializeSite() {
     const top = window.scrollY;
     header.classList.toggle("scrolled", top > 50);
     progressBar.style.transform = `scaleX(${clamp(top / Math.max(1, document.documentElement.scrollHeight - vh))})`;
-    const rect = assembly.getBoundingClientRect();
-    if (rect.top < vh * 0.45 && rect.bottom > vh * 0.15) startAssembly();
-    if (assemblyPlaying && (rect.bottom < 0 || rect.top > vh)) finishAssembly();
+    const rect = assembly?.getBoundingClientRect();
+    if (rect && rect.top < vh * 0.45 && rect.bottom > vh * 0.15)
+      startAssembly();
+    if (rect && assemblyPlaying && (rect.bottom < 0 || rect.top > vh))
+      finishAssembly();
     const m = manifestoSection.getBoundingClientRect();
     const stageTop = innerWidth <= 760 ? 68 : 72;
     const stageHeight = vh - stageTop;
@@ -887,6 +892,18 @@ export function initializeSite() {
     );
     observers.push(sceneObserver);
     scenes.forEach((scene) => sceneObserver.observe(scene.element));
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) =>
+          entry.target.classList.toggle("is-in-view", entry.isIntersecting),
+        );
+      },
+      { rootMargin: "80px" },
+    );
+    observers.push(sectionObserver);
+    $$(".business-model, .venture-section").forEach((section) =>
+      sectionObserver.observe(section),
+    );
     const revealObserver = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -913,217 +930,6 @@ export function initializeSite() {
   listen(branchApp, "pointerdown", () => {
     finishAssembly();
     invalidate();
-  });
-
-  // The product examples and modules share accessible, keyboard-operable tabs.
-  function wireTabs(buttons, select, vertical = false) {
-    buttons.forEach((button, index) => {
-      listen(button, "click", () => select(button));
-      listen(button, "keydown", (event) => {
-        let next = index;
-        if (event.key === (vertical ? "ArrowDown" : "ArrowRight"))
-          next = (index + 1) % buttons.length;
-        else if (event.key === (vertical ? "ArrowUp" : "ArrowLeft"))
-          next = (index - 1 + buttons.length) % buttons.length;
-        else if (event.key === "Home") next = 0;
-        else if (event.key === "End") next = buttons.length - 1;
-        else return;
-        event.preventDefault();
-        select(buttons[next]);
-        buttons[next].focus();
-      });
-    });
-  }
-  function updateTabSelection(buttons, active) {
-    buttons.forEach((button) => {
-      button.setAttribute("aria-selected", String(button === active));
-      button.tabIndex = button === active ? 0 : -1;
-    });
-  }
-  const workflowButtons = $$("[data-workflow]");
-  let workflow = "inventory";
-  const products = {
-    inventory: {
-      title: "Stock by branch",
-      label: "Inventory",
-      columns: ["Item", "Branch A", "Branch B", "Branch C"],
-      rows: [
-        ["Coffee beans", 120, 85, 64],
-        ["Cups", 430, 220, 310],
-        ["Milk", 180, 120, 95],
-      ],
-    },
-    people: {
-      title: "People by branch",
-      label: "People",
-      columns: ["Team", "Branch A", "Branch B", "Branch C"],
-      rows: [
-        ["Branch leads", 1, 1, 1],
-        ["Team members", 11, 7, 5],
-        ["Total people", 12, 8, 6],
-      ],
-    },
-    reports: {
-      title: "A shared branch report",
-      label: "Reports",
-      columns: ["Stock summary", "Branch A", "Branch B", "Branch C"],
-      rows: [
-        ["Items tracked", 3, 3, 3],
-        ["Units on hand", 730, 425, 469],
-        ["Coffee beans", 120, 85, 64],
-      ],
-    },
-  };
-  function renderWorkflow() {
-    const item = products[workflow],
-      branch = $("#branch-filter").value;
-    const columnIndices =
-      branch === "all" ? [0, 1, 2, 3] : [0, { a: 1, b: 2, c: 3 }[branch]];
-    const table = `<div class="table-scroll"><table><thead><tr>${columnIndices.map((i) => `<th scope="col">${item.columns[i]}</th>`).join("")}</tr></thead><tbody>${item.rows.map((row) => `<tr>${columnIndices.map((i, n) => (n === 0 ? `<th scope="row">${row[i]}</th>` : `<td>${row[i]}</td>`)).join("")}</tr>`).join("")}</tbody></table></div>`;
-    $("#workflow-panel").innerHTML =
-      `<h3>${item.title}</h3><p class="app-subtitle">${item.label} · ${branch === "all" ? "All branches" : `Branch ${branch.toUpperCase()}`}</p>${table}`;
-    $("#workflow-panel").setAttribute(
-      "aria-labelledby",
-      `workflow-${workflow}`,
-    );
-  }
-  wireTabs(
-    workflowButtons,
-    (button) => {
-      workflow = button.dataset.workflow;
-      updateTabSelection(workflowButtons, button);
-      renderWorkflow();
-    },
-    true,
-  );
-  listen($("#branch-filter"), "change", renderWorkflow);
-  const modulePanel = $("#module-panel");
-  const inventoryMarkup = modulePanel.innerHTML;
-  const moduleButtons = $$("[data-module]");
-  let activeModule = "inventory";
-  const modules = {
-    core: {
-      name: "Core",
-      icon: "grid",
-      title: "Your branches.<br>Your starting point.",
-      description:
-        "The required foundation. Add your tools when you need them.",
-      items: [
-        "Login and branch access",
-        "People, roles and permissions",
-        "Home, module billing and an activity log",
-      ],
-    },
-    hr: {
-      name: "HR",
-      icon: "people",
-      title: "Your people.<br>In the right places.",
-      description: "Keep your team and branch records together.",
-      items: [
-        "People and branch roles",
-        "Basic attendance records",
-        "A shared view of your team",
-      ],
-    },
-    crm: {
-      name: "CRM",
-      icon: "people",
-      title: "Keep the<br>conversation connected.",
-      description: "Customers and contacts, with a shared history.",
-      items: [
-        "Customer and contact records",
-        "A basic pipeline",
-        "A history of work with each customer",
-      ],
-    },
-    reporting: {
-      name: "Reporting",
-      icon: "report",
-      title: "See the branch.<br>See the whole picture.",
-      description: "Branch and network numbers in one place.",
-      items: [
-        "Branch-level reports",
-        "A view across your network",
-        "The numbers your team works from",
-      ],
-    },
-    accounting: {
-      name: "Accounting",
-      icon: "report",
-      title: "Clear books.<br>A connected record.",
-      description: "Management books, reports and exports.",
-      items: [
-        "Management books",
-        "Internal financial reports",
-        "Export or sync to your own registered CAS",
-      ],
-      note: "This module does not replace BIR invoicing or your registered accounting system. We do not claim BIR accreditation.",
-    },
-    scheduling: {
-      name: "Scheduling",
-      icon: "grid",
-      title: "Make room<br>for the work ahead.",
-      description: "Plan the time your branches need.",
-      items: [
-        "Bookings, shifts or appointments",
-        "A shared branch schedule",
-        "Scope agreed for your workflow",
-      ],
-    },
-  };
-  function selectModule(button) {
-    activeModule = button.dataset.module;
-    updateTabSelection(moduleButtons, button);
-    modulePanel.setAttribute("aria-labelledby", button.id);
-    const name =
-      activeModule === "inventory" ? "Inventory" : modules[activeModule].name;
-    $("#module-app-label").textContent = name;
-    $$("[data-module-shortcut]").forEach((shortcut) =>
-      shortcut.setAttribute(
-        "aria-pressed",
-        String(shortcut.dataset.moduleShortcut === activeModule),
-      ),
-    );
-    $("#module-inquiry").innerHTML = `Ask about ${name} ${icon("diagonal")}`;
-    if (activeModule === "inventory") {
-      modulePanel.innerHTML = inventoryMarkup;
-      return;
-    }
-    const item = modules[activeModule];
-    modulePanel.innerHTML = `<div class="module-panel-content"><div class="panel-icon">${icon(item.icon)}</div><h3>${item.title}</h3><p>${item.description}</p><ul class="module-detail-list">${item.items.map((text) => `<li>${icon("check")}<span>${text}</span></li>`).join("")}</ul>${item.note ? `<p class="module-scope">${item.note}</p>` : '<div class="module-detail-visual" aria-hidden="true"><span></span></div>'}</div>`;
-  }
-  wireTabs(moduleButtons, selectModule, true);
-  $$("[data-module-shortcut]").forEach((shortcut) =>
-    listen(shortcut, "click", () =>
-      $(`[data-module="${shortcut.dataset.moduleShortcut}"]`).click(),
-    ),
-  );
-  function updateTransfer() {
-    const form = $("#transfer-form");
-    if (!form) return;
-    const data = new FormData(form);
-    const summary = `${data.get("from")} → ${data.get("to")} · ${data.get("quantity") || "0"} units`;
-    $("#transfer-summary").innerHTML = `${icon("swap")}<span></span>`;
-    $("#transfer-summary span").textContent = summary;
-    $("#transfer-result").textContent = "";
-  }
-  listen(modulePanel, "input", updateTransfer);
-  listen(modulePanel, "change", updateTransfer);
-  listen(modulePanel, "submit", (event) => {
-    if (event.target.id !== "transfer-form") return;
-    event.preventDefault();
-    const data = new FormData(event.target),
-      quantity = Number(data.get("quantity"));
-    const result = $("#transfer-result");
-    if (data.get("from") === data.get("to")) {
-      result.textContent = "Choose two different branches to review a move.";
-      return;
-    }
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10000) {
-      result.textContent = "Use a whole quantity from 1 to 10,000.";
-      return;
-    }
-    result.textContent = `Review: ${quantity} units of ${String(data.get("item")).toLowerCase()} from ${data.get("from")} to ${data.get("to")}. This is an example; no stock has moved.`;
   });
 
   // Native dialogs supply focus containment and Escape handling.
@@ -1198,11 +1004,6 @@ export function initializeSite() {
   $$("[data-inquiry]").forEach((link) =>
     listen(link, "click", () => setInquiryTopic(link.dataset.inquiry)),
   );
-  listen($("#module-inquiry"), "click", () =>
-    setInquiryTopic(
-      activeModule === "inventory" ? "Inventory" : modules[activeModule].name,
-    ),
-  );
   listen($("#contact-form"), "submit", (event) => {
     event.preventDefault();
     const form = event.target;
@@ -1214,7 +1015,6 @@ export function initializeSite() {
       `Name: ${data.get("name")}`,
       `Work email: ${data.get("email")}`,
       `Company: ${data.get("company") || "Not provided"}`,
-      `Branches: ${data.get("branches") || "Not provided"}`,
       "",
       String(data.get("message")).trim(),
     ].join("\n");

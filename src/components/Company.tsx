@@ -6,20 +6,12 @@ export default function Company() {
         id="company"
         aria-labelledby="company-title"
       >
-        <div className="section-meta">
-          <span className="chapter-label">
-            <span className="small-star" aria-hidden="true">
-              ✳
-            </span>{" "}
-            The people behind the signal
-          </span>
-        </div>
         <div className="company-layout">
           <div>
             <h2 id="company-title">
-              Work directly
+              A small team.
               <br />
-              with the builders.
+              Close to the work.
             </h2>
             <figure className="working-photo">
               <img
@@ -35,19 +27,19 @@ export default function Company() {
           </div>
           <div className="company-copy">
             <p className="company-intro">
-              A lean team in Metro Manila.
+              Four people in Metro Manila.
               <br />
-              We work like your in-house developers.
+              Working directly with you.
             </p>
             <div className="company-statement">
               <span className="signal-dot" aria-hidden="true"></span>
               <p>
-                From the first conversation to handoff, you work directly with
-                the people building your system.
+                You work with the people building your software, from the first
+                conversation to the work that follows.
               </p>
             </div>
             <a className="button" href="#contact">
-              Talk to the team{" "}
+              Let’s talk{" "}
               <svg className="icon">
                 <use href="#diagonal" />
               </svg>

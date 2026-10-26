@@ -16,9 +16,15 @@ assert.equal(
   "All eight sections must be pre-rendered",
 );
 assert.ok(
-  html.includes("People,") &&
-    html.includes("Stock by branch") &&
+  html.includes("The one") &&
+    html.includes("Technical engineering") &&
+    html.includes("Service agencies") &&
+    html.includes("Axlefield") &&
     html.includes("Prepare inquiry"),
+);
+assert.ok(
+  !html.includes('href="#modules"') && !html.includes('href="#offers"'),
+  "Navigation must use company sections",
 );
 assert.ok(
   !html.includes("<!--app-html-->"),

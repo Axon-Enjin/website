@@ -8,7 +8,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Axon Enjin">
   <meta property="og:title" content="Axon Enjin — The one who connects.">
-  <meta property="og:description" content="We work like your in-house developers. Software that connects your people, branches, and tools.">
+  <meta property="og:description" content="We build and run software for businesses. We work like your in-house developers.">
   <meta property="og:url" content="https://axonenjin.com/">
   <meta property="og:image" content="https://axonenjin.com/assets/og-axon-enjin-v1.jpg">
   <meta property="og:image:secure_url" content="https://axonenjin.com/assets/og-axon-enjin-v1.jpg">
@@ -18,11 +18,11 @@
   <meta property="og:image:alt" content="Axon Enjin — The one who connects. Blue nerve fibres converge into a single luminous signal.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Axon Enjin — The one who connects.">
-  <meta name="twitter:description" content="We work like your in-house developers. Software that connects your people, branches, and tools.">
+  <meta name="twitter:description" content="We build and run software for businesses. We work like your in-house developers.">
   <meta name="twitter:image" content="https://axonenjin.com/assets/og-axon-enjin-v1.jpg">
   <meta name="twitter:image:alt" content="Axon Enjin — The one who connects. Blue nerve fibres converge into a single luminous signal.">
-  <title>Axon Enjin — People, connected.</title>
-  <meta name="description" content="One system for every branch. Bring your people, stock and reports together with Axon Enjin's Operating Layer. Add the tools you need. Work directly with the builders.">
+  <title>Axon Enjin — The one who connects.</title>
+  <meta name="description" content="We build and run software for businesses. Technical engineering, venture building, and products that connect people and their work.">
   <link rel="icon" href="assets/axon-mark.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
@@ -31,8 +31,7 @@
     try {
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches &&
           localStorage.getItem('axon-motion') !== 'paused' &&
-          (!location.hash || location.hash === '#home') &&
-          (new URLSearchParams(location.search).has('intro') || !sessionStorage.getItem('axon-intro-seen'))) {
+          (!location.hash || location.hash === '#home')) {
         document.documentElement.classList.add('intro-pending');
         window.axonIntroDeadline = setTimeout(function () {
           if (!document.documentElement.classList.contains('intro-active')) {

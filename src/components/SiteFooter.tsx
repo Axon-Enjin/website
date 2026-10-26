@@ -10,9 +10,8 @@ export default function SiteFooter() {
             </a>
             <p>Metro Manila, Philippines</p>
             <nav aria-label="Footer navigation">
-              <a href="#modules">Modules</a>
-              <a href="#company">Company</a>
-              <a href="#how-we-work">How we work</a>
+              <a href="#company">Team</a>
+              <a href="/articles/">Articles</a>
               <a href="#contact">Contact</a>
             </nav>
           </div>
@@ -20,13 +19,7 @@ export default function SiteFooter() {
             <span>
               © <span id="year">2026</span> Axon Enjin
             </span>
-            <span>People, connected.</span>
-            <button type="button" data-dialog="ventures-dialog">
-              Ventures{" "}
-              <svg className="icon">
-                <use href="#diagonal" />
-              </svg>
-            </button>
+            <span>The one who connects.</span>
           </div>
         </div>
       </footer>
