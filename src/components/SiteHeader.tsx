@@ -8,12 +8,11 @@ export default function SiteHeader() {
             <span>AXON ENJIN</span>
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="#product">Product</a>
-            <a href="#modules">Modules</a>
-            <a href="#company">Company</a>
+            <a href="#purpose">About</a>
+            <a href="#articles">Articles</a>
           </nav>
           <a className="button header-cta" href="#contact">
-            Talk to us{" "}
+            Collaborate{" "}
             <svg className="icon">
               <use href="#diagonal" />
             </svg>
@@ -35,11 +34,11 @@ export default function SiteHeader() {
           aria-label="Mobile navigation"
           hidden
         >
-          <a href="#product">Product</a>
-          <a href="#modules">Modules</a>
-          <a href="#offers">Ways to work</a>
-          <a href="#company">Company</a>
-          <a href="#contact">Talk to us</a>
+          <a href="#purpose">About</a>
+          <a href="#business-model">How we build</a>
+          <a href="#articles">Articles</a>
+          <a href="#company">Team</a>
+          <a href="#contact">Collaborate</a>
         </nav>
       </header>
     </>
