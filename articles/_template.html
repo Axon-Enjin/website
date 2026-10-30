@@ -3,46 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060d">
 <title>TITLE — Axon Enjin</title>
 <meta name="description" content="DESC">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
-<style>
-  @font-face{ font-family:'JamjanNP'; src:url('../fonts/JamjanNP.woff2') format('woff2'); font-weight:400; font-display:swap; }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{fontFamily:{display:['JamjanNP','Anton','serif'],heading:['Anton','Impact','sans-serif'],sans:['Garet','Inter','system-ui','sans-serif']},colors:{void:'#04060d',deep:'#0a1424',blue:'#2e6fff',cyan:'#56c8ff',ice:'#cfe3ff'}}}}</script>
-<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<link rel="icon" href="/assets/axon-mark.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/hero.css">
+<link rel="stylesheet" href="/assets/company-presence.css">
+<link rel="stylesheet" href="/assets/surfaces.css">
+<link rel="stylesheet" href="/assets/articles.css">
 </head>
-<body class="bg-void font-sans text-ice antialiased">
-<nav class="fixed inset-x-0 top-0 z-50">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <a href="/" class="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 backdrop-blur-xl">
-      <span class="h-2 w-2 rounded-full bg-cyan"></span>
-      <span class="font-display text-lg tracking-[.2em] text-white">AXON ENJIN</span>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-container">
+    <a class="brand" href="/" aria-label="Axon Enjin home">
+      <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+      <span>AXON ENJIN</span>
     </a>
-    <div class="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[13px] text-ice/60 backdrop-blur-xl md:flex">
-      <a href="/#purpose" class="rounded-full px-4 py-1.5 hover:text-white">About</a>
-      <a href="/articles/" class="rounded-full px-4 py-1.5 text-white">Articles</a>
-      <a href="/#contact" class="rounded-full px-4 py-1.5 hover:text-white">Collaborate</a>
-    </div>
-    <a href="/#contact" class="rounded-full bg-blue px-5 py-2.5 text-[13px] font-medium text-white">Let's collaborate</a>
+    <nav class="article-nav" aria-label="Main navigation">
+      <a href="/#purpose">About</a>
+      <a href="/articles/" aria-current="page">Articles</a>
+    </nav>
+    <a class="button header-cta" href="/#contact">Collaborate <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
   </div>
-</nav>
-<main class="mx-auto max-w-3xl px-6 pb-28 pt-32">
-  <p class="text-[11px] uppercase tracking-[.3em] text-ice/40">TYPE</p>
-  <h1 class="mt-5 font-heading uppercase text-white" style="font-size:clamp(32px,5vw,56px);line-height:.94">HEADING</h1>
-  <p class="mt-8 text-[15px] leading-relaxed text-ice/55">BODY</p>
+</header>
+<main id="main" class="article-main">
+  <article class="article-detail">
+    <p class="article-type">TYPE</p>
+    <h1>HEADING</h1>
+    <p class="article-meta">META</p>
+    <div class="article-body">
+      <p><strong>Constraint.</strong> BODY</p>
+      <p><strong>Decision.</strong> BODY</p>
+      <p><strong>Artifact.</strong> BODY</p>
+      <p><strong>Lesson.</strong> BODY</p>
+    </div>
+    <p class="article-links"><a class="text-link" href="/articles/">All articles</a></p>
+  </article>
 </main>
-<footer class="bg-void pb-14">
-  <div class="mx-auto flex max-w-6xl flex-wrap justify-between gap-4 border-t border-white/10 px-6 pt-8 text-[13px] text-ice/40">
-    <span>&copy; 2026 Axon Enjin</span>
-    <div class="flex flex-wrap gap-4">
-      <a href="/#team" class="hover:text-ice/70">Team</a>
-      <a href="/articles/" class="hover:text-ice/70">Articles</a>
-      <a href="/legal" class="hover:text-ice/70">Legal</a>
-      <a href="https://delatorre.axonenjin.com/" class="hover:text-ice/70">Jerico</a>
+<footer class="site-footer">
+  <div class="footer-inner wrap">
+    <div class="footer-main">
+      <a class="brand" href="/" aria-label="Axon Enjin home">
+        <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+        <span>AXON ENJIN</span>
+      </a>
+      <p>Metro Manila, Philippines</p>
+      <nav aria-label="Footer navigation">
+        <a href="/#company">Team</a>
+        <a href="/articles/">Articles</a>
+        <a href="/legal">Legal</a>
+        <a href="https://delatorre.axonenjin.com/">Jerico</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Axon Enjin</span>
+      <span>The one who connects.</span>
     </div>
   </div>
 </footer>

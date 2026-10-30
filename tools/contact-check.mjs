@@ -39,10 +39,7 @@ try {
   await evaluate('document.querySelector("#motion-toggle").click()');await sleep(100);const paused=await canvas();await sleep(300);
   check('Motion off freezes the nerve artwork',paused===await canvas());
   await capture('desktop.png');
-  check('Desktop form and headline share the same row',await evaluate('Math.abs(document.querySelector("#contact-title").getBoundingClientRect().top-document.querySelector("#contact-form").getBoundingClientRect().top)<10'));
-  check('Empty contact form is invalid',await evaluate('!document.querySelector("#contact-form").checkValidity()'));
-  check('Local inquiry never claims it was sent',await evaluate('(()=>{const f=document.querySelector("#contact-form");f.elements.name.value="QA";f.elements.email.value="qa@example.com";f.elements.message.value="Contact layout check";f.requestSubmit();return document.querySelector("#inquiry-dialog").open&&document.querySelector("#inquiry-dialog").textContent.includes("has not been sent")})()'));
-  await evaluate('document.querySelector("#inquiry-dialog").close();document.querySelector("#contact-form").reset()');
+  check('Desktop contact link and headline share the same row',await evaluate('Math.abs(document.querySelector("#contact-title").getBoundingClientRect().top-document.querySelector("#contact .contact-action").getBoundingClientRect().top)<10'));
   for(const width of [320,390,768,1366,2560]){
     await call('Emulation.setDeviceMetricsOverride',{width,height:844,deviceScaleFactor:1,mobile:width<761});await sleep(180);
     check(`No horizontal overflow at ${width}px`,await evaluate('document.documentElement.scrollWidth<=document.documentElement.clientWidth'));

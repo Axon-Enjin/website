@@ -132,10 +132,6 @@ h2 { font-weight:500; }
 .contact-offers { flex-direction:row; gap:18px; flex-wrap:wrap; font-size:12px; }
 .contact-offers>span:after { width:20px; margin-left:12px; }
 .contact-offers>span:last-child:after { display:none; }
-#contact-form { padding-top:5px; gap:25px; }
-#contact-form label { font-size:14px; }
-#contact-form input,#contact-form textarea { font-size:16px; min-height:51px; }
-#contact-form textarea { min-height:170px; }
 .site-footer { padding-bottom:90px; }
 
 @media(min-width:1700px) { .site-header { padding-inline:max(var(--page-gutter),calc((100% - 1552px)/2)); } }

@@ -20,7 +20,8 @@ assert.ok(
     html.includes("Technical engineering") &&
     html.includes("Service agencies") &&
     html.includes("Axlefield") &&
-    html.includes("Prepare inquiry"),
+    html.includes("Email us on Gmail") &&
+    html.includes("to=axonenjin%40gmail.com"),
 );
 assert.ok(
   !html.includes('href="#modules"') && !html.includes('href="#offers"'),

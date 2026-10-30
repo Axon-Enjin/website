@@ -996,60 +996,6 @@ export function initializeSite() {
   $$("#mobile-nav a").forEach((link) =>
     listen(link, "click", () => setMenu(false)),
   );
-  function setInquiryTopic(topic) {
-    const textarea = $("#inquiry-message");
-    if (!textarea.value.trim())
-      textarea.value = `I’m interested in ${topic}.\n\n`;
-  }
-  $$("[data-inquiry]").forEach((link) =>
-    listen(link, "click", () => setInquiryTopic(link.dataset.inquiry)),
-  );
-  listen($("#contact-form"), "submit", (event) => {
-    event.preventDefault();
-    const form = event.target;
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    $("#inquiry-preview").value = [
-      "Axon Enjin inquiry",
-      "",
-      `Name: ${data.get("name")}`,
-      `Work email: ${data.get("email")}`,
-      `Company: ${data.get("company") || "Not provided"}`,
-      "",
-      String(data.get("message")).trim(),
-    ].join("\n");
-    $("#copy-status").textContent = "";
-    openDialog($("#inquiry-dialog"));
-  });
-  listen($("#copy-inquiry"), "click", async () => {
-    try {
-      await navigator.clipboard.writeText($("#inquiry-preview").value);
-      $("#copy-status").textContent = "Copied. Your inquiry has not been sent.";
-    } catch {
-      $("#inquiry-preview").focus();
-      $("#inquiry-preview").select();
-      $("#copy-status").textContent =
-        "Text selected. Press Ctrl+C or Cmd+C to copy it.";
-    }
-  });
-  listen($("#download-inquiry"), "click", () => {
-    const url = URL.createObjectURL(
-      new Blob([$("#inquiry-preview").value], {
-        type: "text/plain;charset=utf-8",
-      }),
-    );
-    objectURLs.add(url);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "axon-enjin-inquiry.txt";
-    link.click();
-    later(() => {
-      URL.revokeObjectURL(url);
-      objectURLs.delete(url);
-    }, 1000);
-    $("#copy-status").textContent =
-      "Download prepared. Your inquiry has not been sent.";
-  });
   $("#year").textContent = String(new Date().getFullYear());
   scenes.forEach(resizeScene);
   setPaused(paused, false);

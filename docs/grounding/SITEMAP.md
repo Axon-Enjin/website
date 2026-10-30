@@ -170,7 +170,7 @@ flowchart TD
 | | |
 | ----- | ----- |
 | **Job** | Axlefield sales + optional topic **Collaboration** |
-| **Fields** | Name, company, branches (optional), offer interest, message |
+| **Contact** | No form. Use a Gmail compose link addressed to **axonenjin@gmail.com** with a prefilled subject and message. |
 
 ### Legal
 

@@ -106,9 +106,7 @@ try {
   await call('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape' });
   await call('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape' });
   check('Native Escape closes the command menu', await evaluate('!document.querySelector("#command-dialog").open'));
-  check('Contact requires valid fields', await evaluate('!document.querySelector("#contact-form").checkValidity()'));
-  check('Prepared inquiry is literal text and never claims delivery', await evaluate('(() => {const f=document.querySelector("#contact-form");f.elements.name.value="Website QA";f.elements.email.value="qa@example.com";f.elements.company.value="Sample company";f.elements.message.value="Need Inventory for three branches. <script>literal text</script>";f.requestSubmit();return document.querySelector("#inquiry-dialog").open && document.querySelector("#inquiry-preview").value.includes("<script>literal text</script>") && document.querySelector("#inquiry-dialog").textContent.includes("has not been sent")})()'));
-  await evaluate('document.querySelector("#inquiry-dialog").close();document.querySelector("#contact-form").reset()');
+  check('Contact has no form and opens a Gmail draft addressed to Axon Enjin', await evaluate('(()=>{const link=document.querySelector("#contact a.text-link");const url=new URL(link.href);return !document.querySelector("#contact form")&&url.hostname==="mail.google.com"&&url.searchParams.get("to")==="axonenjin@gmail.com"&&url.searchParams.get("view")==="cm"&&url.searchParams.get("body")==="Hi Axon Enjin,\\n\\nI’d like to make a connection.\\n"})()'));
   await screenshot('desktop-contact.png', '#contact');
   check('Desktop closing headline retains its three-line composition', await evaluate('Boolean(document.querySelector("#contact-title em br")) && getComputedStyle(document.querySelector("#contact-title em br")).display!=="none"'));
   const widths = [];

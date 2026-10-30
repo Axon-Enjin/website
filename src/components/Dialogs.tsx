@@ -28,44 +28,6 @@ export default function Dialogs() {
         </nav>
         <p>Use Tab to browse · Escape to close</p>
       </dialog>
-      <dialog
-        className="site-dialog"
-        id="inquiry-dialog"
-        aria-labelledby="inquiry-title"
-      >
-        <div className="dialog-heading">
-          <h2 id="inquiry-title">Your inquiry, ready to copy.</h2>
-          <button
-            className="dialog-close"
-            type="button"
-            aria-label="Close inquiry"
-          >
-            ×
-          </button>
-        </div>
-        <p>This has not been sent. Copy or download it to keep a record.</p>
-        <textarea
-          id="inquiry-preview"
-          readOnly
-          rows={10}
-          aria-label="Prepared inquiry"
-        ></textarea>
-        <div className="dialog-actions">
-          <button type="button" className="text-link" id="download-inquiry">
-            Download .txt{" "}
-            <svg className="icon">
-              <use href="#diagonal" />
-            </svg>
-          </button>
-          <button type="button" className="button" id="copy-inquiry">
-            Copy inquiry{" "}
-            <svg className="icon">
-              <use href="#check" />
-            </svg>
-          </button>
-        </div>
-        <p id="copy-status" role="status"></p>
-      </dialog>
     </>
   );
 }

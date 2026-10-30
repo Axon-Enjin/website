@@ -15,6 +15,8 @@ Open **http://127.0.0.1:5173/**. The site uses React, TypeScript and Vite with l
 
 `npm run build` typechecks, bundles and pre-renders the full homepage into `dist/`. `npm run preview` serves that production output at **http://127.0.0.1:4174/**. The pre-rendered page remains readable without JavaScript. Existing article, preview and design-reference URLs are copied into the static output.
 
+Article pages use the homepage's local DM Sans and Instrument Serif fonts, geometric wordmark, header, footer, and coordinate-edge treatment. `assets/articles.css` adds the shared reading layout for `/articles/`, all published posts, and `articles/_template.html`. Article navigation stays visible in a second row on phones. These static routes do not require Tailwind, external font services, or JavaScript.
+
 For Cloudflare Pages, use build command **`npm run build`**, output directory **`dist`**, and Node **22.12+** (Node 24 is used locally). Update the existing project's build settings when merging the migration; the previous static-root settings will not build the React source.
 
 ## Interactions
