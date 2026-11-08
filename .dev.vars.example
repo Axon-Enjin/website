@@ -1,0 +1,8 @@
+# Copy to .dev.vars for local admin sign-in. Do not commit .dev.vars.
+# The first request creates the four founder accounts with this shared password.
+FOUNDER_PASSWORD=change-me-local-only
+
+# Optional. JSON array of { "email", "name" }. Defaults to the four founders
+# at @axonenjin.com addresses. These are sign-in names, not the public inbox.
+# Set this before the first boot if the addresses should be different.
+# FOUNDER_ACCOUNTS=[{"email":"you@axonenjin.com","name":"Your Name"}]

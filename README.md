@@ -19,6 +19,22 @@ Article pages use the homepage's local DM Sans and Instrument Serif fonts, geome
 
 For Cloudflare Pages, use build command **`npm run build`**, output directory **`dist`**, and Node **22.12+** (Node 24 is used locally). Update the existing project's build settings when merging the migration; the previous static-root settings will not build the React source.
 
+## Articles admin
+
+Founders publish articles at `/admin`. The public pages stay the current article design. Drafts, images, and video live in Cloudflare: D1 table `axon-articles` and R2 bucket `axon-media`. Pages Functions in `functions/` serve the admin API, `/articles/`, `/media/`, and the sitemap. If the database is empty, `/articles/` still falls back to the static HTML.
+
+Local admin:
+
+```powershell
+copy .dev.vars.example .dev.vars
+npm run build
+npm run pages:dev
+```
+
+Open **http://127.0.0.1:8788/admin**. The first request creates four founder sign-ins that share `FOUNDER_PASSWORD`. Default addresses are `jerico@axonenjin.com`, `aidan@axonenjin.com`, `rhandie@axonenjin.com`, and `gerald@axonenjin.com`. Change `FOUNDER_ACCOUNTS` in `.dev.vars` before that first request if those addresses should be different. The public contact inbox stays `axonenjin@gmail.com`.
+
+Before production, create the D1 database and R2 bucket, put their ids in `wrangler.jsonc`, and set `FOUNDER_PASSWORD` as a Pages secret. Set `FOUNDER_ACCOUNTS` first if the sign-in addresses differ from the defaults. `npm run blog:check` checks validation, rendering, and the schema copy.
+
 ## Interactions
 
 - A first-visit intro traces the hero's nerve artwork, then reveals the live heading and controls. It plays once per session; `?intro=1` replays it while respecting Motion off and reduced motion. Skip, scroll and keyboard input finish it immediately.

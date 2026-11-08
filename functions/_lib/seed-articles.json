@@ -1,0 +1,582 @@
+[
+  {
+    "slug": "started.html",
+    "title": "Why we stopped leaving hackathon projects behind",
+    "type": "Think",
+    "byline": "February 2026 · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy",
+    "seoTitle": "Why We Started — Axon Enjin",
+    "seoDescription": "Why we stopped leaving hackathon projects behind and started Axon Enjin.",
+    "body": [
+      {
+        "id": "seed-1",
+        "type": "paragraph",
+        "text": "In November 2025, during the Meralco IDOL Hackathon, we had two browser windows open side by side. In one, we were wiring Gemini 1.5 Flash into a Next.js and Firebase Admin backend for **IslaGrid**, an AI community energy platform designed to assess renewable microgrid feasibility for off-grid Philippine islands. In the other, we were preparing excuse letters for our professors at the Polytechnic University of the Philippines (PUP) because we were missing classes to finish the build."
+      },
+      {
+        "id": "seed-2",
+        "type": "paragraph",
+        "text": "We competed as Team SparkPlug and finished among the Top 10 finalists out of 48 teams. Then the hackathon ended, classes resumed, and the repository stopped moving."
+      },
+      {
+        "id": "seed-3",
+        "type": "paragraph",
+        "text": "That experience was familiar to us. At PUP, each of us had spent time building and maintaining technology for student organizations. Carlos Jerico Dela Torre co-founded and led Seekers Guild as CEO, while serving as CTO and Technology Executive Consultant at Google Developer Groups (GDG) on Campus PUP and as Technology Executive Consultant for Microsoft Student Community Philippines and Microsoft Campus Club PUP. Aidan Tiu, an AWS Certified Cloud Practitioner, led DevOps for GDG PUP NEXUS, helping keep a campus platform available to roughly 1,300 student users. Rhandie Sales Jr. led web development at the PUP Microsoft Student Community, first as Director for Web Development and later as Vice President. Gerald Berongoy served as Frontend Lead at AWS Cloud Club PUP and helped ship and maintain **awsccpup.cloud**."
+      },
+      {
+        "id": "seed-4",
+        "type": "paragraph",
+        "text": "We were also testing what we could build beyond campus. In November 2025, Carlos won first place at BPI DATAWAVE 2025 with **Vesta** alongside Team Giro.AI. In early 2026, he also won first place in the Philippines at the Google Gemini Arena."
+      },
+      {
+        "id": "seed-5",
+        "type": "paragraph",
+        "text": "These experiences showed us that student teams could build useful systems under difficult conditions. We had worked on AI pipelines, campus platforms used by more than a thousand students, and prototypes built over a weekend. But competition deadlines rarely leave much room for what happens after the demo. A team can spend two days getting a prototype ready, present it to judges, and then return to classes without a clear plan for maintaining the code or developing it into something people can keep using."
+      },
+      {
+        "id": "seed-6",
+        "type": "paragraph",
+        "text": "The organizations we spoke with outside the university faced a different version of the problem. Some were being quoted long timelines for relatively basic web and automation projects. Others were paying more than they needed for cloud infrastructure that seemed oversized for what their applications required. We saw an opportunity to connect the speed of student builders with the discipline required to deliver and maintain software for real organizations."
+      },
+      {
+        "id": "seed-7",
+        "type": "heading",
+        "level": 2,
+        "text": "From Competition Projects to a Studio"
+      },
+      {
+        "id": "seed-8",
+        "type": "paragraph",
+        "text": "In February 2026, we decided to stop treating every build as a one-off experiment. We pooled our savings, clarified our responsibilities, and founded Axon Enjin as a software, AI, and automation studio."
+      },
+      {
+        "id": "seed-9",
+        "type": "paragraph",
+        "text": "We divided the work around the strengths we had developed through our campus roles. Carlos became Co-Founder and CEO, focusing on product direction, AI architecture, and understanding client workflows before deciding what to build. Aidan became Co-Founder and CTO, taking responsibility for DevOps, cloud operations, deployment pipelines, observability, and infrastructure costs. Rhandie joined as Co-Founder and Full-Stack Engineer, focusing on backend services, data architecture, and API reliability. Gerald joined as Co-Founder and Full-Stack Engineer, leading frontend architecture, interface implementation, and browser performance."
+      },
+      {
+        "id": "seed-10",
+        "type": "paragraph",
+        "text": "We also needed a way to avoid rebuilding the same infrastructure for every project. Our first major technical investment was a reusable set of Next.js and Supabase CI/CD templates paired with Cloudflare Pages configurations. Instead of starting each project with a lengthy setup process, we standardized authentication, database migrations, build checks, preview deployments, and the path to production."
+      },
+      {
+        "id": "seed-11",
+        "type": "paragraph",
+        "text": "We kept the architecture deliberately lean. For projects suited to the approach, we used edge caching, serverless database connections, and automated build checks instead of starting with oversized virtual machines or complicated container clusters. In our early implementations, the standardized workflow reduced initial MVP setup from about two weeks to under one week. For workloads that fit the stack, monthly infrastructure costs fell sharply. In the builds we tested, Google Lighthouse performance scores were above 95."
+      },
+      {
+        "id": "seed-12",
+        "type": "heading",
+        "level": 2,
+        "text": "Keeping the Tools Under Pressure"
+      },
+      {
+        "id": "seed-13",
+        "type": "paragraph",
+        "text": "We continued entering hackathons and ideathons throughout 2026, but we began treating them as opportunities to test our engineering process as much as our ideas. In mid-2026, Carlos and Gerald represented Axon Enjin at Cursor Manila Hacksprint and won first place with **Drowzi**."
+      },
+      {
+        "id": "seed-14",
+        "type": "paragraph",
+        "text": "The four of us also built together across several challenges and projects. We returned to Meralco IDOL in 2026, reached the Top 10 at the CEISSAFP Ideathon with **Project KATIG**, and worked on projects in fintech, education, Web3, and enterprise AI, including ImaGnation 2026 with GCash, **Aniskwela**, Stellar **Axial**, and **Archon** and **Mate** for the KPMG Academic Innovation Challenge."
+      },
+      {
+        "id": "seed-15",
+        "type": "paragraph",
+        "text": "Each build put the tools under a different kind of pressure. A database migration that worked in one project might need to be redesigned for another. An AI workflow might need stricter schema validation. A frontend that felt fast on a developer's laptop might need more work before it performed well on a phone. We brought those lessons back into our templates and deployment process."
+      },
+      {
+        "id": "seed-16",
+        "type": "paragraph",
+        "text": "The shift from a hackathon team to an engineering studio changed the way we thought about the first commit. A prototype can get away with shortcuts when the only goal is to make a five-minute demo work. Software intended for regular use needs a different standard. Authentication, access control, error handling, performance, and cloud costs matter just as much as the feature shown on stage."
+      },
+      {
+        "id": "seed-17",
+        "type": "paragraph",
+        "text": "Today, we aim to have the essential infrastructure for a new project ready within its first week, keep monthly infrastructure costs low where the workload and stack allow it, and target Lighthouse scores above 95 in our performance testing. These are engineering goals, not guarantees that every project will behave identically. The point is to make reliability, cost, and performance part of the design from the beginning rather than problems to address after launch."
+      },
+      {
+        "id": "seed-18",
+        "type": "paragraph",
+        "text": "The student communities at PUP gave us our early opportunities to learn, find collaborators, and build systems for real users. Hackathons taught us to work under pressure. Axon Enjin came from wanting to carry those experiences further. We started the studio because we did not want the work to end when the weekend timer reached zero. A good build should be useful on Monday morning, and it should still be worth maintaining long after that."
+      }
+    ],
+    "links": [],
+    "listTitle": "Why we started",
+    "dek": "Why we stopped leaving hackathon projects behind and founded Axon Enjin.",
+    "card": "From hackathon weekends to a studio that keeps shipping.",
+    "result": "February 2026",
+    "cardArt": "/assets/hero-network.png",
+    "publishedAt": "2026-02-01T00:00:00.000Z"
+  },
+  {
+    "slug": "axial.html",
+    "title": "72 hours to Stellar Mainnet",
+    "type": "Case",
+    "byline": "May–June 2026 · Build on Stellar Philippines · 2nd runner-up · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy",
+    "seoTitle": "Axial — Axon Enjin",
+    "seoDescription": "72 hours to Stellar Mainnet: building Axial for Philippine MSMEs.",
+    "body": [
+      {
+        "id": "seed-1",
+        "type": "paragraph",
+        "text": "A small supplier delivers an order to a corporate client, sends the invoice, and waits to be paid. In some business relationships, that wait can stretch to 60 or 90 days. The supplier still has expenses in the meantime. Payroll has to be met, suppliers need to be paid, and the business has recurring obligations involving SSS, PhilHealth, Pag-IBIG, and the Bureau of Internal Revenue (BIR)."
+      },
+      {
+        "id": "seed-2",
+        "type": "paragraph",
+        "text": "This is the working-capital problem we wanted to explore with **Axial**. A business can have a confirmed sale and still struggle to cover its day-to-day obligations while the invoice remains unpaid. Access to liquidity matters, but it does not remove the administrative work that comes with running payroll and meeting reporting requirements."
+      },
+      {
+        "id": "seed-3",
+        "type": "paragraph",
+        "text": "When we joined the **Build on Stellar Philippines: Build the Future of Finance** Hackathon in May 2026, organized by Stellar Philippines and Rise In, we set out to build a prototype that connected those two needs. We were not starting from scratch with the protocol. Carlos Jerico Dela Torre had previously placed first in the Rise In Stellar Smart Contract Bootcamp with a score of 91.25 after building **Stella**, an escrow decentralized application on Soroban. The challenge now was to bring all four of us, Carlos, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy, together to build a multi-contract financial workflow while keeping up with our coursework at the Polytechnic University of the Philippines."
+      },
+      {
+        "id": "seed-4",
+        "type": "paragraph",
+        "text": "We had 72 hours. The goal was not simply to put a polished interface in front of a local database. We wanted the core transaction flow to run through contracts deployed on Stellar. Of the 165 people who registered, 32 teams submitted projects, and 28 deployed code to Stellar Mainnet."
+      },
+      {
+        "id": "seed-5",
+        "type": "paragraph",
+        "text": "Within the first twelve hours, we ran into the main engineering challenge. Soroban's Rust and WebAssembly environment required us to be careful about how state moved between contracts. To connect invoice factoring with a payroll workflow, we needed to write, compile, test, and link four separate smart contracts across Testnet and Mainnet before the deadline."
+      },
+      {
+        "id": "seed-6",
+        "type": "heading",
+        "level": 2,
+        "text": "Connecting Liquidity to Payroll"
+      },
+      {
+        "id": "seed-7",
+        "type": "paragraph",
+        "text": "We cut non-essential interface features and focused on the transaction lifecycle at the centre of **Axial** ([axial.axonenjin.com](https://axial.axonenjin.com), [github.com/Axon-Enjin/axial](https://github.com/Axon-Enjin/axial)). The architecture was organized around two related tasks: making invoice-backed liquidity possible and using that liquidity in a structured payroll and settlement process."
+      },
+      {
+        "id": "seed-8",
+        "type": "paragraph",
+        "text": "The first contract, **Receivable Token**, was written in Rust and compiled to WebAssembly. Its purpose was to represent a verified corporate invoice on-chain. When an MSME submitted a verified corporate invoice with a 60-to-90-day payment term, the contract could mint a token representing that receivable."
+      },
+      {
+        "id": "seed-9",
+        "type": "paragraph",
+        "text": "We connected this to **Axial Swap**, the invoice-factoring contract. The intended flow allowed a business to exchange the tokenized receivable for USDC liquidity on Stellar rather than wait for the invoice's full payment term to pass. Since suppliers need to pay employees and expenses in Philippine pesos, we integrated the Reflector Oracle to obtain PHP/USD exchange-rate data on-chain. We also connected the flow to SEP-24 fiat on- and off-ramps through PDAX so that USDC could move toward local-currency settlement."
+      },
+      {
+        "id": "seed-10",
+        "type": "paragraph",
+        "text": "Access to funds was only part of the problem. A business that receives liquidity still needs to calculate payroll and account for statutory contributions. We therefore connected the factoring flow to two additional contracts, **Payroll Split** and **Settlement**."
+      },
+      {
+        "id": "seed-11",
+        "type": "paragraph",
+        "text": "**Payroll Split** was designed to apply configured deductions for SSS, PhilHealth, and Pag-IBIG before distributing net pay to employees. The **Settlement** contract managed escrow and a structured T+3 release. We also connected transaction data to the BIR EIS Co-Pilot module, which was intended to support Electronic Invoicing System reporting. The hackathon build demonstrated the proposed workflow. Using it for real payroll or tax reporting would require validated statutory rules, production-ready integrations, and the appropriate operational and compliance reviews."
+      },
+      {
+        "id": "seed-12",
+        "type": "paragraph",
+        "text": "Getting the four Rust contracts to work together within Soroban's resource limits took much of the sprint. We reduced data structures, optimized storage reads, and tested cross-contract calls between **Axial Swap** and **Payroll Split** on Testnet before running the Mainnet deployment scripts."
+      },
+      {
+        "id": "seed-13",
+        "type": "paragraph",
+        "text": "On May 23, 2026, we presented **Axial** at Demo Day at the PDAX offices. Alongside 27 other projects deployed to Mainnet, we showed the judges the live contract deployments and walked through how the prototype connected a tokenized invoice to liquidity, payroll distribution, and reporting data. Axial finished as second runner-up, or third place."
+      },
+      {
+        "id": "seed-14",
+        "type": "heading",
+        "level": 2,
+        "text": "Taking the Idea Beyond Demo Day"
+      },
+      {
+        "id": "seed-15",
+        "type": "paragraph",
+        "text": "The project soon received attention outside the hackathon. BitDigest published a feature on Axial on June 6, 2026, followed by BitPinas on June 8. Both covered the idea behind the build: giving Philippine MSMEs a way to access working capital while reducing the manual work involved in routine financial operations."
+      },
+      {
+        "id": "seed-16",
+        "type": "paragraph",
+        "text": "That coverage led into Philippine Blockchain Week 2026, themed **Decoded: Deployed**, which ran from June 19 to 21 at the SMX Convention Center Manila. We joined Stellar Philippines and Rise In at the Build on Stellar ecosystem showcase and presented Axial to an audience beyond the developers who had followed the hackathon."
+      },
+      {
+        "id": "seed-17",
+        "type": "paragraph",
+        "text": "The two settings required different kinds of explanations. At PDAX, we had to show that the contracts worked together and that the Mainnet deployments were real. At Philippine Blockchain Week, we had to explain why the system mattered to a business owner who might not care about Rust, Soroban, or decentralized exchanges. We focused on the practical sequence: an invoice can represent locked working capital, a factoring transaction can make liquidity available earlier, and the resulting funds can support payroll and related workflows."
+      },
+      {
+        "id": "seed-18",
+        "type": "paragraph",
+        "text": "On June 20, we also attended the PBW VIP Investors Dinner at Hard Rock Cafe Manila, where we spoke with founders, fund managers, and ecosystem operators. Those conversations reinforced an impression we had formed while building the PDAX integration: many businesses and institutions are less interested in speculative crypto products than in financial infrastructure that works with existing legal, banking, and operational requirements."
+      },
+      {
+        "id": "seed-19",
+        "type": "paragraph",
+        "text": "Building Axial in 72 hours and presenting it at Philippine Blockchain Week changed how we think about financial software. A bakery owner or logistics contractor does not wake up wanting to interact with a smart contract or an oracle. They want to pay their people on time and keep the business moving while waiting for a customer to settle an invoice."
+      },
+      {
+        "id": "seed-20",
+        "type": "paragraph",
+        "text": "That is the principle we took back to Axon Enjin. Use the underlying technology where it solves a real problem, make the transaction rules clear, and keep the user experience focused on the outcome. For Axial, that outcome is not blockchain adoption for its own sake. It is a more useful way to think about working capital and the administrative work that follows it."
+      }
+    ],
+    "links": [
+      {
+        "href": "https://axial.axonenjin.com",
+        "label": "Visit Axial"
+      },
+      {
+        "href": "https://github.com/Axon-Enjin/axial",
+        "label": "Source"
+      }
+    ],
+    "listTitle": "Axial",
+    "dek": "Seventy-two hours to Stellar Mainnet for Philippine MSME working capital.",
+    "card": "Seventy-two hours to Mainnet for MSME working capital.",
+    "result": "2nd runner-up · Stellar",
+    "cardArt": "/assets/manifesto-network.png",
+    "publishedAt": "2026-05-23T00:00:00.000Z"
+  },
+  {
+    "slug": "kpmg.html",
+    "title": "Why university support tickets break",
+    "type": "Build",
+    "byline": "June 2026 · KPMG AIC · 1st place · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy",
+    "seoTitle": "KPMG Academic Innovation Challenge — Axon Enjin",
+    "seoDescription": "Building Archon and Mate for cross-departmental university support and academic planning.",
+    "body": [
+      {
+        "id": "seed-1",
+        "type": "paragraph",
+        "text": "Imagine a student trying to resolve an enrollment hold. The Registrar says there is an unsettled balance from the previous semester, so the student visits the Bursar. The Bursar says a tuition voucher from Financial Aid has not been posted. At Financial Aid, the student learns that the office is still waiting for an enrollment certification from the Registrar."
+      },
+      {
+        "id": "seed-2",
+        "type": "paragraph",
+        "text": "The student has become the link between three offices, each working with its own records and process. What should be a routine support request turns into a series of queues and follow-ups."
+      },
+      {
+        "id": "seed-3",
+        "type": "paragraph",
+        "text": "When the four of us, Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy, founded Axon Enjin in February 2026 while studying at the Polytechnic University of the Philippines (PUP), this kind of institutional friction was familiar. We had experienced how difficult it could be to get answers when information was spread across departments. So, for the 2026 KPMG in the Philippines (R.G. Manabat & Co.) Academic Innovation Challenge (AIC), we chose to work on cross-departmental university support and student academic planning."
+      },
+      {
+        "id": "seed-4",
+        "type": "paragraph",
+        "text": "We were balancing the build with our regular coursework, so we had to be selective about what to solve. Two problems shaped the design from the beginning."
+      },
+      {
+        "id": "seed-5",
+        "type": "paragraph",
+        "text": "The first was language and context. Students do not always write support requests in formal English. They may explain an urgent issue in Taglish or Cebuano, refer to a particular scholarship or tuition hold, and assume that the person reading already understands the history of the problem. A simple FAQ chatbot or keyword-based decision tree can struggle to identify the intent, retrieve the right policy, and connect records held by different departments."
+      },
+      {
+        "id": "seed-6",
+        "type": "paragraph",
+        "text": "The second problem was how much authority to give an AI system. Allowing a language model to call tools freely and write directly to institutional databases would create serious risks. A university cannot let an unverified model alter tuition balances, remove academic holds, or expose another student's financial information. Academic planning also requires care: a wrong enrollment or graduation deadline can have real consequences. We needed a system that could coordinate information across departments while keeping access controlled and important dates grounded in university sources."
+      },
+      {
+        "id": "seed-7",
+        "type": "heading",
+        "level": 2,
+        "text": "Two Systems for Two Different Jobs"
+      },
+      {
+        "id": "seed-8",
+        "type": "paragraph",
+        "text": "Our final project submission was due on June 12, 2026, with the live technical defense scheduled for June 15. We divided the work into two systems. **Archon** ([archon.axonenjin.com](https://archon.axonenjin.com), [github.com/Axon-Enjin/archon](https://github.com/Axon-Enjin/archon)) focused on cross-departmental service desk resolution. **Mate** ([github.com/Axon-Enjin/mate](https://github.com/Axon-Enjin/mate)) focused on student-facing academic planning and coordination."
+      },
+      {
+        "id": "seed-9",
+        "type": "paragraph",
+        "text": "Across the four-person team, we handled identity and session governance, model orchestration, vector search, and the Next.js 16 interface. We designed both systems around clear limits on what the AI could access and do."
+      },
+      {
+        "id": "seed-10",
+        "type": "paragraph",
+        "text": "Archon's purpose was to help resolve support requests involving offices such as the Registrar, Bursar, and Financial Aid. We built it with Next.js 16 and integrated Microsoft Entra ID through OpenID Connect (OIDC) for authentication. We also used the Microsoft Graph API to connect the application with institutional workflows. Sessions were scoped to the authenticated user's identity to help keep each student's request, retrieved records, and conversation context separate from other users' information. These controls were designed to support privacy boundaries; a production deployment would still need to be reviewed against the institution's specific data-protection policies and implementation requirements."
+      },
+      {
+        "id": "seed-11",
+        "type": "paragraph",
+        "text": "For language understanding and retrieval, we connected Archon to Azure AI Foundry and orchestrated work between GPT-4o and Phi-4. Azure Cosmos DB for NoSQL provided the database and vector search layer. When a student submitted a request in English, Filipino, or Cebuano, Archon could use vector search to retrieve relevant institutional policies and information available within that student's authorized scope. We assigned more involved multilingual reasoning and cross-departmental synthesis to GPT-4o, while using Phi-4 for narrower classification tasks that did not require the same level of reasoning. This division was intended to balance response quality, latency, and model costs."
+      },
+      {
+        "id": "seed-12",
+        "type": "paragraph",
+        "text": "The most important design decision was Archon's permission model. It operated in read-only mode by default. It could examine the available records from multiple departments, identify a likely reason for a hold, and prepare a proposed resolution. It could not write changes to a university database on its own. When a case required an action such as lifting a clearance hold or recording a financial adjustment, Archon placed the proposed action behind a human-in-the-loop approval step. A staff member would review the evidence and approve the change."
+      },
+      {
+        "id": "seed-13",
+        "type": "paragraph",
+        "text": "Mate addressed a different problem: helping students make sense of academic calendars, course prerequisites, and departmental advisories across four university service areas. A general retrieval-augmented generation system was not enough for information where a single incorrect date could cause a student to miss an important deadline. We combined retrieval and vector search with a confidence-scoring layer that checked extracted details against the source documents before displaying an answer."
+      },
+      {
+        "id": "seed-14",
+        "type": "paragraph",
+        "text": "In the test suites we ran before the June 12 submission deadline, Mate recorded an extraction error rate below 2% and returned zero fabricated dates. That result describes our test set, not a guarantee of perfect answers across every university's data."
+      },
+      {
+        "id": "seed-15",
+        "type": "heading",
+        "level": 2,
+        "text": "From the Technical Defense to the Awarding Stage"
+      },
+      {
+        "id": "seed-16",
+        "type": "paragraph",
+        "text": "We submitted the Archon and Mate codebases on June 12. Three days later, on June 15, we presented them at the Microsoft Philippines office on the 11th floor of One Ayala Tower in Makati City."
+      },
+      {
+        "id": "seed-17",
+        "type": "paragraph",
+        "text": "The questions focused on the parts of the systems that mattered most in an institutional environment. How would we stop prompt injection from changing student records? How could the system process regional languages without making model costs impractical? What would happen if two departments had conflicting information?"
+      },
+      {
+        "id": "seed-18",
+        "type": "paragraph",
+        "text": "We answered by demonstrating the controls built into the applications. We showed how Microsoft Entra ID and identity-scoped sessions supported separation between users, how Archon's read-only default and human approval step kept staff in control of database changes, and how Mate's confidence checks evaluated extracted dates against source documents. We also presented our cost model. Based on that model, routing different tasks between GPT-4o and Phi-4 through Azure AI Foundry could reduce Archon's cost per ticket by up to 79%, depending on the workload and assumptions used."
+      },
+      {
+        "id": "seed-19",
+        "type": "paragraph",
+        "text": "On June 30, 2026, we attended the closing awarding ceremony at Shangri-La The Fort in BGC, Manila, held during the 2nd MAP x KPMG Technology Summit. Axon Enjin was awarded first place in the 2026 Academic Innovation Challenge and received the challenge cash prize."
+      },
+      {
+        "id": "seed-20",
+        "type": "paragraph",
+        "text": "Building Archon and Mate between classes at PUP, presenting them at One Ayala, and receiving the award at Shangri-La The Fort gave us a clearer view of what enterprise AI requires. A convincing demo is not enough. Organizations need to know who can access their data, what an AI system is allowed to change, how uncertain answers are handled, and whether the cost of operating the system makes sense."
+      },
+      {
+        "id": "seed-21",
+        "type": "paragraph",
+        "text": "That is why governance shaped the architecture from the beginning. Archon was designed around identity controls, read-only access, and staff approval for changes. Mate was designed to check critical information against source documents before presenting it to students. The cost model gave us a way to discuss operational value alongside technical capability. The project left us with a practical lesson: capability alone does not make enterprise AI trustworthy. An institution needs to know what the system can access, what it can change, when it must ask a person, and what it will cost to operate."
+      },
+      {
+        "id": "seed-22",
+        "type": "heading",
+        "level": 2,
+        "text": "Project Links"
+      },
+      {
+        "id": "seed-23",
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "**Archon live deployment:** [archon.axonenjin.com](https://archon.axonenjin.com)",
+          "**Archon source code:** [github.com/Axon-Enjin/archon](https://github.com/Axon-Enjin/archon)",
+          "**Mate source code:** [github.com/Axon-Enjin/mate](https://github.com/Axon-Enjin/mate)"
+        ]
+      }
+    ],
+    "links": [
+      {
+        "href": "https://archon.axonenjin.com",
+        "label": "Visit Archon"
+      }
+    ],
+    "listTitle": "KPMG Academic Innovation Challenge",
+    "dek": "Archon and Mate for university support tickets and academic planning.",
+    "card": "Archon and Mate under institutional constraints.",
+    "result": "1st place",
+    "cardArt": "/assets/assembly-network.png",
+    "publishedAt": "2026-06-30T00:00:00.000Z"
+  },
+  {
+    "slug": "full-cup.html",
+    "title": "Shipping for our own campus",
+    "type": "Case",
+    "byline": "July 2026 · PUPreneurship Philanthropic Institution Award · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy",
+    "seoTitle": "Full Cup Café — Axon Enjin",
+    "seoDescription": "Shipping for our own campus: Full Cup Café and the PUPreneurship Philanthropic Institution Award.",
+    "body": [
+      {
+        "id": "seed-1",
+        "type": "paragraph",
+        "text": "On the third floor of the University Library, inside the NALLRC at the Polytechnic University of the Philippines (PUP) Mabini Campus in Sta. Mesa, Manila, four PUP College of Business Administration alumni built Full Cup Café. Harish Ananda Athauda, Justine Mae Miralles, Mark Jason Pineda, and Theekshana Claire Athauda wanted to create more than another place to buy coffee. They designed the café as a calmer space where students and faculty could take a break from the pressure of campus life."
+      },
+      {
+        "id": "seed-2",
+        "type": "paragraph",
+        "text": "A physical business has immediate expenses. Rent, equipment, supplies, staffing, and product quality all need attention, especially during the early months. A custom website may be useful, but it can be difficult to justify when every peso has a more urgent operational purpose. For young businesses, the practical choice often becomes relying entirely on social media or paying for a website service that adds another recurring expense."
+      },
+      {
+        "id": "seed-3",
+        "type": "paragraph",
+        "text": "When an opportunity came up in mid-2026 for Axon Enjin to become Full Cup Café's pro-bono digital partner, we saw a chance to support a business growing in the same university community that had helped shape our own work. Axon Enjin had been founded in February that year, and our schedule was already split between commercial deadlines, coursework, and national hackathons. Taking on a pro-bono project meant setting aside real engineering time during an already busy period."
+      },
+      {
+        "id": "seed-4",
+        "type": "paragraph",
+        "text": "We did not want the fact that the work was unpaid to become an excuse for lower standards. If our name appeared in the footer of [fullcupcafe.com](https://fullcupcafe.com) as its digital partner, the site had to be reliable, fast, and maintainable. The café needed a useful platform, not a template that would become another problem for its founders to manage."
+      },
+      {
+        "id": "seed-5",
+        "type": "heading",
+        "level": 2,
+        "text": "Building a Website Without Building a New Expense"
+      },
+      {
+        "id": "seed-6",
+        "type": "paragraph",
+        "text": "We approached the project as both an engineering and a cost problem. A website is not much of a gift if the business is left with recurring infrastructure costs it cannot comfortably support once the developers step away."
+      },
+      {
+        "id": "seed-7",
+        "type": "paragraph",
+        "text": "For [fullcupcafe.com](https://fullcupcafe.com), we used the Next.js and edge deployment workflow already established at Axon Enjin. Our repository structure, deployment hooks, and build checks were standardized, which reduced the setup work required for a new project. Each pull request triggered an automated preview deployment. This allowed us to share updates with the Full Cup Café founders and review layout or copy changes without requiring everyone to be available at the same time."
+      },
+      {
+        "id": "seed-8",
+        "type": "paragraph",
+        "text": "The other challenge was translating the character of the physical café into a website. Full Cup Café was meant to feel calm and welcoming, so the site needed to communicate that identity without becoming slow on a campus mobile connection. We kept the interface focused, used clean typography, optimized the images, and relied on static edge caching. We avoided adding runtime dependencies that did not improve the experience for visitors."
+      },
+      {
+        "id": "seed-9",
+        "type": "paragraph",
+        "text": "Using the workflow we already had in place, we designed, built, and deployed the site in under a week. In the Lighthouse tests we ran, the live build recorded a performance score above 95. The edge-based setup also kept recurring hosting costs close to zero for the café, rather than leaving its founders with a substantial monthly infrastructure bill."
+      },
+      {
+        "id": "seed-10",
+        "type": "heading",
+        "level": 2,
+        "text": "Recognition at PUP"
+      },
+      {
+        "id": "seed-11",
+        "type": "paragraph",
+        "text": "On July 29, 2026, the PUP College of Business Administration recognized Axon Enjin with the PUPreneurship Philanthropic Institution Award for its contribution to empowering young university entrepreneurs."
+      },
+      {
+        "id": "seed-12",
+        "type": "paragraph",
+        "text": "The recognition meant a great deal to us because the work was close to home. Five months after founding Axon Enjin, we were back at our university receiving an award for supporting entrepreneurs from the same community where we had learned to build. Just a short walk from the awarding venue, Full Cup Café was serving students and faculty with its website already live."
+      },
+      {
+        "id": "seed-13",
+        "type": "paragraph",
+        "text": "The Full Cup Café project was one tangible example of the kind of support we wanted to provide. The award was broader recognition of Axon Enjin's contribution to young entrepreneurs, rather than a prize for a single website. Still, the project captured an idea we want to keep applying: when a small team has a repeatable engineering process, it can deliver useful digital infrastructure without passing unnecessary costs on to the people it is trying to help."
+      },
+      {
+        "id": "seed-14",
+        "type": "paragraph",
+        "text": "For us, pro-bono work is not about lowering the standard because there is no invoice. It is about using the capabilities and systems we already have to make a project more affordable for someone who needs them. Investing in a good deployment pipeline, reusable components, and careful infrastructure choices lowers the effort required for each new build. That makes it easier to support a local business while still treating the work with the same care as a commercial engagement."
+      },
+      {
+        "id": "seed-15",
+        "type": "paragraph",
+        "text": "The award was a good day for the team. The more concrete result is still on the third floor of the library: a local café with a working website and fewer infrastructure costs to carry."
+      }
+    ],
+    "links": [
+      {
+        "href": "https://fullcupcafe.com",
+        "label": "Visit Full Cup Café"
+      }
+    ],
+    "listTitle": "Full Cup Café",
+    "dek": "A pro-bono campus site, and the PUPreneurship Philanthropic Institution Award.",
+    "card": "A pro-bono campus site, and the PUPreneurship Philanthropic Institution Award.",
+    "result": "July 2026",
+    "cardArt": "/assets/hero-network.png",
+    "publishedAt": "2026-07-29T00:00:00.000Z"
+  },
+  {
+    "slug": "ph100.html",
+    "title": "From PUP Sta. Mesa to the PH100",
+    "type": "Think",
+    "byline": "November 2026 · StellarPH PH100 · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy",
+    "seoTitle": "StellarPH PH100 — Axon Enjin",
+    "seoDescription": "From PUP Sta. Mesa to the PH100: Carlos Jerico Dela Torre and Rhandie Sales Jr. named among the 100 brightest minds under 30.",
+    "body": [
+      {
+        "id": "seed-1",
+        "type": "paragraph",
+        "text": "Building software while helping run student tech communities at the Polytechnic University of the Philippines meant learning to work with limited time and resources. For us, that usually meant moving between campus responsibilities during the day and engineering work at night."
+      },
+      {
+        "id": "seed-2",
+        "type": "paragraph",
+        "text": "Throughout 2025 and into 2026, the four of us, Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy, split our time between two commitments: helping student builders find opportunities to learn and work together, and building software that could serve real users. We did this before Axon Enjin was founded in February 2026 and continued after the studio began taking shape."
+      },
+      {
+        "id": "seed-3",
+        "type": "paragraph",
+        "text": "During the day, Carlos and Rhandie helped manage student developer programs, review workshop curricula, and coordinate activities for student builders across Google Developer Groups (GDG) on Campus PUP, the Microsoft Student Community (MSC), and Seekers Guild. In the evenings, the four of us would return to our own projects. We debugged database migrations, reduced scope ahead of hackathon deadlines, and worked on production systems for clients, often from the same table with our laptops open and Discord running in the background."
+      },
+      {
+        "id": "seed-4",
+        "type": "paragraph",
+        "text": "The two commitments competed for time. An afternoon spent organizing a campus tech talk was time we could not spend on a project sprint. A late deployment could leave us heading into class or a community meeting with very little sleep. People sometimes advised us to choose one path: focus on commercial work and leave the community responsibilities behind, or pause the studio until after graduation. Neither option felt right. The more useful question was how to make the two reinforce each other without compromising the quality of our work."
+      },
+      {
+        "id": "seed-5",
+        "type": "heading",
+        "level": 2,
+        "text": "Learning to Carry the Work Together"
+      },
+      {
+        "id": "seed-6",
+        "type": "paragraph",
+        "text": "We began to see community leadership and studio execution as connected experiences. The responsibilities were different, but many of the skills carried across: setting standards, mentoring people, communicating clearly, and keeping a team moving when time was limited."
+      },
+      {
+        "id": "seed-7",
+        "type": "paragraph",
+        "text": "Rhandie brought that experience into engineering. At the PUP Microsoft Student Community, he served as Director for Web Development before becoming Vice President. The role involved setting development standards, mentoring junior developers, and keeping internal tools working within the constraints of a student organization. At Axon Enjin, he applied that same discipline as Co-Founder and Full-Stack Engineer, working on applications designed to handle real users without making the architecture more complicated than it needed to be."
+      },
+      {
+        "id": "seed-8",
+        "type": "paragraph",
+        "text": "Carlos approached the overlap through product strategy and ecosystem building. Alongside his role as Co-Founder and CEO of Axon Enjin, he co-founded and led Seekers Guild, served as CTO and Technology Executive Consultant at GDG on Campus PUP, and advised Microsoft Student Community Philippines and MSC PUP as a Technology Executive Consultant. He also worked as AI Product & Strategy Manager at Eden Ventures. Working across product development and student communities gave him a broader view of how to identify a problem, define a useful solution, and explain technical decisions to people with different levels of experience."
+      },
+      {
+        "id": "seed-9",
+        "type": "paragraph",
+        "text": "That arrangement only worked because the studio was not dependent on one or two people to keep every project moving. When Carlos and Rhandie needed to attend campus meetings or handle community responsibilities, Aidan Tiu and Gerald Berongoy continued work in the codebase. They kept deployments moving, resolved production issues, and took features through to completion. The four of us had different responsibilities, but we relied on each other to keep the work moving."
+      },
+      {
+        "id": "seed-10",
+        "type": "paragraph",
+        "text": "Across 2025 and 2026, that shared effort contributed to projects including **Archon**, **Mate**, **Axial**, and the Full Cup Café website. It also built on our experience supporting student developer organizations and campus technology, including GDG PUP NEXUS. These projects did not come from a single uninterrupted sprint. They were the result of a team learning to hand work over, communicate decisions, and keep commitments visible."
+      },
+      {
+        "id": "seed-11",
+        "type": "heading",
+        "level": 2,
+        "text": "Recognition, and the People Behind It"
+      },
+      {
+        "id": "seed-12",
+        "type": "paragraph",
+        "text": "In October 2026, StellarPH ([stellarph.io](https://stellarph.io)), a Philippine startup enabler and community builder headquartered in Cebu, published the 2026 StellarPH PH100. The annual list recognizes what StellarPH describes as the 100 brightest minds in the Philippines under 30, spanning areas such as startups, engineering, product, and community leadership."
+      },
+      {
+        "id": "seed-13",
+        "type": "paragraph",
+        "text": "Two of the names on the roster were Axon Enjin co-founders and PUP builders Carlos Jerico Dela Torre and Rhandie Sales Jr."
+      },
+      {
+        "id": "seed-14",
+        "type": "paragraph",
+        "text": "At the StellarPH PH100 Celebration Night on November 6, 2026, they joined founders, software engineers, product managers, and community builders from across the country. Seeing two people from a state university in Sta. Mesa included in a national recognition list was meaningful to the team. Their work had grown through both sides of the same experience: building software at Axon Enjin and helping develop the student communities that gave them an early place to learn and contribute."
+      },
+      {
+        "id": "seed-15",
+        "type": "paragraph",
+        "text": "The announcement carried two individual names, but neither of us got there alone. Our projects depended on people who reviewed code, tested features, mentored teammates, organized workshops, and stepped in when something went wrong. The recognition belongs in part to the communities that gave us room to learn and people to build with."
+      },
+      {
+        "id": "seed-16",
+        "type": "paragraph",
+        "text": "At Seekers Guild and Axon Enjin, we often return to the same idea: **You will do very well on your own, but with others, you can be magnificent.** The PH100 recognition is a reminder of what can happen when people build together, even without the resources or connections often associated with the technology industry. We are proud of the recognition, but even more grateful for the teams and communities that made the work possible."
+      }
+    ],
+    "links": [],
+    "listTitle": "StellarPH PH100",
+    "dek": "From PUP Sta. Mesa to the 100 brightest minds under 30.",
+    "card": "From PUP Sta. Mesa to the 100 brightest minds under 30.",
+    "result": "November 2026",
+    "cardArt": "/assets/manifesto-network.png",
+    "publishedAt": "2026-11-07T00:00:00.000Z"
+  }
+]
