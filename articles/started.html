@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060d">
+<title>Why We Started — Axon Enjin</title>
+<meta name="description" content="Why we stopped leaving hackathon projects behind and started Axon Enjin.">
+<link rel="icon" href="/assets/axon-mark.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/hero.css">
+<link rel="stylesheet" href="/assets/company-presence.css">
+<link rel="stylesheet" href="/assets/surfaces.css">
+<link rel="stylesheet" href="/assets/articles.css">
+
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-container">
+    <a class="brand" href="/" aria-label="Axon Enjin home">
+      <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+      <span>AXON ENJIN</span>
+    </a>
+    <nav class="article-nav" aria-label="Main navigation">
+      <a href="/#purpose">About</a>
+      <a href="/articles/" aria-current="page">Articles</a>
+    </nav>
+    <a class="button header-cta" href="/#contact">Collaborate <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+  </div>
+</header>
+<main id="main" class="article-main">
+  <article class="article-detail">
+    <p class="article-type">Think</p>
+    <h1>Why we stopped leaving hackathon projects behind</h1>
+    <p class="article-meta">February 2026 · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy</p>
+    <div class="article-body">
+      <p>In November 2025, during the Meralco IDOL Hackathon, we had two browser windows open side by side. In one, we were wiring Gemini 1.5 Flash into a Next.js and Firebase Admin backend for <strong>IslaGrid</strong>, an AI community energy platform designed to assess renewable microgrid feasibility for off-grid Philippine islands. In the other, we were preparing excuse letters for our professors at the Polytechnic University of the Philippines (PUP) because we were missing classes to finish the build.</p>
+      <p>We competed as Team SparkPlug and finished among the Top 10 finalists out of 48 teams. Then the hackathon ended, classes resumed, and the repository stopped moving.</p>
+      <p>That experience was familiar to us. At PUP, each of us had spent time building and maintaining technology for student organizations. Carlos Jerico Dela Torre co-founded and led Seekers Guild as CEO, while serving as CTO and Technology Executive Consultant at Google Developer Groups (GDG) on Campus PUP and as Technology Executive Consultant for Microsoft Student Community Philippines and Microsoft Campus Club PUP. Aidan Tiu, an AWS Certified Cloud Practitioner, led DevOps for GDG PUP NEXUS, helping keep a campus platform available to roughly 1,300 student users. Rhandie Sales Jr. led web development at the PUP Microsoft Student Community, first as Director for Web Development and later as Vice President. Gerald Berongoy served as Frontend Lead at AWS Cloud Club PUP and helped ship and maintain <strong>awsccpup.cloud</strong>.</p>
+      <p>We were also testing what we could build beyond campus. In November 2025, Carlos won first place at BPI DATAWAVE 2025 with <strong>Vesta</strong> alongside Team Giro.AI. In early 2026, he also won first place in the Philippines at the Google Gemini Arena.</p>
+      <p>These experiences showed us that student teams could build useful systems under difficult conditions. We had worked on AI pipelines, campus platforms used by more than a thousand students, and prototypes built over a weekend. But competition deadlines rarely leave much room for what happens after the demo. A team can spend two days getting a prototype ready, present it to judges, and then return to classes without a clear plan for maintaining the code or developing it into something people can keep using.</p>
+      <p>The organizations we spoke with outside the university faced a different version of the problem. Some were being quoted long timelines for relatively basic web and automation projects. Others were paying more than they needed for cloud infrastructure that seemed oversized for what their applications required. We saw an opportunity to connect the speed of student builders with the discipline required to deliver and maintain software for real organizations.</p>
+      <h2>From Competition Projects to a Studio</h2>
+      <p>In February 2026, we decided to stop treating every build as a one-off experiment. We pooled our savings, clarified our responsibilities, and founded Axon Enjin as a software, AI, and automation studio.</p>
+      <p>We divided the work around the strengths we had developed through our campus roles. Carlos became Co-Founder and CEO, focusing on product direction, AI architecture, and understanding client workflows before deciding what to build. Aidan became Co-Founder and CTO, taking responsibility for DevOps, cloud operations, deployment pipelines, observability, and infrastructure costs. Rhandie joined as Co-Founder and Full-Stack Engineer, focusing on backend services, data architecture, and API reliability. Gerald joined as Co-Founder and Full-Stack Engineer, leading frontend architecture, interface implementation, and browser performance.</p>
+      <p>We also needed a way to avoid rebuilding the same infrastructure for every project. Our first major technical investment was a reusable set of Next.js and Supabase CI/CD templates paired with Cloudflare Pages configurations. Instead of starting each project with a lengthy setup process, we standardized authentication, database migrations, build checks, preview deployments, and the path to production.</p>
+      <p>We kept the architecture deliberately lean. For projects suited to the approach, we used edge caching, serverless database connections, and automated build checks instead of starting with oversized virtual machines or complicated container clusters. In our early implementations, the standardized workflow reduced initial MVP setup from about two weeks to under one week. For workloads that fit the stack, monthly infrastructure costs fell sharply. In the builds we tested, Google Lighthouse performance scores were above 95.</p>
+      <h2>Keeping the Tools Under Pressure</h2>
+      <p>We continued entering hackathons and ideathons throughout 2026, but we began treating them as opportunities to test our engineering process as much as our ideas. In mid-2026, Carlos and Gerald represented Axon Enjin at Cursor Manila Hacksprint and won first place with <strong>Drowzi</strong>.</p>
+      <p>The four of us also built together across several challenges and projects. We returned to Meralco IDOL in 2026, reached the Top 10 at the CEISSAFP Ideathon with <strong>Project KATIG</strong>, and worked on projects in fintech, education, Web3, and enterprise AI, including ImaGnation 2026 with GCash, <strong>Aniskwela</strong>, Stellar <strong>Axial</strong>, and <strong>Archon</strong> and <strong>Mate</strong> for the KPMG Academic Innovation Challenge.</p>
+      <p>Each build put the tools under a different kind of pressure. A database migration that worked in one project might need to be redesigned for another. An AI workflow might need stricter schema validation. A frontend that felt fast on a developer's laptop might need more work before it performed well on a phone. We brought those lessons back into our templates and deployment process.</p>
+      <p>The shift from a hackathon team to an engineering studio changed the way we thought about the first commit. A prototype can get away with shortcuts when the only goal is to make a five-minute demo work. Software intended for regular use needs a different standard. Authentication, access control, error handling, performance, and cloud costs matter just as much as the feature shown on stage.</p>
+      <p>Today, we aim to have the essential infrastructure for a new project ready within its first week, keep monthly infrastructure costs low where the workload and stack allow it, and target Lighthouse scores above 95 in our performance testing. These are engineering goals, not guarantees that every project will behave identically. The point is to make reliability, cost, and performance part of the design from the beginning rather than problems to address after launch.</p>
+      <p>The student communities at PUP gave us our early opportunities to learn, find collaborators, and build systems for real users. Hackathons taught us to work under pressure. Axon Enjin came from wanting to carry those experiences further. We started the studio because we did not want the work to end when the weekend timer reached zero. A good build should be useful on Monday morning, and it should still be worth maintaining long after that.</p>
+    </div>
+    <div class="article-links">
+    <a class="text-link" href="/articles/">All articles</a>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner wrap">
+    <div class="footer-main">
+      <a class="brand" href="/" aria-label="Axon Enjin home">
+        <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+        <span>AXON ENJIN</span>
+      </a>
+      <p>Metro Manila, Philippines</p>
+      <nav aria-label="Footer navigation">
+        <a href="/#company">Team</a>
+        <a href="/articles/">Articles</a>
+        <a href="/legal">Legal</a>
+        <a href="https://delatorre.axonenjin.com/">Jerico</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Axon Enjin</span>
+      <span>The one who connects.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

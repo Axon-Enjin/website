@@ -3,14 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060d">
 <title>Axial — Axon Enjin</title>
-<meta name="description" content="A public build for delayed invoices and payroll timing. What we shipped on Stellar. A case, not a franchise story.">
+<meta name="description" content="72 hours to Stellar Mainnet: building Axial for Philippine MSMEs.">
 <link rel="icon" href="/assets/axon-mark.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/hero.css">
 <link rel="stylesheet" href="/assets/company-presence.css">
 <link rel="stylesheet" href="/assets/surfaces.css">
 <link rel="stylesheet" href="/assets/articles.css">
+
 </head>
 <body class="article-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -24,30 +28,50 @@
       <a href="/#purpose">About</a>
       <a href="/articles/" aria-current="page">Articles</a>
     </nav>
-    <a class="button header-cta" href="/#contact">Collaborate <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a>
+    <a class="button header-cta" href="/#contact">Collaborate <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
   </div>
 </header>
 <main id="main" class="article-main">
   <article class="article-detail">
-  <p class="article-type">Case</p>
-  <h1>Payroll cannot wait on an invoice</h1>
-  <p class="article-meta">Axial · public build · Build on Stellar Philippines · 2nd runner-up</p>
-  <div class="article-body">
-    <p><strong>Constraint.</strong> Small firms get paid late on invoices. Payroll still lands on a date. Waiting is not a strategy. We did not have a bank as a client. We had a problem and a chain we could actually program.</p>
-    <p><strong>Decision.</strong> Model receivables as something you can split and move on Stellar, with rules in contracts we control. Keep the story small: timing of cash, not a new slogan for the company.</p>
-    <p><strong>Artifact.</strong> Axial is live at axial.axonenjin.com. Four Soroban contracts deployed. Second runner-up at Build on Stellar Philippines. You can click the site. That is the check.</p>
-    <p><strong>Lesson.</strong> This is founder-public work, not a named paying-client case and not proof we should run a franchise network tomorrow. It is proof we can ship a narrow money-timing system and put it on a URL.</p>
-  </div>
-  <div class="article-links">
+    <p class="article-type">Case</p>
+    <h1>72 hours to Stellar Mainnet</h1>
+    <p class="article-meta">May–June 2026 · Build on Stellar Philippines · 2nd runner-up · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy</p>
+    <div class="article-body">
+      <p>A small supplier delivers an order to a corporate client, sends the invoice, and waits to be paid. In some business relationships, that wait can stretch to 60 or 90 days. The supplier still has expenses in the meantime. Payroll has to be met, suppliers need to be paid, and the business has recurring obligations involving SSS, PhilHealth, Pag-IBIG, and the Bureau of Internal Revenue (BIR).</p>
+      <p>This is the working-capital problem we wanted to explore with <strong>Axial</strong>. A business can have a confirmed sale and still struggle to cover its day-to-day obligations while the invoice remains unpaid. Access to liquidity matters, but it does not remove the administrative work that comes with running payroll and meeting reporting requirements.</p>
+      <p>When we joined the <strong>Build on Stellar Philippines: Build the Future of Finance</strong> Hackathon in May 2026, organized by Stellar Philippines and Rise In, we set out to build a prototype that connected those two needs. We were not starting from scratch with the protocol. Carlos Jerico Dela Torre had previously placed first in the Rise In Stellar Smart Contract Bootcamp with a score of 91.25 after building <strong>Stella</strong>, an escrow decentralized application on Soroban. The challenge now was to bring all four of us, Carlos, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy, together to build a multi-contract financial workflow while keeping up with our coursework at the Polytechnic University of the Philippines.</p>
+      <p>We had 72 hours. The goal was not simply to put a polished interface in front of a local database. We wanted the core transaction flow to run through contracts deployed on Stellar. Of the 165 people who registered, 32 teams submitted projects, and 28 deployed code to Stellar Mainnet.</p>
+      <p>Within the first twelve hours, we ran into the main engineering challenge. Soroban's Rust and WebAssembly environment required us to be careful about how state moved between contracts. To connect invoice factoring with a payroll workflow, we needed to write, compile, test, and link four separate smart contracts across Testnet and Mainnet before the deadline.</p>
+      <h2>Connecting Liquidity to Payroll</h2>
+      <p>We cut non-essential interface features and focused on the transaction lifecycle at the centre of <strong>Axial</strong> (<a href="https://axial.axonenjin.com">axial.axonenjin.com</a>, <a href="https://github.com/Axon-Enjin/axial">github.com/Axon-Enjin/axial</a>). The architecture was organized around two related tasks: making invoice-backed liquidity possible and using that liquidity in a structured payroll and settlement process.</p>
+      <p>The first contract, <strong>Receivable Token</strong>, was written in Rust and compiled to WebAssembly. Its purpose was to represent a verified corporate invoice on-chain. When an MSME submitted a verified corporate invoice with a 60-to-90-day payment term, the contract could mint a token representing that receivable.</p>
+      <p>We connected this to <strong>Axial Swap</strong>, the invoice-factoring contract. The intended flow allowed a business to exchange the tokenized receivable for USDC liquidity on Stellar rather than wait for the invoice's full payment term to pass. Since suppliers need to pay employees and expenses in Philippine pesos, we integrated the Reflector Oracle to obtain PHP/USD exchange-rate data on-chain. We also connected the flow to SEP-24 fiat on- and off-ramps through PDAX so that USDC could move toward local-currency settlement.</p>
+      <p>Access to funds was only part of the problem. A business that receives liquidity still needs to calculate payroll and account for statutory contributions. We therefore connected the factoring flow to two additional contracts, <strong>Payroll Split</strong> and <strong>Settlement</strong>.</p>
+      <p><strong>Payroll Split</strong> was designed to apply configured deductions for SSS, PhilHealth, and Pag-IBIG before distributing net pay to employees. The <strong>Settlement</strong> contract managed escrow and a structured T+3 release. We also connected transaction data to the BIR EIS Co-Pilot module, which was intended to support Electronic Invoicing System reporting. The hackathon build demonstrated the proposed workflow. Using it for real payroll or tax reporting would require validated statutory rules, production-ready integrations, and the appropriate operational and compliance reviews.</p>
+      <p>Getting the four Rust contracts to work together within Soroban's resource limits took much of the sprint. We reduced data structures, optimized storage reads, and tested cross-contract calls between <strong>Axial Swap</strong> and <strong>Payroll Split</strong> on Testnet before running the Mainnet deployment scripts.</p>
+      <p>On May 23, 2026, we presented <strong>Axial</strong> at Demo Day at the PDAX offices. Alongside 27 other projects deployed to Mainnet, we showed the judges the live contract deployments and walked through how the prototype connected a tokenized invoice to liquidity, payroll distribution, and reporting data. Axial finished as second runner-up, or third place.</p>
+      <h2>Taking the Idea Beyond Demo Day</h2>
+      <p>The project soon received attention outside the hackathon. BitDigest published a feature on Axial on June 6, 2026, followed by BitPinas on June 8. Both covered the idea behind the build: giving Philippine MSMEs a way to access working capital while reducing the manual work involved in routine financial operations.</p>
+      <p>That coverage led into Philippine Blockchain Week 2026, themed <strong>Decoded: Deployed</strong>, which ran from June 19 to 21 at the SMX Convention Center Manila. We joined Stellar Philippines and Rise In at the Build on Stellar ecosystem showcase and presented Axial to an audience beyond the developers who had followed the hackathon.</p>
+      <p>The two settings required different kinds of explanations. At PDAX, we had to show that the contracts worked together and that the Mainnet deployments were real. At Philippine Blockchain Week, we had to explain why the system mattered to a business owner who might not care about Rust, Soroban, or decentralized exchanges. We focused on the practical sequence: an invoice can represent locked working capital, a factoring transaction can make liquidity available earlier, and the resulting funds can support payroll and related workflows.</p>
+      <p>On June 20, we also attended the PBW VIP Investors Dinner at Hard Rock Cafe Manila, where we spoke with founders, fund managers, and ecosystem operators. Those conversations reinforced an impression we had formed while building the PDAX integration: many businesses and institutions are less interested in speculative crypto products than in financial infrastructure that works with existing legal, banking, and operational requirements.</p>
+      <p>Building Axial in 72 hours and presenting it at Philippine Blockchain Week changed how we think about financial software. A bakery owner or logistics contractor does not wake up wanting to interact with a smart contract or an oracle. They want to pay their people on time and keep the business moving while waiting for a customer to settle an invoice.</p>
+      <p>That is the principle we took back to Axon Enjin. Use the underlying technology where it solves a real problem, make the transaction rules clear, and keep the user experience focused on the outcome. For Axial, that outcome is not blockchain adoption for its own sake. It is a more useful way to think about working capital and the administrative work that follows it.</p>
+    </div>
+    <div class="article-links">
     <a class="text-link" href="https://axial.axonenjin.com">Visit Axial</a>
+    <a class="text-link" href="https://github.com/Axon-Enjin/axial">Source</a>
     <a class="text-link" href="/articles/">All articles</a>
-  </div>
+    </div>
   </article>
 </main>
 <footer class="site-footer">
   <div class="footer-inner wrap">
     <div class="footer-main">
-      <a class="brand" href="/" aria-label="Axon Enjin home"><img src="/assets/axon-mark.svg" width="39" height="26" alt=""><span>AXON ENJIN</span></a>
+      <a class="brand" href="/" aria-label="Axon Enjin home">
+        <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+        <span>AXON ENJIN</span>
+      </a>
       <p>Metro Manila, Philippines</p>
       <nav aria-label="Footer navigation">
         <a href="/#company">Team</a>
@@ -56,7 +80,10 @@
         <a href="https://delatorre.axonenjin.com/">Jerico</a>
       </nav>
     </div>
-    <div class="footer-bottom"><span>&copy; 2026 Axon Enjin</span><span>The one who connects.</span></div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Axon Enjin</span>
+      <span>The one who connects.</span>
+    </div>
   </div>
 </footer>
 </body>

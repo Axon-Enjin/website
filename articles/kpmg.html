@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060d">
+<title>KPMG Academic Innovation Challenge — Axon Enjin</title>
+<meta name="description" content="Building Archon and Mate for cross-departmental university support and academic planning.">
+<link rel="icon" href="/assets/axon-mark.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/dm-sans.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/hero.css">
+<link rel="stylesheet" href="/assets/company-presence.css">
+<link rel="stylesheet" href="/assets/surfaces.css">
+<link rel="stylesheet" href="/assets/articles.css">
+
+</head>
+<body class="article-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-container">
+    <a class="brand" href="/" aria-label="Axon Enjin home">
+      <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+      <span>AXON ENJIN</span>
+    </a>
+    <nav class="article-nav" aria-label="Main navigation">
+      <a href="/#purpose">About</a>
+      <a href="/articles/" aria-current="page">Articles</a>
+    </nav>
+    <a class="button header-cta" href="/#contact">Collaborate <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+  </div>
+</header>
+<main id="main" class="article-main">
+  <article class="article-detail">
+    <p class="article-type">Build</p>
+    <h1>Why university support tickets break</h1>
+    <p class="article-meta">June 2026 · KPMG AIC · 1st place · Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy</p>
+    <div class="article-body">
+      <p>Imagine a student trying to resolve an enrollment hold. The Registrar says there is an unsettled balance from the previous semester, so the student visits the Bursar. The Bursar says a tuition voucher from Financial Aid has not been posted. At Financial Aid, the student learns that the office is still waiting for an enrollment certification from the Registrar.</p>
+      <p>The student has become the link between three offices, each working with its own records and process. What should be a routine support request turns into a series of queues and follow-ups.</p>
+      <p>When the four of us, Carlos Jerico Dela Torre, Aidan Tiu, Rhandie Sales Jr., and Gerald Berongoy, founded Axon Enjin in February 2026 while studying at the Polytechnic University of the Philippines (PUP), this kind of institutional friction was familiar. We had experienced how difficult it could be to get answers when information was spread across departments. So, for the 2026 KPMG in the Philippines (R.G. Manabat &amp; Co.) Academic Innovation Challenge (AIC), we chose to work on cross-departmental university support and student academic planning.</p>
+      <p>We were balancing the build with our regular coursework, so we had to be selective about what to solve. Two problems shaped the design from the beginning.</p>
+      <p>The first was language and context. Students do not always write support requests in formal English. They may explain an urgent issue in Taglish or Cebuano, refer to a particular scholarship or tuition hold, and assume that the person reading already understands the history of the problem. A simple FAQ chatbot or keyword-based decision tree can struggle to identify the intent, retrieve the right policy, and connect records held by different departments.</p>
+      <p>The second problem was how much authority to give an AI system. Allowing a language model to call tools freely and write directly to institutional databases would create serious risks. A university cannot let an unverified model alter tuition balances, remove academic holds, or expose another student's financial information. Academic planning also requires care: a wrong enrollment or graduation deadline can have real consequences. We needed a system that could coordinate information across departments while keeping access controlled and important dates grounded in university sources.</p>
+      <h2>Two Systems for Two Different Jobs</h2>
+      <p>Our final project submission was due on June 12, 2026, with the live technical defense scheduled for June 15. We divided the work into two systems. <strong>Archon</strong> (<a href="https://archon.axonenjin.com">archon.axonenjin.com</a>, <a href="https://github.com/Axon-Enjin/archon">github.com/Axon-Enjin/archon</a>) focused on cross-departmental service desk resolution. <strong>Mate</strong> (<a href="https://github.com/Axon-Enjin/mate">github.com/Axon-Enjin/mate</a>) focused on student-facing academic planning and coordination.</p>
+      <p>Across the four-person team, we handled identity and session governance, model orchestration, vector search, and the Next.js 16 interface. We designed both systems around clear limits on what the AI could access and do.</p>
+      <p>Archon's purpose was to help resolve support requests involving offices such as the Registrar, Bursar, and Financial Aid. We built it with Next.js 16 and integrated Microsoft Entra ID through OpenID Connect (OIDC) for authentication. We also used the Microsoft Graph API to connect the application with institutional workflows. Sessions were scoped to the authenticated user's identity to help keep each student's request, retrieved records, and conversation context separate from other users' information. These controls were designed to support privacy boundaries; a production deployment would still need to be reviewed against the institution's specific data-protection policies and implementation requirements.</p>
+      <p>For language understanding and retrieval, we connected Archon to Azure AI Foundry and orchestrated work between GPT-4o and Phi-4. Azure Cosmos DB for NoSQL provided the database and vector search layer. When a student submitted a request in English, Filipino, or Cebuano, Archon could use vector search to retrieve relevant institutional policies and information available within that student's authorized scope. We assigned more involved multilingual reasoning and cross-departmental synthesis to GPT-4o, while using Phi-4 for narrower classification tasks that did not require the same level of reasoning. This division was intended to balance response quality, latency, and model costs.</p>
+      <p>The most important design decision was Archon's permission model. It operated in read-only mode by default. It could examine the available records from multiple departments, identify a likely reason for a hold, and prepare a proposed resolution. It could not write changes to a university database on its own. When a case required an action such as lifting a clearance hold or recording a financial adjustment, Archon placed the proposed action behind a human-in-the-loop approval step. A staff member would review the evidence and approve the change.</p>
+      <p>Mate addressed a different problem: helping students make sense of academic calendars, course prerequisites, and departmental advisories across four university service areas. A general retrieval-augmented generation system was not enough for information where a single incorrect date could cause a student to miss an important deadline. We combined retrieval and vector search with a confidence-scoring layer that checked extracted details against the source documents before displaying an answer.</p>
+      <p>In the test suites we ran before the June 12 submission deadline, Mate recorded an extraction error rate below 2% and returned zero fabricated dates. That result describes our test set, not a guarantee of perfect answers across every university's data.</p>
+      <h2>From the Technical Defense to the Awarding Stage</h2>
+      <p>We submitted the Archon and Mate codebases on June 12. Three days later, on June 15, we presented them at the Microsoft Philippines office on the 11th floor of One Ayala Tower in Makati City.</p>
+      <p>The questions focused on the parts of the systems that mattered most in an institutional environment. How would we stop prompt injection from changing student records? How could the system process regional languages without making model costs impractical? What would happen if two departments had conflicting information?</p>
+      <p>We answered by demonstrating the controls built into the applications. We showed how Microsoft Entra ID and identity-scoped sessions supported separation between users, how Archon's read-only default and human approval step kept staff in control of database changes, and how Mate's confidence checks evaluated extracted dates against source documents. We also presented our cost model. Based on that model, routing different tasks between GPT-4o and Phi-4 through Azure AI Foundry could reduce Archon's cost per ticket by up to 79%, depending on the workload and assumptions used.</p>
+      <p>On June 30, 2026, we attended the closing awarding ceremony at Shangri-La The Fort in BGC, Manila, held during the 2nd MAP x KPMG Technology Summit. Axon Enjin was awarded first place in the 2026 Academic Innovation Challenge and received the challenge cash prize.</p>
+      <p>Building Archon and Mate between classes at PUP, presenting them at One Ayala, and receiving the award at Shangri-La The Fort gave us a clearer view of what enterprise AI requires. A convincing demo is not enough. Organizations need to know who can access their data, what an AI system is allowed to change, how uncertain answers are handled, and whether the cost of operating the system makes sense.</p>
+      <p>That is why governance shaped the architecture from the beginning. Archon was designed around identity controls, read-only access, and staff approval for changes. Mate was designed to check critical information against source documents before presenting it to students. The cost model gave us a way to discuss operational value alongside technical capability. The project left us with a practical lesson: capability alone does not make enterprise AI trustworthy. An institution needs to know what the system can access, what it can change, when it must ask a person, and what it will cost to operate.</p>
+      <h2>Project Links</h2>
+      <ul>
+        <li><strong>Archon live deployment:</strong> <a href="https://archon.axonenjin.com">archon.axonenjin.com</a></li>
+        <li><strong>Archon source code:</strong> <a href="https://github.com/Axon-Enjin/archon">github.com/Axon-Enjin/archon</a></li>
+        <li><strong>Mate source code:</strong> <a href="https://github.com/Axon-Enjin/mate">github.com/Axon-Enjin/mate</a></li>
+      </ul>
+    </div>
+    <div class="article-links">
+    <a class="text-link" href="https://archon.axonenjin.com">Visit Archon</a>
+    <a class="text-link" href="/articles/">All articles</a>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner wrap">
+    <div class="footer-main">
+      <a class="brand" href="/" aria-label="Axon Enjin home">
+        <img src="/assets/axon-mark.svg" width="39" height="26" alt="">
+        <span>AXON ENJIN</span>
+      </a>
+      <p>Metro Manila, Philippines</p>
+      <nav aria-label="Footer navigation">
+        <a href="/#company">Team</a>
+        <a href="/articles/">Articles</a>
+        <a href="/legal">Legal</a>
+        <a href="https://delatorre.axonenjin.com/">Jerico</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Axon Enjin</span>
+      <span>The one who connects.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

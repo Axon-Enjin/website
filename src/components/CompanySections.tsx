@@ -1,27 +1,27 @@
 const stories = [
   {
-    title: "KPMG Academic Innovation Challenge",
-    result: "1st · Agentic Systems",
-    type: "Build",
-    description: "The constraint. The decision. The build.",
-    href: "/articles/kpmg-academic-innovation.html",
-    art: "/assets/assembly-network.png",
-  },
-  {
-    title: "BPI DataWave 2025 — VESTA",
-    result: "1st · Synergies track",
-    type: "Case",
-    description: "What we built, and what we learned.",
-    href: "/articles/bpi-datawave-vesta.html",
+    title: "Why we started",
+    result: "February 2026",
+    type: "Think",
+    description: "From hackathon weekends to a studio that keeps shipping.",
+    href: "/articles/started.html",
     art: "/assets/hero-network.png",
   },
   {
-    title: "Build on Stellar Philippines — Axial",
-    result: "2nd runner-up",
+    title: "Axial",
+    result: "2nd runner-up · Stellar",
     type: "Case",
-    description: "A public build, explained.",
+    description: "Seventy-two hours to Mainnet for MSME working capital.",
     href: "/articles/axial.html",
     art: "/assets/manifesto-network.png",
+  },
+  {
+    title: "KPMG Academic Innovation Challenge",
+    result: "1st place",
+    type: "Build",
+    description: "Archon and Mate under institutional constraints.",
+    href: "/articles/kpmg.html",
+    art: "/assets/assembly-network.png",
   },
 ];
 
@@ -237,13 +237,14 @@ export function Proof() {
           </p>
         </div>
         <div className="proof-list">
-          {stories.map((story, i) => (
+          {stories.map((story) => (
             <article key={story.href}>
               <span className="proof-node" aria-hidden="true" />
               <h3>{story.title}</h3>
               <p>{story.result}</p>
               <a className="text-link" href={story.href}>
-                {i === 0 ? "Read the build" : "Read the story"} <Arrow />
+                {story.type === "Build" ? "Read the build" : "Read the story"}{" "}
+                <Arrow />
               </a>
             </article>
           ))}
@@ -288,9 +289,7 @@ export function Articles() {
                   />
                 </div>
                 <span className="article-type">{story.type}</span>
-                <h3>
-                  {story.title.replace("Build on Stellar Philippines — ", "")}
-                </h3>
+                <h3>{story.title}</h3>
                 <p>{story.description}</p>
               </a>
             </article>
