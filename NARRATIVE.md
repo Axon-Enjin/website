@@ -39,7 +39,7 @@ Five checkable lines after Projects. Competitions = speed under a clock, not yea
 
 ## Articles
 
-`/articles` — Build / Think / Operate / Case. Seed: KPMG, BPI VESTA, Axial.
+`/articles` — Build / Think / Operate / Case. Seed: Why we started, Axial, KPMG, Full Cup Café, StellarPH PH100.
 
 ## Team
 
