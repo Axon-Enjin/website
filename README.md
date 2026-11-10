@@ -19,6 +19,31 @@ Article pages use the homepage's local DM Sans and Instrument Serif fonts, geome
 
 For Cloudflare Pages, use build command **`npm run build`**, output directory **`dist`**, and Node **22.12+** (Node 24 is used locally). Update the existing project's build settings when merging the migration; the previous static-root settings will not build the React source.
 
+## Articles admin
+
+Founders publish articles at `/admin`. The public pages stay the current article design. Drafts, images, and video live in Cloudflare: D1 database `axon-articles` and R2 bucket `axon-media`. Pages Functions in `functions/` serve the admin API, `/articles/`, `/media/`, and the sitemap. Without those bindings, `/articles/` falls back to the static HTML and `/admin` returns an unavailable message.
+
+`wrangler.jsonc` intentionally does **not** declare D1 or R2. A placeholder database id makes the Cloudflare Pages Git deploy fail. Local `npm run pages:dev` creates temporary D1 and R2 bindings with `--d1=DB --r2=MEDIA`. Production bindings are added in the Cloudflare Pages project settings after the real resources exist.
+
+Local admin:
+
+```powershell
+copy .dev.vars.example .dev.vars
+npm run build
+npm run pages:dev
+```
+
+Open **http://127.0.0.1:8788/admin**. The first request creates four founder sign-ins that share `FOUNDER_PASSWORD`. Default addresses are `jerico@axonenjin.com`, `aidan@axonenjin.com`, `rhandie@axonenjin.com`, and `gerald@axonenjin.com`. Change `FOUNDER_ACCOUNTS` in `.dev.vars` before that first request if those addresses should be different. The public contact inbox stays `axonenjin@gmail.com`.
+
+Before production:
+
+1. Create D1 database `axon-articles` and R2 bucket `axon-media` in the Cloudflare account that owns the `axon` Pages project.
+2. In Pages → Settings → Bindings, attach D1 as `DB` and R2 as `MEDIA`.
+3. Apply `schema.sql` to the remote D1, or let the first request create the tables and seed the five current articles.
+4. Set the Pages secret `FOUNDER_PASSWORD` before that first request. Set `FOUNDER_ACCOUNTS` first if the sign-in addresses should differ from the defaults.
+
+`npm run blog:check` checks validation, rendering, and the schema copy.
+
 ## Interactions
 
 - A first-visit intro traces the hero's nerve artwork, then reveals the live heading and controls. It plays once per session; `?intro=1` replays it while respecting Motion off and reduced motion. Skip, scroll and keyboard input finish it immediately.

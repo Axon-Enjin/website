@@ -1,29 +1,4 @@
-const stories = [
-  {
-    title: "Why we started",
-    result: "February 2026",
-    type: "Think",
-    description: "From hackathon weekends to a studio that keeps shipping.",
-    href: "/articles/started.html",
-    art: "/assets/hero-network.png",
-  },
-  {
-    title: "Axial",
-    result: "2nd runner-up · Stellar",
-    type: "Case",
-    description: "Seventy-two hours to Mainnet for MSME working capital.",
-    href: "/articles/axial.html",
-    art: "/assets/manifesto-network.png",
-  },
-  {
-    title: "KPMG Academic Innovation Challenge",
-    result: "1st place",
-    type: "Build",
-    description: "Archon and Mate under institutional constraints.",
-    href: "/articles/kpmg.html",
-    art: "/assets/assembly-network.png",
-  },
-];
+import { useHomeStories } from "../home-stories";
 
 function Arrow() {
   return (
@@ -217,6 +192,7 @@ export function Ventures() {
 }
 
 export function Proof() {
+  const stories = useHomeStories();
   return (
     <section
       className="presence-section proof-section"
@@ -258,6 +234,7 @@ export function Proof() {
 }
 
 export function Articles() {
+  const stories = useHomeStories();
   return (
     <section
       className="presence-section articles-section"
