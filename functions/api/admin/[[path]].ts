@@ -18,7 +18,7 @@ import { articleInput } from "../../_lib/input";
 import { clearSessionCookie, csrfOk, json, readCookie, requireUser, sessionCookie } from "../../_lib/http";
 import { IMAGE_LIMIT, VIDEO_LIMIT, readHead, sniff } from "../../_lib/media";
 import { renderArticlePage } from "../../_lib/render";
-import type { Env } from "../../_lib/types";
+import type { BoundEnv, Env } from "../../_lib/types";
 import { containsCurrency, validateArticle } from "../../_lib/validate";
 
 type Context = { request: Request; env: Env };
@@ -30,7 +30,7 @@ declare const FixedLengthStream: {
   };
 };
 
-async function founders(env: Env) {
+async function founders(env: BoundEnv) {
   const rows = await env.DB.prepare("SELECT id, email, name FROM users ORDER BY id ASC").all<{
     id: string;
     email: string;
@@ -39,13 +39,13 @@ async function founders(env: Env) {
   return rows.results ?? [];
 }
 
-async function knownAuthors(env: Env, ids: string[]) {
+async function knownAuthors(env: BoundEnv, ids: string[]) {
   const people = await founders(env);
   const allowed = new Set(people.map((person) => person.id));
   return ids.filter((id) => allowed.has(id));
 }
 
-async function login(request: Request, env: Env) {
+async function login(request: Request, env: BoundEnv) {
   const body = (await request.json().catch(() => null)) as { email?: string; password?: string } | null;
   const email = (body?.email ?? "").trim().toLowerCase();
   const password = body?.password ?? "";
@@ -83,7 +83,7 @@ async function login(request: Request, env: Env) {
   );
 }
 
-async function guard(request: Request, env: Env) {
+async function guard(request: Request, env: BoundEnv) {
   const user = await requireUser(request, env);
   if (!user) return { user: null, response: json({ error: "Sign in again." }, 401) };
   if (request.method !== "GET" && request.method !== "HEAD" && !csrfOk(request, user)) {
@@ -92,7 +92,7 @@ async function guard(request: Request, env: Env) {
   return { user, response: null };
 }
 
-async function uploadImage(request: Request, env: Env, userId: string) {
+async function uploadImage(request: Request, env: BoundEnv, userId: string) {
   const form = await request.formData();
   const file = form.get("file");
   if (!(file instanceof File)) return json({ error: "Choose an image." }, 400);
@@ -145,7 +145,7 @@ async function uploadImage(request: Request, env: Env, userId: string) {
   });
 }
 
-async function uploadVideo(request: Request, env: Env, userId: string) {
+async function uploadVideo(request: Request, env: BoundEnv, userId: string) {
   const length = Number(request.headers.get("content-length") || 0);
   if (!request.body || !length) return json({ error: "The video upload was empty." }, 400);
   if (length > VIDEO_LIMIT) return json({ error: "Videos need to be 200 MB or smaller." }, 413);
@@ -170,7 +170,7 @@ async function uploadVideo(request: Request, env: Env, userId: string) {
   });
 }
 
-async function route(request: Request, env: Env) {
+async function route(request: Request, env: BoundEnv) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "");
   const method = request.method;
@@ -326,12 +326,22 @@ function htmlNoStore(body: string) {
 
 export const onRequest = async (context: Context) => {
   try {
-    await bootstrap(context.env);
-    if (!context.env.FOUNDER_PASSWORD) {
+    if (!context.env.DB || !context.env.MEDIA) {
+      return json(
+        {
+          error:
+            "The articles desk needs D1 and R2 bindings. Create axon-articles and axon-media in Cloudflare, then attach them to this Pages project.",
+        },
+        503,
+      );
+    }
+    const env = context.env as BoundEnv;
+    await bootstrap(env);
+    if (!env.FOUNDER_PASSWORD) {
       const path = new URL(context.request.url).pathname;
       if (path.endsWith("/login")) return json({ error: "Set FOUNDER_PASSWORD before signing in." }, 503);
     }
-    return await route(context.request, context.env);
+    return await route(context.request, env);
   } catch (error) {
     console.error(error);
     return json({ error: "Something went wrong." }, 500);

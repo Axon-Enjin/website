@@ -1,4 +1,4 @@
-import type { Env } from "./types";
+import type { BoundEnv } from "./types";
 
 export type SessionUser = { id: string; email: string; name: string; csrf: string };
 
@@ -39,7 +39,7 @@ export function clearSessionCookie(request: Request) {
   return sessionCookie("", request, 0);
 }
 
-export async function requireUser(request: Request, env: Env) {
+export async function requireUser(request: Request, env: BoundEnv) {
   const id = readCookie(request, "axon_session");
   if (!id) return null;
   const row = await env.DB.prepare(

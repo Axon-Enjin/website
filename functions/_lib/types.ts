@@ -133,9 +133,14 @@ export type AssetFetcher = {
 };
 
 export type Env = {
-  DB: D1Database;
-  MEDIA: R2Bucket;
+  DB?: D1Database;
+  MEDIA?: R2Bucket;
   ASSETS: AssetFetcher;
   FOUNDER_PASSWORD?: string;
   FOUNDER_ACCOUNTS?: string;
+};
+
+export type BoundEnv = Env & {
+  DB: D1Database;
+  MEDIA: R2Bucket;
 };

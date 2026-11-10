@@ -1,13 +1,13 @@
 import { hashPassword } from "./auth";
 import { SCHEMA } from "./schema";
 import seedArticles from "./seed-articles.json";
-import { DEFAULT_FOUNDERS, type Env, type Founder } from "./types";
+import { DEFAULT_FOUNDERS, type BoundEnv, type Env, type Founder } from "./types";
 
 type SeedArticle = (typeof seedArticles)[number];
 
 let ready: Promise<void> | null = null;
 
-function founders(env: Env): Founder[] {
+function founders(env: BoundEnv): Founder[] {
   if (!env.FOUNDER_ACCOUNTS) return DEFAULT_FOUNDERS;
   try {
     const parsed = JSON.parse(env.FOUNDER_ACCOUNTS) as Founder[];
@@ -18,7 +18,7 @@ function founders(env: Env): Founder[] {
   return DEFAULT_FOUNDERS;
 }
 
-async function seed(env: Env) {
+async function seed(env: BoundEnv) {
   await env.DB.prepare("INSERT OR IGNORE INTO redirects (from_path, to_path) VALUES (?, ?)").bind(
     "/articles/kpmg-academic-innovation.html",
     "/articles/kpmg.html",
@@ -94,7 +94,7 @@ async function seed(env: Env) {
   }
 }
 
-async function migrate(env: Env) {
+async function migrate(env: BoundEnv) {
   const statements = SCHEMA.split(";")
     .map((statement) => statement.trim())
     .filter(Boolean);
@@ -103,8 +103,10 @@ async function migrate(env: Env) {
 }
 
 export function bootstrap(env: Env) {
+  if (!env.DB) return Promise.resolve();
+  const bound = env as BoundEnv;
   if (!ready) {
-    ready = migrate(env).catch((error) => {
+    ready = migrate(bound).catch((error) => {
       ready = null;
       throw error;
     });

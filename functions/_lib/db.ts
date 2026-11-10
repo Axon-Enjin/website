@@ -1,5 +1,5 @@
 import { newId } from "./auth";
-import type { ArticleInput, ArticleRecord, ArticleStatus, Block, Env, Hero, MediaRecord } from "./types";
+import type { ArticleInput, ArticleRecord, ArticleStatus, Block, BoundEnv, Hero, MediaRecord } from "./types";
 
 type ArticleRow = {
   id: string;
@@ -61,7 +61,7 @@ export function toArticle(row: ArticleRow, authorIds: string[]): ArticleRecord {
   };
 }
 
-async function authorIds(env: Env, articleId: string) {
+async function authorIds(env: BoundEnv, articleId: string) {
   const rows = await env.DB.prepare(
     "SELECT user_id FROM article_authors WHERE article_id = ? ORDER BY position ASC",
   )
@@ -70,19 +70,19 @@ async function authorIds(env: Env, articleId: string) {
   return (rows.results ?? []).map((row) => row.user_id);
 }
 
-export async function getArticle(env: Env, id: string) {
+export async function getArticle(env: BoundEnv, id: string) {
   const row = await env.DB.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first<ArticleRow>();
   if (!row) return null;
   return toArticle(row, await authorIds(env, id));
 }
 
-export async function getArticleBySlug(env: Env, slug: string) {
+export async function getArticleBySlug(env: BoundEnv, slug: string) {
   const row = await env.DB.prepare("SELECT * FROM articles WHERE slug = ?").bind(slug).first<ArticleRow>();
   if (!row) return null;
   return toArticle(row, await authorIds(env, row.id));
 }
 
-export async function listArticles(env: Env, filter: { status?: string; type?: string; q?: string }) {
+export async function listArticles(env: BoundEnv, filter: { status?: string; type?: string; q?: string }) {
   const clauses: string[] = [];
   const values: unknown[] = [];
   if (filter.status) {
@@ -109,7 +109,7 @@ export async function listArticles(env: Env, filter: { status?: string; type?: s
   return articles;
 }
 
-export async function listPublished(env: Env) {
+export async function listPublished(env: BoundEnv) {
   const rows = await env.DB.prepare(
     "SELECT * FROM articles WHERE status = 'published' ORDER BY published_at DESC, updated_at DESC",
   ).all<ArticleRow>();
@@ -123,7 +123,7 @@ function snapshot(article: ArticleRecord) {
   return JSON.stringify(input);
 }
 
-async function writeAuthors(env: Env, articleId: string, ids: string[]) {
+async function writeAuthors(env: BoundEnv, articleId: string, ids: string[]) {
   await env.DB.prepare("DELETE FROM article_authors WHERE article_id = ?").bind(articleId).run();
   let position = 0;
   for (const userId of ids) {
@@ -136,7 +136,7 @@ async function writeAuthors(env: Env, articleId: string, ids: string[]) {
   }
 }
 
-async function writeRevision(env: Env, article: ArticleRecord, editorId: string) {
+async function writeRevision(env: BoundEnv, article: ArticleRecord, editorId: string) {
   await env.DB.prepare(
     "INSERT INTO revisions (id, article_id, editor_id, snapshot, created_at) VALUES (?, ?, ?, ?, ?)",
   )
@@ -151,7 +151,7 @@ async function writeRevision(env: Env, article: ArticleRecord, editorId: string)
   for (const row of extra) await env.DB.prepare("DELETE FROM revisions WHERE id = ?").bind(row.id).run();
 }
 
-export async function insertArticle(env: Env, input: ArticleInput, editorId: string) {
+export async function insertArticle(env: BoundEnv, input: ArticleInput, editorId: string) {
   const now = new Date().toISOString();
   const id = newId();
   await env.DB.prepare(
@@ -188,7 +188,7 @@ export async function insertArticle(env: Env, input: ArticleInput, editorId: str
   return article;
 }
 
-export async function updateArticle(env: Env, current: ArticleRecord, input: ArticleInput, editorId: string) {
+export async function updateArticle(env: BoundEnv, current: ArticleRecord, input: ArticleInput, editorId: string) {
   const now = new Date().toISOString();
   if (current.status === "published" && current.slug !== input.slug) {
     await env.DB.prepare(
@@ -228,7 +228,7 @@ export async function updateArticle(env: Env, current: ArticleRecord, input: Art
   return article;
 }
 
-export async function setStatus(env: Env, article: ArticleRecord, status: ArticleStatus, editorId: string) {
+export async function setStatus(env: BoundEnv, article: ArticleRecord, status: ArticleStatus, editorId: string) {
   const now = new Date().toISOString();
   const publishedAt = status === "published" ? article.publishedAt || now : article.publishedAt;
   await env.DB.prepare(
@@ -242,7 +242,7 @@ export async function setStatus(env: Env, article: ArticleRecord, status: Articl
   return getArticle(env, article.id);
 }
 
-export async function listRevisions(env: Env, articleId: string) {
+export async function listRevisions(env: BoundEnv, articleId: string) {
   const rows = await env.DB.prepare(
     `SELECT revisions.id, revisions.created_at, users.name AS editor
      FROM revisions LEFT JOIN users ON users.id = revisions.editor_id
@@ -257,7 +257,7 @@ export async function listRevisions(env: Env, articleId: string) {
   }));
 }
 
-export async function restoreRevision(env: Env, articleId: string, revisionId: string, editorId: string) {
+export async function restoreRevision(env: BoundEnv, articleId: string, revisionId: string, editorId: string) {
   const row = await env.DB.prepare(
     "SELECT snapshot FROM revisions WHERE id = ? AND article_id = ?",
   )
@@ -270,7 +270,7 @@ export async function restoreRevision(env: Env, articleId: string, revisionId: s
   return updateArticle(env, current, input, editorId);
 }
 
-export async function listMedia(env: Env) {
+export async function listMedia(env: BoundEnv) {
   const rows = await env.DB.prepare(
     "SELECT * FROM media ORDER BY created_at DESC",
   ).all<{
@@ -299,12 +299,12 @@ export async function listMedia(env: Env) {
   );
 }
 
-export async function mediaInUse(env: Env, mediaId: string) {
+export async function mediaInUse(env: BoundEnv, mediaId: string) {
   const rows = await env.DB.prepare("SELECT body, hero FROM articles").all<{ body: string; hero: string | null }>();
   return (rows.results ?? []).some((row) => `${row.body} ${row.hero ?? ""}`.includes(mediaId));
 }
 
-export async function homepageArticles(env: Env) {
+export async function homepageArticles(env: BoundEnv) {
   const picks = await env.DB.prepare(
     `SELECT articles.* FROM homepage_picks
      JOIN articles ON articles.id = homepage_picks.article_id
